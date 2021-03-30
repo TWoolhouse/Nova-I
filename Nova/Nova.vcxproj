@@ -65,7 +65,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)dep\glew\lib\Release\x64\;$(ProjectDir)dep\glfw\lib-vc2019\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -97,7 +97,12 @@
     <ClInclude Include="core\entry_point.h" />
     <ClInclude Include="core\window.h" />
     <ClInclude Include="event\event.h" />
+    <ClInclude Include="event\mouse.h" />
+    <ClInclude Include="event\key.h" />
     <ClInclude Include="event\type.h" />
+    <ClInclude Include="event\window.h" />
+    <ClInclude Include="input\key.h" />
+    <ClInclude Include="input\mouse.h" />
     <ClInclude Include="nova.h" />
     <ClInclude Include="npch.h" />
     <ClInclude Include="render\gl_window.h" />

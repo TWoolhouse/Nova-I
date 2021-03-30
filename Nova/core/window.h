@@ -1,5 +1,6 @@
 #pragma once
 #include "npch.h"
+#include "event/event.h"
 
 namespace Nova {
 
@@ -8,6 +9,7 @@ namespace Nova {
 		struct Properties {
 			unsigned int width, height;
 			std::string name;
+			std::function<void(Event::Event&)> event_cb;
 			Properties(
 				const unsigned int width = 1280,
 				const unsigned int height = 720,

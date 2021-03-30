@@ -7,3 +7,5 @@
 #endif // NOVA_EXPORT
 
 #include <string>
+#include <utility>
+#include <functional>

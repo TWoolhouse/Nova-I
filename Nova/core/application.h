@@ -1,6 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "window.h"
+#include "event/event.h"
 
 namespace Nova {
 
@@ -15,6 +16,7 @@ namespace Nova {
 		void main();
 
 	private:
+		void event_callback(Event::Event& event);
 		static Application* s_instance;
 		friend inline static Application& App();
 
