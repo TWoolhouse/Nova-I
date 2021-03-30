@@ -1,8 +1,10 @@
 #define NOVA
-#include <Nova.h>
+#include <nova.h>
 #include <iostream>
 
-int main() {
-	std::cout << "Hello World" << std::endl;
-	return 0;
+class Sol : public Nova::Application {
+};
+
+Nova::Application* Nova::Create() {
+	return new Sol();
 }
