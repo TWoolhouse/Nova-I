@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Nova", "Nova\Nova.vcxproj", "{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sol", "Sol\Sol.vcxproj", "{A8112982-A29B-4197-A82F-6321C4C2352A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E} = {324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -13,8 +18,12 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Debug|x64.ActiveCfg = Debug|x64
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Debug|x64.Build.0 = Debug|x64
-		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Release|x64.ActiveCfg = Release|x64
-		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Release|x64.Build.0 = Release|x64
+		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Release|x64.ActiveCfg = Debug|x64
+		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Release|x64.Build.0 = Debug|x64
+		{A8112982-A29B-4197-A82F-6321C4C2352A}.Debug|x64.ActiveCfg = Debug|x64
+		{A8112982-A29B-4197-A82F-6321C4C2352A}.Debug|x64.Build.0 = Debug|x64
+		{A8112982-A29B-4197-A82F-6321C4C2352A}.Release|x64.ActiveCfg = Debug|x64
+		{A8112982-A29B-4197-A82F-6321C4C2352A}.Release|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
