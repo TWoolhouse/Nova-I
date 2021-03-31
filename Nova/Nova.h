@@ -17,5 +17,11 @@
 #include "input/mouse.h"
 #include "input/poll.h"
 
+// Buffers
+#include "render/buffer.h"
+#include "render/buffer_type.h"
+#include "render/buffer_spec.h"
+#include "render/buffer_array.h"
+
 // Main Entry Point
 #include "core/entry_point.h"
