@@ -26,6 +26,11 @@ public:
 			{ Nova::Buffer::Type::Float2, "pos" }
 		});
 
+		shader = Nova::ShaderPipeline::Create({
+			Nova::Shader::Create("Nova/res/shader/vertex.glsl"),
+			Nova::Shader::Create("Nova/res/shader/frag.glsl")
+		});
+
 	}
 
 	virtual void update() override {
@@ -44,6 +49,7 @@ public:
 private:
 	unsigned int frame = 0;
 	Nova::Buffer::Context* bc;
+	Nova::ShaderPipeline* shader;
 
 };
 

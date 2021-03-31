@@ -68,7 +68,8 @@
       <AdditionalDependencies>Nova.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j</Command>
+      <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j
+xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
@@ -94,7 +95,8 @@
       <AdditionalDependencies>Nova.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j</Command>
+      <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j
+xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>

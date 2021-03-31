@@ -106,13 +106,15 @@
     <ClInclude Include="input\poll.h" />
     <ClInclude Include="nova.h" />
     <ClInclude Include="npch.h" />
-    <ClInclude Include="render\buffer.h" />
-    <ClInclude Include="render\buffer_array.h" />
-    <ClInclude Include="render\buffer_spec.h" />
-    <ClInclude Include="render\buffer_type.h" />
-    <ClInclude Include="render\gl\gl_buffer.h" />
-    <ClInclude Include="render\gl\gl_buffer_array.h" />
-    <ClInclude Include="render\gl\gl_window.h" />
+    <ClInclude Include="render\buffer\buffer.h" />
+    <ClInclude Include="render\buffer\array.h" />
+    <ClInclude Include="render\buffer\spec.h" />
+    <ClInclude Include="render\buffer\type.h" />
+    <ClInclude Include="render\gl\buffer\gl_buffer.h" />
+    <ClInclude Include="render\gl\buffer\gl_buffer_array.h" />
+    <ClInclude Include="render\gl\buffer\gl_window.h" />
+    <ClInclude Include="render\gl\gl_shader.h" />
+    <ClInclude Include="render\shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp" />
@@ -122,13 +124,15 @@
     </ClCompile>
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
-    <ClCompile Include="render\gl\gl_buffer.cpp" />
-    <ClCompile Include="render\gl\gl_buffer_array.cpp" />
-    <ClCompile Include="render\gl\gl_window.cpp" />
+    <ClCompile Include="render\gl\buffer\gl_buffer.cpp" />
+    <ClCompile Include="render\gl\buffer\gl_buffer_array.cpp" />
+    <ClCompile Include="render\gl\buffer\gl_window.cpp" />
+    <ClCompile Include="render\gl\gl_shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
-    <None Include="Nova\res\shader\test.glsl" />
+    <None Include="Nova\res\shader\frag.glsl" />
+    <None Include="Nova\res\shader\vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,10 +18,13 @@
 #include "input/poll.h"
 
 // Buffers
-#include "render/buffer.h"
-#include "render/buffer_type.h"
-#include "render/buffer_spec.h"
-#include "render/buffer_array.h"
+#include "render/buffer/buffer.h"
+#include "render/buffer/type.h"
+#include "render/buffer/spec.h"
+#include "render/buffer/array.h"
+
+// Shaders
+#include "render/shader.h"
 
 // Main Entry Point
 #include "core/entry_point.h"
