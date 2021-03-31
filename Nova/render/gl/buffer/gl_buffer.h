@@ -1,6 +1,6 @@
 #pragma once
 #include "npch.h"
-#include "render/buffer.h"
+#include "render/buffer/buffer.h"
 #include <GL/glew.h>
 
 namespace Nova::OpenGL {

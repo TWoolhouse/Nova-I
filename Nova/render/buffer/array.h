@@ -1,13 +1,14 @@
 #pragma once
 #include "npch.h"
 #include "buffer.h"
-#include "buffer_spec.h"
+#include "spec.h"
 
 namespace Nova::Buffer {
 
 	class NOVA_API Context {
 	public:
 		static Context* Create();
+		virtual ~Context() {}
 
 		virtual void bind() = 0;
 		virtual void unbind() = 0;

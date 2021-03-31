@@ -45,6 +45,10 @@ namespace Nova {
 			glBindVertexArray(m_id);
 		}
 
+		BufferVertexArray::~BufferVertexArray() {
+			glDeleteVertexArrays(1, &m_id);
+		}
+
 		void BufferVertexArray::bind() {
 			glBindVertexArray(m_id);
 		}

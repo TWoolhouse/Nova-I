@@ -1,11 +1,12 @@
 #pragma once
-#include "render/buffer_array.h"
+#include "render/buffer/array.h"
 
 namespace Nova::OpenGL {
 
 	class BufferVertexArray : public Buffer::Context {
 	public:
 		BufferVertexArray();
+		~BufferVertexArray();
 
 		virtual void bind() override;
 		virtual void unbind() override;
