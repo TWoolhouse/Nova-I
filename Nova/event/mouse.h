@@ -18,7 +18,7 @@ namespace Nova::Event {
 	public:
 		friend Event;
 		MouseButton(const Input::Mouse& button) : Mouse(), m_button(button) {}
-		const bool is(const Input::Mouse& button) const { return m_button == button; }
+		const bool match(const Input::Mouse& button) const { return m_button == button; }
 		const Input::Mouse& button() const { return m_button; }
 	protected:
 		MouseButton(const bool cast) : Mouse(cast), m_button(Input::Mouse::None) {}

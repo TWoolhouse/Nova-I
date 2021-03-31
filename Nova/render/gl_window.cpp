@@ -85,12 +85,12 @@ namespace Nova {
 				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
 				switch (action) {
 				case (GLFW_PRESS): {
-					Event::MouseButtonPress event = Event::MouseButtonPress(Input::Mouse(button));
+					Event::MouseButtonPress event(Input::WindowMouseCode(button));
 					cb.event_cb(event);
 					break;
 				}
 				case (GLFW_RELEASE): {
-					Event::MouseButtonRelease event = Event::MouseButtonRelease(Input::Mouse(button));
+					Event::MouseButtonRelease event(Input::WindowMouseCode(button));
 					cb.event_cb(event);
 					break;
 				}
@@ -111,17 +111,17 @@ namespace Nova {
 
 				switch (action) {
 				case (GLFW_PRESS): {
-					Event::KeyPress event = Event::KeyPress(Input::Key(key), 0);
+					Event::KeyPress event(Input::WindowKeyCode(key), 0);
 					cb.event_cb(event);
 					break;
 				}
 				case (GLFW_RELEASE): {
-					Event::KeyRelease event = Event::KeyRelease(Input::Key(key));
+					Event::KeyRelease event(Input::WindowKeyCode(key));
 					cb.event_cb(event);
 					break;
 				}
 				case (GLFW_REPEAT): {
-					Event::KeyPress event = Event::KeyPress(Input::Key(key), 1);
+					Event::KeyPress event(Input::WindowKeyCode(key), 1);
 					cb.event_cb(event);
 					break;
 				}

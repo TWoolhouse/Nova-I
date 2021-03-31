@@ -3,6 +3,8 @@
 #include "window.h"
 #include "event/event.h"
 
+int main(int argc, char const* argv[]);
+
 namespace Nova {
 
 	class NOVA_API Application {
@@ -13,10 +15,14 @@ namespace Nova {
 
 		const bool active() const { return m_active; }
 
-		void main();
+		virtual void event(Event::Event& event) {};
+		virtual void update() {};
+
+		void event_callback(Event::Event& event);
 
 	private:
-		void event_callback(Event::Event& event);
+		friend int ::main(int argc, char const* argv[]);
+		void main();
 		static Application* s_instance;
 		friend inline static Application& App();
 

@@ -8,7 +8,7 @@ namespace Nova::Event {
 	public:
 		friend Event;
 		Key(const Input::Key& key) : Event(), m_key(key) {}
-		const bool is(const Input::Key& key) const { return m_key == key; }
+		const bool match(const Input::Key& key) const { return m_key == key; }
 		const Input::Key& key() const { return m_key; }
 	protected:
 		Key(const bool cast) : Event(cast), m_key(Input::Key::None) {}
@@ -20,7 +20,7 @@ namespace Nova::Event {
 	class KeyPress : public Key {
 	public:
 		friend Event;
-		KeyPress(const Input::Key& key, const unsigned int repeat) : Key(key), m_repeat(repeat) {}
+		KeyPress(const Input::Key& key, const unsigned int repeat = 0) : Key(key), m_repeat(repeat) {}
 		const unsigned int repeat() const { return m_repeat; }
 	protected:
 		KeyPress(const bool cast) : Key(cast), m_repeat(0) {}

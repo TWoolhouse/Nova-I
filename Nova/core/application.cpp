@@ -19,12 +19,15 @@ namespace Nova {
 
 	void Application::main() {
 		m_window->update();
+		update();
 	}
 
 	void Application::event_callback(Event::Event& event) {
 		if (event.is<Event::WindowClose>()) {
 			m_active = false;
+			return;
 		}
+		this->event(event);
 	}
 
 }

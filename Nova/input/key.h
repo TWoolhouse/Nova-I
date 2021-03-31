@@ -22,4 +22,7 @@ namespace Nova::Input {
 		KP_HOME, KP_UP, KP_PGUP, KP_LEFT, KP_RIGHT, KP_END, KP_DOWN, KP_PGDN, KP_INSERT, KP_DELETE
 	};
 
+	const Key WindowKeyCode(int code);
+	const int WindowCode(const Key& key);
+
 }

@@ -7,4 +7,7 @@ namespace Nova::Input {
 		LMB = 1, RMB, MMB, VB1, VB2
 	};
 
+	const Mouse WindowMouseCode(int code);
+	const int WindowCode(const Mouse& button);
+
 }
