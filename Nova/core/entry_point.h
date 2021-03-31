@@ -4,8 +4,6 @@
 #include "npch.h"
 #include "application.h"
 
-//extern Nova::Application* Nova::Application::Create();
-
 int main(int argc, char const* argv[]) {
 	Nova::Application* app = Nova::Application::Create();
 	while (app->active()) {
