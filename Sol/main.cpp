@@ -9,8 +9,10 @@ void t() {
 class Sol : public Nova::Application {
 public:
 	virtual void update() override {
-		std::cout << frame++ << std::endl;
+		if (Nova::Input::Poll(Nova::Input::Key::F))
+			std::cout << frame++ << std::endl;
 	}
+
 	virtual void event(Nova::Event::Event& event) override {
 		if (auto e = event.cast<Nova::Event::KeyPress>())
 			if (e.match(Nova::Input::Key::ESCAPE)) {
@@ -18,6 +20,7 @@ public:
 				event_callback(close);
 		}
 	}
+
 private:
 	unsigned int frame = 0;
 

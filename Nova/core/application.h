@@ -13,10 +13,11 @@ namespace Nova {
 		Application();
 		virtual ~Application();
 
-		const bool active() const { return m_active; }
-
 		virtual void event(Event::Event& event) {};
 		virtual void update() {};
+
+		const bool active() const { return m_active; }
+		Window& window() const { return *m_window; }
 
 		void event_callback(Event::Event& event);
 

@@ -103,6 +103,7 @@
     <ClInclude Include="event\window.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
+    <ClInclude Include="input\poll.h" />
     <ClInclude Include="nova.h" />
     <ClInclude Include="npch.h" />
     <ClInclude Include="render\gl_window.h" />
@@ -114,6 +115,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="input\gl_codes.cpp" />
+    <ClCompile Include="input\gl_poll.cpp" />
     <ClCompile Include="render\gl_window.cpp" />
   </ItemGroup>
   <ItemGroup>

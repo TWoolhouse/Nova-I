@@ -38,6 +38,8 @@ namespace Nova {
 				return;
 			}
 
+			glViewport(0, 0, m_properties.width, m_properties.height);
+
 			// glfwSwapInterval(0); // vsnyc
 
 			// Renderer::Command::ClearColour();
@@ -66,6 +68,10 @@ namespace Nova {
 				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
 				Event::WindowMove event(x_pos, y_pos);
 				cb.event_cb(event);
+			});
+
+			glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
+				glViewport(0, 0, width, height);
 			});
 
 			glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
