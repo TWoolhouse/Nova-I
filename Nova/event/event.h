@@ -22,8 +22,7 @@ namespace Nova::Event {
 				done = handle;
 				return static_cast<T&>(*this);
 			}
-			T e = T(false);
-			return e;
+			return T(false);
 		}
 
 		template<typename T, typename F>
