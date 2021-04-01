@@ -107,7 +107,7 @@
     <ClInclude Include="nova.h" />
     <ClInclude Include="npch.h" />
     <ClInclude Include="render\buffer\buffer.h" />
-    <ClInclude Include="render\buffer\array.h" />
+    <ClInclude Include="render\buffer\context.h" />
     <ClInclude Include="render\buffer\spec.h" />
     <ClInclude Include="render\buffer\type.h" />
     <ClInclude Include="render\command.h" />
@@ -131,6 +131,7 @@
     <ClCompile Include="render\gl\gl_render_command.cpp" />
     <ClCompile Include="render\gl\gl_window.cpp" />
     <ClCompile Include="render\gl\gl_shader.cpp" />
+    <ClCompile Include="render\render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />

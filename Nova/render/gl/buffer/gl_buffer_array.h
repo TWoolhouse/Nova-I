@@ -1,5 +1,5 @@
 #pragma once
-#include "render/buffer/array.h"
+#include "render/buffer/context.h"
 
 namespace Nova::OpenGL {
 

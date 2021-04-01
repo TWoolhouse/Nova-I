@@ -21,7 +21,7 @@
 #include "render/buffer/buffer.h"
 #include "render/buffer/type.h"
 #include "render/buffer/spec.h"
-#include "render/buffer/array.h"
+#include "render/buffer/context.h"
 
 // Shaders
 #include "render/shader.h"

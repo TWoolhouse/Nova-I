@@ -63,9 +63,6 @@
     <ClInclude Include="render\gl\buffer\gl_buffer_array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render\buffer\array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="render\buffer\spec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -85,6 +82,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\buffer\context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,6 +114,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render\gl\gl_render_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render\render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
