@@ -11,11 +11,11 @@ namespace Nova {
 		s_instance = this;
 		m_window = Window::Create();
 		m_window->properties().event_cb = std::bind(&Application::event_callback, this, std::placeholders::_1);
-		Render::Command::Initialise();
+		Render::Initialise();
 		m_active = true;
 	}
 	Application ::~Application() {
-		Render::Command::Termintate();
+		Render::Termintate();
 		delete m_window;
 		s_instance = nullptr;
 	}

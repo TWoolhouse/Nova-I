@@ -1,5 +1,7 @@
 #pragma once
 #include "npch.h"
+#include "buffer/context.h"
+#include "shader.h"
 
 namespace Nova {
 
@@ -7,6 +9,13 @@ namespace Nova {
 	public:
 		class NOVA_API Command;
 
+		static bool Initialise();
+		static bool Termintate();
+
+		static void Scene(bool b); // Vars for starting
+		static void Scene(); // Empty for end
+
+		static void Draw(Buffer::Context* context, Shader* shader);
 
 	};
 

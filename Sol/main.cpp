@@ -35,8 +35,7 @@ public:
 		if (Nova::Input::Poll(Nova::Input::Key::F))
 			std::cout << frame++ << std::endl;
 
-		shader->bind();
-		Nova::Render::Command::Draw(bc);
+		Nova::Render::Draw(bc, shader);
 	}
 
 	virtual void event(Nova::Event::Event& event) override {
