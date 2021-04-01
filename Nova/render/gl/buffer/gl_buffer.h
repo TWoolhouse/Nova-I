@@ -1,7 +1,6 @@
 #pragma once
 #include "npch.h"
 #include "render/buffer/buffer.h"
-#include <GL/glew.h>
 
 namespace Nova::OpenGL {
 
@@ -17,7 +16,7 @@ namespace Nova::OpenGL {
 
 		virtual void set(const unsigned int size, const float* data) override;
 	private:
-		GLuint m_id;
+		unsigned int m_id;
 	};
 
 	class BufferIndex : public Buffer::Index {
@@ -30,7 +29,7 @@ namespace Nova::OpenGL {
 		virtual void unbind() override;
 
 	private:
-		GLuint m_id;
+		unsigned int m_id;
 	};
 
 }

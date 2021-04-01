@@ -9,7 +9,7 @@
 
 namespace Nova {
 
-	GLenum ShaderType(const ShaderSource::Type& type) {
+	constexpr GLenum ShaderType(const ShaderSource::Type& type) {
 		switch (type) {
 		case ShaderSource::Type::Vertex:	return GL_VERTEX_SHADER;
 		case ShaderSource::Type::Fragment:	return GL_FRAGMENT_SHADER;

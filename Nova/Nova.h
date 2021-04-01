@@ -26,6 +26,9 @@
 // Shaders
 #include "render/shader.h"
 
+// Textures
+#include "render/texture.h"
+
 // Renderer
 #include "render/render.h"
 #include "render/command.h"

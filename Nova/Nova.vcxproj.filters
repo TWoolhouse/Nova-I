@@ -87,6 +87,21 @@
     <ClInclude Include="render\buffer\context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="render\buffer\frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\gl\buffer\gl_buffer_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\gl\gl_texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileio\stblib\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -119,10 +134,23 @@
     <ClCompile Include="render\render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render\gl\buffer\gl_buffer_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render\gl\gl_texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileio\stblib\stblib_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
     <None Include="Nova\res\shader\vertex.glsl" />
     <None Include="Nova\res\shader\frag.glsl" />
+    <None Include="fileio\stblib\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="fileio\stblib\LICENSE.txt" />
   </ItemGroup>
 </Project>
