@@ -57,9 +57,6 @@
     <ClInclude Include="render\buffer\buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render\gl\buffer\gl_window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="render\gl\buffer\gl_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -79,6 +76,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\gl\gl_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,10 +107,13 @@
     <ClCompile Include="render\gl\buffer\gl_buffer_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\gl\buffer\gl_window.cpp">
+    <ClCompile Include="render\gl\gl_shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\gl\gl_shader.cpp">
+    <ClCompile Include="render\gl\gl_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render\gl\gl_render_command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

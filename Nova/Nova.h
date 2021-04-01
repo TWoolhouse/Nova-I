@@ -26,5 +26,9 @@
 // Shaders
 #include "render/shader.h"
 
+// Renderer
+#include "render/render.h"
+#include "render/command.h"
+
 // Main Entry Point
 #include "core/entry_point.h"

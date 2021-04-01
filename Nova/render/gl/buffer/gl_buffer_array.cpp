@@ -69,6 +69,7 @@ namespace Nova {
 		void BufferVertexArray::buffer(Buffer::Index* buffer) {
 			glBindVertexArray(m_id);
 			buffer->bind();
+			m_index_buffer = buffer;
 		}
 
 	}

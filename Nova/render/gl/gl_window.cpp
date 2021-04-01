@@ -1,11 +1,14 @@
 #include "npch.h"
 #ifdef NOVA_OPENGL
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "gl_window.h"
 
 #include "event/window.h"
 #include "event/mouse.h"
 #include "event/key.h"
+
+#include "render/command.h"
 
 namespace Nova {
 
@@ -30,7 +33,6 @@ namespace Nova {
 			m_window = glfwCreateWindow(m_properties.width, m_properties.height, m_properties.name.c_str(), nullptr, nullptr);
 			
 			glfwMakeContextCurrent(m_window);
-			// m_context = new Renderer::ImplContext(m_window);
 
 			glfwSetWindowUserPointer(m_window, &m_properties);
 			if (!s_instances++ && glewInit() != GLEW_OK) {
@@ -39,10 +41,6 @@ namespace Nova {
 			}
 
 			glViewport(0, 0, m_properties.width, m_properties.height);
-
-			// glfwSwapInterval(0); // vsnyc
-
-			// Renderer::Command::ClearColour();
 
 			// Set Event Callbacks //
 
@@ -71,7 +69,7 @@ namespace Nova {
 			});
 
 			glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
-				glViewport(0, 0, width, height);
+				Render::Command::Viewport(0, 0, width, height);
 			});
 
 			glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
@@ -146,14 +144,10 @@ namespace Nova {
 
 		void Window::update() {
 
-			glfwSwapBuffers(m_window);
-			//m_context->swap_buffers();
-
+			Render::Command::SwapBuffers();
 			glfwPollEvents();
-
+			Render::Command::Clear();
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			//m_context->clear_colour(0.0f, 0.0f, 0.0f, 1.0f);
-			//Renderer::Command::Clear();
 		}
 
 	}

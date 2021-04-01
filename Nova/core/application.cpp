@@ -1,6 +1,7 @@
 #include "npch.h"
 #include "application.h"
 #include "event/window.h"
+#include "render/command.h"
 
 namespace Nova {
 
@@ -10,9 +11,11 @@ namespace Nova {
 		s_instance = this;
 		m_window = Window::Create();
 		m_window->properties().event_cb = std::bind(&Application::event_callback, this, std::placeholders::_1);
+		Render::Command::Initialise();
 		m_active = true;
 	}
 	Application ::~Application() {
+		Render::Command::Termintate();
 		delete m_window;
 		s_instance = nullptr;
 	}
