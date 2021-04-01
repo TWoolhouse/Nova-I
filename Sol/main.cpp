@@ -2,10 +2,6 @@
 #include <nova.h>
 #include <iostream>
 
-void t() {
-
-}
-
 class Sol : public Nova::Application {
 public:
 	Sol() : bc(Nova::Buffer::Context::Create()) {
@@ -27,9 +23,9 @@ public:
 			{ Nova::Buffer::Type::Float3, "v_col" }
 		});
 
-		shader = Nova::ShaderPipeline::Create({
-			Nova::Shader::Create("Nova/res/shader/vertex.glsl"),
-			Nova::Shader::Create("Nova/res/shader/frag.glsl")
+		shader = Nova::Shader::Create({
+			Nova::ShaderSource::Create("Nova/res/shader/vertex.glsl"),
+			Nova::ShaderSource::Create("Nova/res/shader/frag.glsl")
 		});
 
 	}
@@ -53,7 +49,7 @@ public:
 
 private:
 	Nova::Buffer::Context* bc;
-	Nova::ShaderPipeline* shader;
+	Nova::Shader* shader;
 
 };
 

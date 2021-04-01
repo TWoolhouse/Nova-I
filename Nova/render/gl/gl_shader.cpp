@@ -9,49 +9,50 @@
 
 namespace Nova {
 
-	GLenum ShaderType(const Shader::Type& type) {
+	GLenum ShaderType(const ShaderSource::Type& type) {
 		switch (type) {
-		case Shader::Type::Vertex:	return GL_VERTEX_SHADER;
-		case Shader::Type::Fragment:	return GL_FRAGMENT_SHADER;
+		case ShaderSource::Type::Vertex:	return GL_VERTEX_SHADER;
+		case ShaderSource::Type::Fragment:	return GL_FRAGMENT_SHADER;
+		case ShaderSource::Type::Fragment:	return GL_COMPUTE_SHADER;
 		default:
 			return GL_NONE;
 		}
 	}
 
-	Shader::Type get_string_shader_type(const std::string& str) {
+	ShaderSource::Type get_string_shader_type(const std::string& str) {
 		// Must match the Shader::Type layout
-		constexpr static size_t types_size = 3;
-		static const std::string type_names[types_size] = { "none", "vertex", "fragment" };
+		constexpr static size_t types_size = 4;
+		static const std::string type_names[types_size] = { "none", "vertex", "fragment", "compute" };
 
 		if (str.find("#shader") == std::string::npos)
-			return Shader::Type::None;
+			return ShaderSource::Type::None;
 		for (size_t i = 0; i < types_size; i++) {
 			if (str.find(type_names[i]) != std::string::npos)
-				return Shader::Type(i);
+				return ShaderSource::Type(i);
 		}
-		return Shader::Type::None;
+		return ShaderSource::Type::None;
 	}
 
-	Shader* Shader::Create(const std::string& filename) {
+	ShaderSource* ShaderSource::Create(const std::string& filename) {
 		return new OpenGL::Shader(filename);
 	}
-	Shader* Shader::Create(const Shader::Type& type, const std::string& source) {
+	ShaderSource* ShaderSource::Create(const ShaderSource::Type& type, const std::string& source) {
 		return new OpenGL::Shader(type, source);
 	}
 
-	ShaderPipeline* ShaderPipeline::Create(const std::string& filename) {
+	Shader* Shader::Create(const std::string& filename) {
 		return new OpenGL::ShaderProgram(filename);
 	}
-	ShaderPipeline* ShaderPipeline::Create(const std::initializer_list<Shader*>& shaders) {
+	Shader* Shader::Create(const std::initializer_list<ShaderSource*>& shaders) {
 		return new OpenGL::ShaderProgram(shaders);
 	}
-	ShaderPipeline* ShaderPipeline::Create(const std::initializer_list<Shader*>& shaders, bool save) {
+	Shader* Shader::Create(const std::initializer_list<ShaderSource*>& shaders, bool save) {
 		return new OpenGL::ShaderProgram(shaders, true);
 	}
 
 	namespace OpenGL {
 
-		Shader::Shader(const std::string& filename) : Nova::Shader(), m_id(GL_NONE) {
+		Shader::Shader(const std::string& filename) : Nova::ShaderSource(), m_id(GL_NONE) {
 			std::ifstream file(filename);
 			if (file.is_open()) {
 				std::stringstream source;
@@ -62,11 +63,11 @@ namespace Nova {
 				file.close();
 				create_shader(type, source.str());
 			} else { // Not Open
-				create_shader(Nova::Shader::Type::None, "");
+				create_shader(Nova::ShaderSource::Type::None, "");
 			}
 		}
 
-		Shader::Shader(const Nova::Shader::Type& type, const std::string& source) : Nova::Shader(), m_id(GL_NONE) {
+		Shader::Shader(const Nova::ShaderSource::Type& type, const std::string& source) : Nova::ShaderSource(), m_id(GL_NONE) {
 			create_shader(type, source);
 		}
 
@@ -74,7 +75,7 @@ namespace Nova {
 			glDeleteShader(m_id);
 		}
 
-		bool Shader::create_shader(const Nova::Shader::Type& type, const std::string& source) {
+		bool Shader::create_shader(const Nova::ShaderSource::Type& type, const std::string& source) {
 			m_id = glCreateShader(ShaderType(type));
 
 			auto cstr = source.c_str();
@@ -94,34 +95,34 @@ namespace Nova {
 			return true;
 		}
 
-		ShaderProgram::ShaderProgram(const std::initializer_list<Nova::Shader*>& shaders, bool save) : m_id(GL_NONE) {
+		ShaderProgram::ShaderProgram(const std::initializer_list<Nova::ShaderSource*>& shaders, bool save) : m_id(GL_NONE) {
 			create_shader_program(shaders);
 		}
 
 		ShaderProgram::ShaderProgram(const std::string& filename) : m_id(GL_NONE) {
-			std::vector<Nova::Shader*> shaders;
+			std::vector<Nova::ShaderSource*> shaders;
 
 			std::ifstream file(filename);
 			if (file.is_open()) {
 				std::stringstream source;
 				std::string line;
-				auto type = Nova::Shader::Type::None;
+				auto type = Nova::ShaderSource::Type::None;
 
-				while (type == Nova::Shader::Type::None) {
+				while (type == Nova::ShaderSource::Type::None) {
 					std::getline(file, line);
 					type = get_string_shader_type(line);
 				}
 
 				while (std::getline(file, line)) {
 					auto t = get_string_shader_type(line);
-					if (t != Nova::Shader::Type::None) {
+					if (t != Nova::ShaderSource::Type::None) {
 						type = t;
-						shaders.push_back(Nova::Shader::Create(type, source.str()));
+						shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
 						source.clear();
 						continue;
 					}
 				}
-				shaders.push_back(Nova::Shader::Create(type, source.str()));
+				shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
 				file.close();
 			} else { // Not Open
 				// Probably Error?
@@ -129,7 +130,7 @@ namespace Nova {
 			create_shader_program(shaders);
 		}
 
-		ShaderProgram::ShaderProgram(const std::initializer_list<Nova::Shader*>& shaders) : ShaderProgram(shaders, true) {
+		ShaderProgram::ShaderProgram(const std::initializer_list<Nova::ShaderSource*>& shaders) : ShaderProgram(shaders, true) {
 			for (auto& shader : shaders) {
 				delete shader;
 			}
@@ -147,10 +148,10 @@ namespace Nova {
 			glDeleteProgram(m_id);
 		}
 
-		bool ShaderProgram::create_shader_program(const std::vector<Nova::Shader*>& shaders) {
+		bool ShaderProgram::create_shader_program(const std::vector<Nova::ShaderSource*>& shaders) {
 			m_id = glCreateProgram();
 			for (auto& shader : shaders) {
-				glAttachShader(m_id, static_cast<Shader*>(shader)->m_id);
+				glAttachShader(m_id, static_cast<OpenGL::Shader*>(shader)->m_id);
 			}
 			glLinkProgram(m_id);
 			return true;

@@ -10,4 +10,5 @@
 #include <utility>
 #include <functional>
 #include <vector>
+#include <array>
 #include <memory>
