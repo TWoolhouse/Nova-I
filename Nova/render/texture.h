@@ -33,8 +33,8 @@ namespace Nova {
 		static Texture2D* Create(const Texture::Wrap& wrap, const Texture::Filtering& filter);
 		static Texture2D* Create(const std::string& filename, const Texture::Wrap& wrap, const Texture::Filtering& filter);
 
-		virtual void bind() = 0;
-		virtual void unbind() = 0;
+		virtual void bind(unsigned int slot=0) = 0;
+		virtual void unbind(unsigned int slot = 0) = 0;
 
 		virtual operator bool() = 0;
 

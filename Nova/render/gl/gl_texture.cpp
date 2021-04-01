@@ -61,12 +61,12 @@ namespace Nova {
 			stbi_image_free(data);
 		}
 
-		void Texture2D::bind() {
-			glBindTexture(GL_TEXTURE_2D, m_id);
+		void Texture2D::bind(unsigned int slot) {
+			glBindTextureUnit(slot, m_id);
 		}
 
-		void Texture2D::unbind() {
-			glBindTexture(GL_TEXTURE_2D, GL_NONE);
+		void Texture2D::unbind(unsigned int slot) {
+			glBindTextureUnit(slot, GL_NONE);
 		}
 
 		Texture2D::~Texture2D() {
