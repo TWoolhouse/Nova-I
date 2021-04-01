@@ -50,6 +50,10 @@ namespace Nova {
 		return new OpenGL::ShaderProgram(shaders, true);
 	}
 
+	Shader::Uniform* Shader::Uniform::Create(Shader* shader) {
+		return new OpenGL::UniformUpload(shader);
+	}
+
 	namespace OpenGL {
 
 		Shader::Shader(const std::string& filename) : Nova::ShaderSource(), m_id(GL_NONE) {
@@ -155,6 +159,28 @@ namespace Nova {
 			}
 			glLinkProgram(m_id);
 			return true;
+		}
+
+		UniformUpload::UniformUpload(Nova::Shader* shader) : m_shader_id(static_cast<ShaderProgram*>(shader)->m_id), m_location_cache() {
+			
+		}
+
+		void UniformUpload::Int(const std::string& name, const int value) {
+			glProgramUniform1i(m_shader_id, get_location(name), value);
+		}
+		void UniformUpload::Float(const std::string& name, const float value) {
+			glProgramUniform1f(m_shader_id, get_location(name), value);
+		}
+
+		const int UniformUpload::get_location(const std::string& name) {
+			int loc;
+			auto search = m_location_cache.find(name);
+			if (search == m_location_cache.end()) {
+				loc = glGetUniformLocation(m_shader_id, name.c_str());
+				m_location_cache[name] = loc;
+				return loc;
+			}
+			return search->second;
 		}
 
 	}
