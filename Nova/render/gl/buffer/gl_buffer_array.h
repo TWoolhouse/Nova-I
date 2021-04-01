@@ -14,7 +14,7 @@ namespace Nova::OpenGL {
 		virtual void buffer(Buffer::Vertex* buffer, const Buffer::VertexSpec& spec) override;
 		virtual void buffer(Buffer::Index* buffer) override;
 	private:
-		unsigned int m_id, m_index = 0;
+		unsigned int m_id;
 	};
 
 }

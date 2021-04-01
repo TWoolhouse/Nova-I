@@ -13,7 +13,7 @@ namespace Nova {
 		switch (type) {
 		case ShaderSource::Type::Vertex:	return GL_VERTEX_SHADER;
 		case ShaderSource::Type::Fragment:	return GL_FRAGMENT_SHADER;
-		case ShaderSource::Type::Fragment:	return GL_COMPUTE_SHADER;
+		case ShaderSource::Type::Compute:	return GL_COMPUTE_SHADER;
 		default:
 			return GL_NONE;
 		}

@@ -18,9 +18,11 @@ namespace Nova::Buffer {
 		virtual void buffer(Index* buffer) = 0;
 
 		const Index& index() const { return *m_index_buffer; }
+		const std::vector<Vertex*>& vertex() const { return m_vertex_buffers; }
 
 	protected:
 		Index* m_index_buffer;
+		std::vector<Vertex*> m_vertex_buffers;
 	};
 
 }
