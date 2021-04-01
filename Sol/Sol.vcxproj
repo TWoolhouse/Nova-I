@@ -69,7 +69,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
-xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d</Command>
+xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
@@ -96,7 +97,8 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d</Command>
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
-xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d</Command>
+xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
