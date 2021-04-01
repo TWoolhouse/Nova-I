@@ -10,9 +10,9 @@ class Sol : public Nova::Application {
 public:
 	Sol() : bc(Nova::Buffer::Context::Create()) {
 		float vb_data[] = {
-			 0.5f,  0.5f,
-			-0.5f,  0.5f,
-			 0.5f,  -0.5f
+			 0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
+			-0.5f,  0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f
 		};
 		unsigned int ib_data[] = {
 			0, 1, 2
@@ -23,7 +23,8 @@ public:
 
 		bc->buffer(ib);
 		bc->buffer(vb, {
-			{ Nova::Buffer::Type::Float2, "pos" }
+			{ Nova::Buffer::Type::Float2, "v_pos" },
+			{ Nova::Buffer::Type::Float3, "v_col" }
 		});
 
 		shader = Nova::ShaderPipeline::Create({
@@ -34,8 +35,12 @@ public:
 	}
 
 	virtual void update() override {
+		static unsigned int frame = 0;
 		if (Nova::Input::Poll(Nova::Input::Key::F))
 			std::cout << frame++ << std::endl;
+
+		shader->bind();
+		Nova::Render::Command::Draw(bc);
 	}
 
 	virtual void event(Nova::Event::Event& event) override {
@@ -47,7 +52,6 @@ public:
 	}
 
 private:
-	unsigned int frame = 0;
 	Nova::Buffer::Context* bc;
 	Nova::ShaderPipeline* shader;
 
