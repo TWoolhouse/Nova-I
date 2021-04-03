@@ -57,12 +57,12 @@ namespace Nova {
 			glBindVertexArray(GL_NONE);
 		}
 
-		void BufferVertexArray::buffer(Buffer::Vertex* buffer, const Buffer::VertexSpec& spec) {
+		void BufferVertexArray::buffer(Buffer::Vertex* buffer, const Buffer::Vertex::Spec& spec) {
 			glBindVertexArray(m_id);
 			buffer->bind();
 			auto size = m_vertex_buffers.size();
 			unsigned int index = 0;
-			for (auto& elm : spec) {
+			for (auto& elm : spec.vector()) {
 				glEnableVertexAttribArray(size + index);
 				glVertexAttribPointer(size + index++, elm.count, TypeConvert(elm.type), elm.normalise, spec.stride(), (void*)elm.offset);
 			}

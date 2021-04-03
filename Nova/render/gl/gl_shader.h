@@ -21,6 +21,7 @@ namespace Nova::OpenGL {
 	class UniformUpload;
 
 	class ShaderProgram : public Nova::Shader {
+		friend class BufferShader;
 		friend UniformUpload;
 	public:
 		ShaderProgram(const std::string& filename);

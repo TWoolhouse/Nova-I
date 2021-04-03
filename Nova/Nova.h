@@ -20,8 +20,9 @@
 // Buffers
 #include "render/buffer/buffer.h"
 #include "render/buffer/type.h"
-#include "render/buffer/spec.h"
 #include "render/buffer/context.h"
+#include "render/buffer/frame.h"
+#include "render/buffer/shader.h"
 
 // Shaders
 #include "render/shader.h"

@@ -91,7 +91,7 @@ namespace Nova {
 			if (!success) {
 				char info[512];
 				glGetShaderInfoLog(m_id, 512, NULL, info);
-				std::cout << "ERROR: Shader Compliation\n" << info << std::endl;
+				std::cerr << "ERROR: Shader Compliation\n" << info << std::endl;
 				glDeleteShader(m_id);
 				m_id = GL_NONE;
 				return false;

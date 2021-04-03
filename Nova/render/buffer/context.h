@@ -1,7 +1,6 @@
 #pragma once
 #include "npch.h"
 #include "buffer.h"
-#include "spec.h"
 
 namespace Nova::Buffer {
 
@@ -14,7 +13,7 @@ namespace Nova::Buffer {
 		virtual void bind() = 0;
 		virtual void unbind() = 0;
 
-		virtual void buffer(Vertex* buffer, const VertexSpec& spec) = 0;
+		virtual void buffer(Vertex* buffer, const Vertex::Spec& spec) = 0;
 		virtual void buffer(Index* buffer) = 0;
 
 		const Index& index() const { return *m_index_buffer; }
