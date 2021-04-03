@@ -31,8 +31,18 @@ public:
 			Nova::ShaderSource::Create("Nova/res/shader/frag.glsl")
 		});
 
-		texture = Nova::Texture2D::Create("Nova/res/texture/shy_guy.jpg", {}, {});
+		texture = Nova::Texture2D::Create("Nova/res/texture/shy_guy.jpg", {});
 
+		shader_buffer = Nova::Buffer::Shader::Create(shader, "test", { "data", "mult" });
+
+		constexpr size_t test_var_size = 100;
+		float test_var[test_var_size];
+		for (size_t i = 0; i < test_var_size; i++) {
+			test_var[i] = (float)i / (float)test_var_size;
+		}
+		constexpr int mult = 10;
+		shader_buffer->set("data", &test_var);
+		shader_buffer->set("mult", &mult);
 	}
 
 	virtual void update() override {
@@ -41,6 +51,8 @@ public:
 			std::cout << frame++ << std::endl;
 
 		texture->bind();
+		shader_buffer->bind();
+		shader->Upload()->Int("u_tex", 0);
 		Nova::Render::Draw(bc, shader);
 	}
 
@@ -56,6 +68,7 @@ private:
 	Nova::Buffer::Context* bc;
 	Nova::Shader* shader;
 	Nova::Texture2D* texture;
+	Nova::Buffer::Shader* shader_buffer;
 
 };
 
