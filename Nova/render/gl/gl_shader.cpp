@@ -55,14 +55,14 @@ namespace Nova {
 		return new OpenGL::UniformUpload(shader);
 	}
 
-	ShaderCompute* Nova::ShaderCompute::Create(const std::string& filename) {
-		return new OpenGL::ShaderProgramCompute(filename);
+	ShaderCompute* Nova::ShaderCompute::Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
+		return new OpenGL::ShaderProgramCompute(filename, work_group);
 	}
-	ShaderCompute* ShaderCompute::Create(ShaderSource* source) {
-		return new OpenGL::ShaderProgramCompute(source);
+	ShaderCompute* ShaderCompute::Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
+		return new OpenGL::ShaderProgramCompute(source, work_group);
 	}
-	ShaderCompute* ShaderCompute::Create(ShaderSource* source, bool save) {
-		return new OpenGL::ShaderProgramCompute(source, save);
+	ShaderCompute* ShaderCompute::Create(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
+		return new OpenGL::ShaderProgramCompute(source, save, work_group);
 	}
 
 	namespace OpenGL {
@@ -208,6 +208,7 @@ namespace Nova {
 			nova_gl_bind(GL_CURRENT_PROGRAM, m_id);
 			auto [x, y, z] = m_work_group;
 			glDispatchCompute(x, y, z);
+			glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT || GL_SHADER_STORAGE_BARRIER_BIT);
 		}
 
 	}

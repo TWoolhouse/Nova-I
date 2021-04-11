@@ -75,6 +75,9 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>rmdir $(ProjectDir)Nova\ /s /q</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -103,6 +106,9 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>rmdir $(ProjectDir)Nova\ /s /q</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

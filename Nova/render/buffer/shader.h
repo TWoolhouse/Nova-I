@@ -40,6 +40,8 @@ namespace Nova::Buffer {
 		virtual void bind(unsigned int slot=0) = 0;
 		virtual void unbind() = 0;
 
+		virtual void get(const std::string& name, void* const data) = 0;
+		virtual void get(const std::string& name, const unsigned int size, void* const data) = 0;
 		virtual void set(const std::string& name, const void* data) = 0;
 		virtual void set(const std::string& name, const unsigned int size, const void* data) = 0;
 

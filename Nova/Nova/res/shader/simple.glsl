@@ -26,6 +26,7 @@ in VF {
 
 layout(binding = 0) buffer test {
 	float mult;
+	vec3 buffer_colour;
 };
 
 uniform sampler2D u_tex;

@@ -7,10 +7,12 @@ namespace Nova {
 		struct Colour {
 			enum class Type {
 				RGBA = 0, RGB,
+				RGBAW,
 			};
 			Type format, inner;
 			Colour() = default;
 			Colour(const Type& colour) : format(colour), inner(colour) {}
+			Colour(const Type& format, const Type& inner) : format(format), inner(inner) {}
 		};
 		struct Wrap {
 			enum class Type : unsigned char {

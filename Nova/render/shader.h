@@ -58,9 +58,9 @@ namespace Nova {
 		// Add safety so only compute shaders can be added
 		// require compute shader source
 	public:
-		static ShaderCompute* Create(const std::string& filename);
-		static ShaderCompute* Create(ShaderSource* source);
-		static ShaderCompute* Create(ShaderSource* source, bool save);
+		static ShaderCompute* Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
+		static ShaderCompute* Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
+		static ShaderCompute* Create(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
 
 		ShaderCompute(const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = {1, 1, 1}) : Shader(), m_work_group(work_group) {}
 

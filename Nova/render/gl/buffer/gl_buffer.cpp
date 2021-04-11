@@ -50,8 +50,7 @@ namespace Nova {
 		}
 
 		void BufferVertex::set(const unsigned int size, const float* data) {
-			nova_gl_bind(GL_ARRAY_BUFFER, m_id);
-			glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+			glNamedBufferSubData(m_id, 0, size, data);
 		}
 
 		BufferIndex::BufferIndex(const unsigned int count) : Buffer::Index(count), m_id(GL_NONE) {

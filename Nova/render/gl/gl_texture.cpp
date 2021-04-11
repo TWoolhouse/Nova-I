@@ -13,6 +13,7 @@ namespace Nova {
 		switch (colour) {
 		case Texture::Colour::Type::RGBA:	return GL_RGBA;
 		case Texture::Colour::Type::RGB:	return GL_RGB;
+		case Texture::Colour::Type::RGBAW:	return GL_RGBA32F;
 		default:
 			return GL_RGBA;
 		}
@@ -77,6 +78,7 @@ namespace Nova {
 				std::cerr << "Failed to load texture" << std::endl;
 				throw std::runtime_error("Texture File Not Loaded");
 				glDeleteTextures(1, &m_id);
+				m_id = GL_NONE;
 			}
 			stbi_image_free(data);
 		}
@@ -90,7 +92,7 @@ namespace Nova {
 		}
 
 		void Texture2D::image(unsigned int slot) {
-			glBindImageTexture(0, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+			glBindImageTexture(slot, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
 		}
 
 		Texture2D::~Texture2D() {

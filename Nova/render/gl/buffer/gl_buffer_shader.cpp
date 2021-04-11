@@ -70,14 +70,27 @@ namespace Nova {
 			glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 		}
 
+		void BufferShader::get(const std::string& name, void* const data) {
+			const auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			glGetNamedBufferSubData(m_id, elm.offset, elm.size, data);
+		}
+
+		void BufferShader::get(const std::string& name, const unsigned int size, void* const data) {
+			const auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			glGetNamedBufferSubData(m_id, elm.offset, size, data);
+		}
+
 		void BufferShader::set(const std::string& name, const void* data) {
-			nova_gl_bind(GL_SHADER_STORAGE_BUFFER_BINDING, m_id);
-			auto& elm = m_layout.elements()[name];
-			glBufferSubData(GL_SHADER_STORAGE_BUFFER, elm.offset, elm.size, data);
+			const auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			glNamedBufferSubData(m_id, elm.offset, elm.size, data);
 		}
 		void BufferShader::set(const std::string& name, const unsigned int size, const void* data) {
-			nova_gl_bind(GL_SHADER_STORAGE_BUFFER_BINDING, m_id);
-			glBufferSubData(GL_SHADER_STORAGE_BUFFER, m_layout.elements()[name].offset, size, data);
+			const auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			glNamedBufferSubData(m_id, elm.offset, size, data);
 		}
 
 		BufferShader::~BufferShader() {
