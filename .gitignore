@@ -1,6 +1,12 @@
-## Copied Nova Files for projects
+### Nova
+
+# Copied Nova Files for projects
 */Nova/
 !Nova/Nova/
+
+## Dependencies
+!README.md
+!LICENSE.txt
 
 ## Ignore Visual Studio Code
 .vscode

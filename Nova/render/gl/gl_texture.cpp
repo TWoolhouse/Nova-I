@@ -5,7 +5,7 @@
 #include <exception>
 #include <iostream>
 #include "gl_texture.h"
-#include "fileio/stblib/stb_image.h"
+#include <stblib/stb_image.h>
 
 namespace Nova {
 

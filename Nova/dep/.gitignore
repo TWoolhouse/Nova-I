@@ -1,6 +1,3 @@
-# GLEW
-glew/bin/
-glew/lib/
-
-# GLFW
-glfw/lib-vc2019
+glew/
+glfw/
+stblib/
