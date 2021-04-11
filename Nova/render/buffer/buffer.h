@@ -14,14 +14,14 @@ namespace Nova::Buffer {
 				unsigned int size, count;
 				bool normalise;
 
-				#ifdef _DEBUG
+				#ifndef NDEBUG
 				std::string name;
 				Element(Type type, const std::string& name, bool normalise = false)
 					: type(type), offset(0), size(TypeSize(type)), count(TypeCount(type)), normalise(normalise), name(name) {}
 				#else
 				Element(Type type, const std::string& name, bool normalise = false)
 					: type(type), offset(0), size(TypeSize(type)), count(TypeCount(type)), normalise(normalise) {}
-				#endif // _DEBUG
+				#endif // NDEBUG
 			};
 
 			Spec(const std::initializer_list<Element>& types) : m_elements(types) {

@@ -50,4 +50,8 @@ namespace Nova::OpenGL {
 		const int get_location(const std::string& name);
 	};
 
+	class ShaderProgramCompute : public ShaderCompute, public ShaderProgram {
+		virtual void dispatch() override;
+	};
+
 }

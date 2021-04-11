@@ -71,7 +71,7 @@ namespace Nova {
 			}
 		}
 
-		Shader::Shader(const Nova::ShaderSource::Type& type, const std::string& source) : Nova::ShaderSource(), m_id(GL_NONE) {
+		Shader::Shader(const Nova::ShaderSource::Type& type, const std::string& source) : Nova::ShaderSource(type), m_id(GL_NONE) {
 			create_shader(type, source);
 		}
 
@@ -120,11 +120,12 @@ namespace Nova {
 				while (std::getline(file, line)) {
 					auto t = get_string_shader_type(line);
 					if (t != Nova::ShaderSource::Type::None) {
-						type = t;
 						shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
-						source.clear();
+						source.str(std::string());
+						type = t;
 						continue;
 					}
+					source << line << '\n';
 				}
 				shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
 				file.close();
@@ -181,6 +182,10 @@ namespace Nova {
 				return loc;
 			}
 			return search->second;
+		}
+
+		void ShaderProgramCompute::dispatch() {
+			std::cout << "Dispatch" << std::endl;
 		}
 
 	}

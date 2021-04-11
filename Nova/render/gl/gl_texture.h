@@ -5,6 +5,7 @@
 namespace Nova::OpenGL {
 
 	class Texture2D : public Nova::Texture2D {
+		friend class BufferFrame;
 	public:
 		Texture2D(const Texture::Properties& properties);
 		Texture2D(const unsigned int width, const unsigned int height, const Texture::Properties& properties);
@@ -12,6 +13,7 @@ namespace Nova::OpenGL {
 
 		virtual void bind(unsigned int slot = 0) override;
 		virtual void unbind(unsigned int slot = 0) override;
+		virtual void image(unsigned int slot = 0) override;
 
 		virtual operator bool() override { return m_id; }
 

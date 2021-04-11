@@ -15,3 +15,23 @@ void main() {
 	frag.texture_pos = v_tex;
 	gl_Position = vec4(v_pos, 1.0, 1.0);
 }
+
+#shader fragment
+#version 450
+
+in VF {
+	vec3 colour;
+	vec2 texture_pos;
+} vertex ;
+
+layout(binding = 0) buffer test {
+	float mult;
+};
+
+uniform sampler2D u_tex;
+
+out vec4 FragColor;
+
+void main() {
+	FragColor = texture(u_tex, vertex.texture_pos) * vec4(vertex.colour, 1.0) * mult;
+}

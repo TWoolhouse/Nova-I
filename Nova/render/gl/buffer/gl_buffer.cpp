@@ -1,6 +1,7 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
+#include "render/gl/gl_bind_helper.h"
 #include <GL/glew.h>
 #include "gl_buffer.h"
 
@@ -49,6 +50,7 @@ namespace Nova {
 		}
 
 		void BufferVertex::set(const unsigned int size, const float* data) {
+			nova_gl_bind(GL_ARRAY_BUFFER, m_id);
 			glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 		}
 

@@ -1,6 +1,7 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
+#include "render/gl/gl_bind_helper.h"
 #include <GL/glew.h>
 #include "gl_buffer_array.h"
 
@@ -58,7 +59,7 @@ namespace Nova {
 		}
 
 		void BufferVertexArray::buffer(Buffer::Vertex* buffer, const Buffer::Vertex::Spec& spec) {
-			glBindVertexArray(m_id);
+			nova_gl_bind(GL_VERTEX_ARRAY_BINDING, m_id);
 			buffer->bind();
 			auto size = m_vertex_buffers.size();
 			unsigned int index = 0;
@@ -70,7 +71,7 @@ namespace Nova {
 		}
 
 		void BufferVertexArray::buffer(Buffer::Index* buffer) {
-			glBindVertexArray(m_id);
+			nova_gl_bind(GL_VERTEX_ARRAY_BINDING, m_id);
 			buffer->bind();
 			m_index_buffer = buffer;
 		}

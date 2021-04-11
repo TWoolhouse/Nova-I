@@ -12,6 +12,8 @@ namespace Nova {
 		static bool Initialise();
 		static bool Termintate();
 
+		static void FrameSize(unsigned int width, unsigned int height);
+
 		static void Scene(bool b); // Vars for starting
 		static void Scene(); // Empty for end
 

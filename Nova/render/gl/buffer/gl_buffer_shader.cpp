@@ -1,6 +1,7 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
+#include "render/gl/gl_bind_helper.h"
 #include <GL/glew.h>
 #include "gl_buffer_shader.h"
 
@@ -70,10 +71,12 @@ namespace Nova {
 		}
 
 		void BufferShader::set(const std::string& name, const void* data) {
+			nova_gl_bind(GL_SHADER_STORAGE_BUFFER_BINDING, m_id);
 			auto& elm = m_layout.elements()[name];
 			glBufferSubData(GL_SHADER_STORAGE_BUFFER, elm.offset, elm.size, data);
 		}
 		void BufferShader::set(const std::string& name, const unsigned int size, const void* data) {
+			nova_gl_bind(GL_SHADER_STORAGE_BUFFER_BINDING, m_id);
 			glBufferSubData(GL_SHADER_STORAGE_BUFFER, m_layout.elements()[name].offset, size, data);
 		}
 

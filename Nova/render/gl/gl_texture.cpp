@@ -2,6 +2,7 @@
 
 #ifdef NOVA_OPENGL
 #include <GL/glew.h>
+#include <exception>
 #include <iostream>
 #include "gl_texture.h"
 #include "fileio/stblib/stb_image.h"
@@ -59,6 +60,7 @@ namespace Nova {
 
 		Texture2D::Texture2D(const unsigned int width, const unsigned int height, const Texture::Properties& properties)
 			: Texture2D(properties) {
+			m_width = width; m_height = height;
 			glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, nullptr);
 		}
 
@@ -67,11 +69,13 @@ namespace Nova {
 			int width, height, channels;
 			stbi_set_flip_vertically_on_load(true);
 			unsigned char* data = stbi_load(filename.c_str(), &width, &height, &channels, 4);
+			m_width = width; m_height = height;
 			if (data) {
 				glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, data);
 				// glGenerateMipmap(GL_TEXTURE_2D);
 			} else {
 				std::cerr << "Failed to load texture" << std::endl;
+				throw std::runtime_error("Texture File Not Loaded");
 				glDeleteTextures(1, &m_id);
 			}
 			stbi_image_free(data);
@@ -83,6 +87,10 @@ namespace Nova {
 
 		void Texture2D::unbind(unsigned int slot) {
 			glBindTextureUnit(slot, GL_NONE);
+		}
+
+		void Texture2D::image(unsigned int slot) {
+			glBindImageTexture(0, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
 		}
 
 		Texture2D::~Texture2D() {

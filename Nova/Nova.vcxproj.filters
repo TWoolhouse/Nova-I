@@ -105,6 +105,9 @@
     <ClInclude Include="render\gl\buffer\gl_buffer_shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="render\gl\gl_bind_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render\gl\buffer\gl_buffer_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render\gl\gl_bind_helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

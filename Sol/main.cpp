@@ -26,29 +26,25 @@ public:
 			{ Nova::Buffer::Type::Float2, "v_tex" },
 		});
 
-		shader = Nova::Shader::Create({
-			Nova::ShaderSource::Create("Nova/res/shader/vertex.glsl"),
-			Nova::ShaderSource::Create("Nova/res/shader/frag.glsl")
-		});
+		shader = Nova::Shader::Create("Nova/res/shader/simple.glsl");
 
 		texture = Nova::Texture2D::Create("Nova/res/texture/shy_guy.jpg", {});
 
 		shader_buffer = Nova::Buffer::Shader::Create(shader, "test", { "data", "mult" });
 
-		constexpr size_t test_var_size = 100;
-		float test_var[test_var_size];
-		for (size_t i = 0; i < test_var_size; i++) {
-			test_var[i] = (float)i / (float)test_var_size;
-		}
-		constexpr int mult = 10;
-		shader_buffer->set("data", &test_var);
+		constexpr float mult = 1;
 		shader_buffer->set("mult", &mult);
+		int val = 0;
+		shader_buffer->set("tex", &val);
 	}
 
 	virtual void update() override {
 		static unsigned int frame = 0;
-		if (Nova::Input::Poll(Nova::Input::Key::F))
+		if (Nova::Input::Poll(Nova::Input::Key::F)) {
 			std::cout << frame++ << std::endl;
+			float mult = frame / 100.0f;
+			shader_buffer->set("mult", &mult);
+		}
 
 		texture->bind();
 		shader_buffer->bind();

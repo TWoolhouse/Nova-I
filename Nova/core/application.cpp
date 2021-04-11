@@ -22,7 +22,9 @@ namespace Nova {
 
 	void Application::main() {
 		m_window->update();
+		Render::Scene(true);
 		update();
+		Render::Scene();
 	}
 
 	void Application::event_callback(Event::Event& event) {

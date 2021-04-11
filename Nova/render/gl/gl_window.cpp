@@ -69,11 +69,12 @@ namespace Nova {
 			});
 
 			glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
-				Render::Command::Viewport(0, 0, width, height);
+				Render::FrameSize(width, height);
 			});
 
 			glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
 				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				cb.width = width; cb.height = height;
 				Event::WindowResize event(width, height);
 				cb.event_cb(event);
 			});
@@ -143,11 +144,9 @@ namespace Nova {
 		}
 
 		void Window::update() {
-
 			Render::Command::SwapBuffers();
 			glfwPollEvents();
 			Render::Command::Clear();
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 
 	}

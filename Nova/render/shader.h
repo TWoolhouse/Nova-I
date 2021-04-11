@@ -54,4 +54,8 @@ namespace Nova {
 		Uniform* m_uniform_upload;
 	};
 
+	class ShaderCompute : public Shader {
+		virtual void dispatch() = 0;
+	};
+
 }
