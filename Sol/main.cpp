@@ -5,6 +5,7 @@
 class Sol : public Nova::Application {
 public:
 	Sol() : bc(Nova::Buffer::Context::Create()) {
+
 		float vb_data[] = {
 			-0.5f,  0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f,
 			 0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f,
@@ -36,6 +37,11 @@ public:
 		shader_buffer->set("mult", &mult);
 		int val = 0;
 		shader_buffer->set("tex", &val);
+
+		compute = Nova::ShaderCompute::Create("Nova/res/shader/compute.glsl");
+		compute_output = Nova::Texture2D::Create(640, 480, { Nova::Texture::Colour::Type::RGB });
+		compute_output->bind();
+		compute->Upload()->Int("output_image", 0);
 	}
 
 	virtual void update() override {
@@ -45,6 +51,9 @@ public:
 			float mult = frame / 100.0f;
 			shader_buffer->set("mult", &mult);
 		}
+		compute->bind();
+		compute_output->bind();
+		compute->dispatch();
 
 		texture->bind();
 		shader_buffer->bind();
@@ -65,6 +74,8 @@ private:
 	Nova::Shader* shader;
 	Nova::Texture2D* texture;
 	Nova::Buffer::Shader* shader_buffer;
+	Nova::ShaderCompute* compute;
+	Nova::Texture2D* compute_output;
 
 };
 

@@ -38,7 +38,7 @@ namespace Nova {
 		static Shader* Create(const std::initializer_list<ShaderSource*>& shaders);
 		static Shader* Create(const std::initializer_list<ShaderSource*>& shaders, bool save);
 
-		Shader() : m_uniform_upload(Uniform::Create(this)) {}
+		Shader() : m_uniform_upload() {}
 
 		virtual void bind() = 0;
 		virtual void unbind() = 0;
@@ -54,8 +54,19 @@ namespace Nova {
 		Uniform* m_uniform_upload;
 	};
 
-	class ShaderCompute : public Shader {
+	class NOVA_API ShaderCompute : public virtual Shader {
+		// Add safety so only compute shaders can be added
+		// require compute shader source
+	public:
+		static ShaderCompute* Create(const std::string& filename);
+		static ShaderCompute* Create(ShaderSource* source);
+		static ShaderCompute* Create(ShaderSource* source, bool save);
+
+		ShaderCompute(const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = {1, 1, 1}) : Shader(), m_work_group(work_group) {}
+
 		virtual void dispatch() = 0;
+	protected:
+		std::tuple<unsigned int, unsigned int, unsigned int> m_work_group;
 	};
 
 }

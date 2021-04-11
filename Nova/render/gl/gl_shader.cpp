@@ -1,6 +1,7 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
+#include "render/gl/gl_bind_helper.h"
 #include <GL/glew.h>
 #include <iostream>
 #include <fstream>
@@ -52,6 +53,16 @@ namespace Nova {
 
 	Shader::Uniform* Shader::Uniform::Create(Shader* shader) {
 		return new OpenGL::UniformUpload(shader);
+	}
+
+	ShaderCompute* Nova::ShaderCompute::Create(const std::string& filename) {
+		return new OpenGL::ShaderProgramCompute(filename);
+	}
+	ShaderCompute* ShaderCompute::Create(ShaderSource* source) {
+		return new OpenGL::ShaderProgramCompute(source);
+	}
+	ShaderCompute* ShaderCompute::Create(ShaderSource* source, bool save) {
+		return new OpenGL::ShaderProgramCompute(source, save);
 	}
 
 	namespace OpenGL {
@@ -130,7 +141,7 @@ namespace Nova {
 				shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
 				file.close();
 			} else { // Not Open
-				// Probably Error?
+				shaders.push_back(Nova::ShaderSource::Create(Nova::ShaderSource::Type::None, ""));
 			}
 			create_shader_program(shaders);
 		}
@@ -159,12 +170,14 @@ namespace Nova {
 				glAttachShader(m_id, static_cast<OpenGL::Shader*>(shader)->m_id);
 			}
 			glLinkProgram(m_id);
+
+			// Work around dynamic casting inside contructor
+			m_uniform_upload = Uniform::Create(static_cast<Nova::Shader*>(this));
+
 			return true;
 		}
 
-		UniformUpload::UniformUpload(Nova::Shader* shader) : m_shader_id(static_cast<ShaderProgram*>(shader)->m_id), m_location_cache() {
-			
-		}
+		UniformUpload::UniformUpload(Nova::Shader* shader) : m_shader_id(dynamic_cast<ShaderProgram*>(shader)->m_id), m_location_cache() {}
 
 		void UniformUpload::Int(const std::string& name, const int value) {
 			glProgramUniform1i(m_shader_id, get_location(name), value);
@@ -184,8 +197,17 @@ namespace Nova {
 			return search->second;
 		}
 
+		ShaderProgramCompute::ShaderProgramCompute(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group)
+			: ShaderCompute(work_group), ShaderProgram(filename) {}
+		ShaderProgramCompute::ShaderProgramCompute(Nova::ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group)
+			: ShaderCompute(work_group), ShaderProgram({ source }) {}
+		ShaderProgramCompute::ShaderProgramCompute(Nova::ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group)
+			: ShaderCompute(work_group), ShaderProgram({ source }, true) {}
+
 		void ShaderProgramCompute::dispatch() {
-			std::cout << "Dispatch" << std::endl;
+			nova_gl_bind(GL_CURRENT_PROGRAM, m_id);
+			auto [x, y, z] = m_work_group;
+			glDispatchCompute(x, y, z);
 		}
 
 	}

@@ -20,7 +20,7 @@ namespace Nova::OpenGL {
 
 	class UniformUpload;
 
-	class ShaderProgram : public Nova::Shader {
+	class ShaderProgram : public virtual Nova::Shader {
 		friend class BufferShader;
 		friend UniformUpload;
 	public:
@@ -51,6 +51,10 @@ namespace Nova::OpenGL {
 	};
 
 	class ShaderProgramCompute : public ShaderCompute, public ShaderProgram {
+	public:
+		ShaderProgramCompute(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = {1, 1, 1});
+		ShaderProgramCompute(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
+		ShaderProgramCompute(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
 		virtual void dispatch() override;
 	};
 

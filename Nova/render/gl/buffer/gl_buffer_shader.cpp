@@ -15,7 +15,7 @@ namespace Nova {
 
 		BufferShader::BufferShader(Nova::Shader* shader, const std::string& name, const Buffer::Shader::Spec& spec)
 			: Buffer::Shader(spec), m_id(GL_NONE) {
-			auto gl_shader = static_cast<ShaderProgram*>(shader);
+			auto gl_shader = dynamic_cast<ShaderProgram*>(shader);
 			glCreateBuffers(1, &m_id);
 			glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_id);
 			gl_shader->bind();
