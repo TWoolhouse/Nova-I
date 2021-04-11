@@ -1,3 +1,9 @@
-glew/
-glfw/
-stblib/
+glew/*
+glfw/*
+stblib/*
+
+!LICENSE.txt
+!LICENSE.md
+
+!README.txt
+!README.md
