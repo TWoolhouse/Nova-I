@@ -7,3 +7,5 @@ stblib/*
 
 !README.txt
 !README.md
+
+!source.md
