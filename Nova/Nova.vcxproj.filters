@@ -96,9 +96,6 @@
     <ClInclude Include="render\gl\gl_texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fileio\stblib\stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="render\buffer\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\gl\gl_bind_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dep\stblib\include\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,13 +146,13 @@
     <ClCompile Include="render\gl\gl_texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fileio\stblib\stblib_image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="render\gl\buffer\gl_buffer_shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render\gl\gl_bind_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dep\stblib\stblib_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -162,8 +162,11 @@
     <None Include="Nova\res\shader\frag.glsl" />
     <None Include="fileio\stblib\README.md" />
     <None Include="Nova\res\shader\main_render.glsl" />
+    <None Include="dep\README.md" />
+    <None Include="dep\stblib\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="fileio\stblib\LICENSE.txt" />
+    <Text Include="dep\stblib\LICENSE.txt" />
   </ItemGroup>
 </Project>

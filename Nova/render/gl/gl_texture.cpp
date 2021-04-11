@@ -4,8 +4,8 @@
 #include <GL/glew.h>
 #include <exception>
 #include <iostream>
+#include <stb_image.h>
 #include "gl_texture.h"
-#include <stblib/stb_image.h>
 
 namespace Nova {
 
