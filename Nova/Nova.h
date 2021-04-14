@@ -2,6 +2,8 @@
 
 #include "npch.h"
 
+#include "phys/maths.h"
+
 // Core
 #include "core/application.h"
 

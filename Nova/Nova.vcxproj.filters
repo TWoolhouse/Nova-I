@@ -108,6 +108,12 @@
     <ClInclude Include="dep\stblib\include\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="phys\quadtree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="phys\maths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -155,6 +161,9 @@
     <ClCompile Include="dep\stblib\stblib_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="phys\quadtree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
@@ -164,9 +173,11 @@
     <None Include="Nova\res\shader\main_render.glsl" />
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
+    <None Include="dep\glm\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="fileio\stblib\LICENSE.txt" />
     <Text Include="dep\stblib\LICENSE.txt" />
+    <Text Include="dep\glm\LICENSE.txt" />
   </ItemGroup>
 </Project>

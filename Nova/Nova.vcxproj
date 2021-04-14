@@ -58,7 +58,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\stblib\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -78,10 +78,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\stblib\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <StringPooling>true</StringPooling>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,6 +112,8 @@
     <ClInclude Include="input\poll.h" />
     <ClInclude Include="nova.h" />
     <ClInclude Include="npch.h" />
+    <ClInclude Include="phys\maths.h" />
+    <ClInclude Include="phys\quadtree.h" />
     <ClInclude Include="render\buffer\buffer.h" />
     <ClInclude Include="render\buffer\context.h" />
     <ClInclude Include="render\buffer\frame.h" />
@@ -137,6 +144,7 @@
     </ClCompile>
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
+    <ClCompile Include="phys\quadtree.cpp" />
     <ClCompile Include="render\gl\buffer\gl_buffer.cpp" />
     <ClCompile Include="render\gl\buffer\gl_buffer_array.cpp" />
     <ClCompile Include="render\gl\buffer\gl_buffer_frame.cpp" />
@@ -150,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
+    <None Include="dep\glm\README.md" />
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
     <None Include="fileio\stblib\README.md" />
@@ -158,6 +167,7 @@
     <None Include="Nova\res\shader\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="dep\glm\LICENSE.txt" />
     <Text Include="dep\stblib\LICENSE.txt" />
     <Text Include="fileio\stblib\LICENSE.txt" />
   </ItemGroup>

@@ -1,5 +1,6 @@
 glew/*
 glfw/*
+glm/*
 stblib/*
 
 !LICENSE.txt
@@ -7,5 +8,3 @@ stblib/*
 
 !README.txt
 !README.md
-
-!source.md

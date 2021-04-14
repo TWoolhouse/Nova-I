@@ -13,3 +13,4 @@
 #include <array>
 #include <memory>
 #include <cassert>
+#include <variant>
