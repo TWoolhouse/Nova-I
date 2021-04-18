@@ -65,6 +65,7 @@ namespace Nova {
 		ShaderCompute(const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = {1, 1, 1}) : Shader(), m_work_group(work_group) {}
 
 		virtual void dispatch() = 0;
+		virtual void sync() = 0;
 	protected:
 		std::tuple<unsigned int, unsigned int, unsigned int> m_work_group;
 	};
