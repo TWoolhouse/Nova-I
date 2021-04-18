@@ -52,7 +52,6 @@ namespace Nova::Buffer {
 		virtual void sync() = 0;
 
 		Spec::Element& operator[](const std::string& name) { return m_layout.elements()[name]; }
-		const Spec::Element& operator[](const std::string& name) const { return m_layout.elements()[name]; }
 		const Spec& layout() const { return m_layout; }
 
 		virtual ~Shader() {};
