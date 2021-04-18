@@ -114,6 +114,12 @@
     <ClInclude Include="phys\maths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\deltatime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="phys\random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -162,6 +168,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="phys\quadtree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\deltatime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="phys\maths.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -101,6 +101,7 @@
     <ClInclude Include="core\application.h" />
     <ClInclude Include="core\entry_point.h" />
     <ClInclude Include="core\window.h" />
+    <ClInclude Include="core\deltatime.h" />
     <ClInclude Include="dep\stblib\include\stb_image.h" />
     <ClInclude Include="event\event.h" />
     <ClInclude Include="event\mouse.h" />
@@ -114,6 +115,7 @@
     <ClInclude Include="npch.h" />
     <ClInclude Include="phys\maths.h" />
     <ClInclude Include="phys\quadtree.h" />
+    <ClInclude Include="phys\random.h" />
     <ClInclude Include="render\buffer\buffer.h" />
     <ClInclude Include="render\buffer\context.h" />
     <ClInclude Include="render\buffer\frame.h" />
@@ -134,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp" />
+    <ClCompile Include="core\deltatime.cpp" />
     <ClCompile Include="core\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -144,6 +147,7 @@
     </ClCompile>
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
+    <ClCompile Include="phys\maths.cpp" />
     <ClCompile Include="phys\quadtree.cpp" />
     <ClCompile Include="render\gl\buffer\gl_buffer.cpp" />
     <ClCompile Include="render\gl\buffer\gl_buffer_array.cpp" />
