@@ -12,9 +12,9 @@ namespace Nova::Buffer {
 			struct Element {
 				unsigned int offset, size;
 				std::string name;
-				Element() : offset(0), size(0), name() {}
+				Element() : offset(std::numeric_limits<unsigned int>::max()), size(0), name() {}
 				Element(const std::string& name)
-					: offset(0), size(0), name(name) {}
+					: offset(std::numeric_limits<unsigned int>::max()), size(0), name(name) {}
 			};
 
 			Spec(const std::initializer_list<Element>& types) : m_elements(types.size()) {
@@ -42,10 +42,17 @@ namespace Nova::Buffer {
 
 		virtual void get(const std::string& name, void* const data) = 0;
 		virtual void get(const std::string& name, const unsigned int size, void* const data) = 0;
+		virtual void get(const std::string& name, const unsigned int offset, const unsigned int size, void* const data) = 0;
+
 		virtual void set(const std::string& name, const void* data) = 0;
 		virtual void set(const std::string& name, const unsigned int size, const void* data) = 0;
+		virtual void set(const std::string& name, const unsigned int offset, const unsigned int size, void* const data) = 0;
+		virtual void set(const std::string& name, const unsigned int size) = 0;
 
-		inline Spec::Element& operator[](const std::string& name) { return m_layout.elements()[name]; }
+		virtual void sync() = 0;
+
+		Spec::Element& operator[](const std::string& name) { return m_layout.elements()[name]; }
+		const Spec::Element& operator[](const std::string& name) const { return m_layout.elements()[name]; }
 		const Spec& layout() const { return m_layout; }
 
 		virtual ~Shader() {};

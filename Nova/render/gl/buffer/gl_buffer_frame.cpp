@@ -37,10 +37,12 @@ namespace Nova {
 		void BufferFrame::attach_colour(Nova::Texture2D* texture) {
 			nova_gl_bind(GL_DRAW_FRAMEBUFFER_BINDING, m_id);
 			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, static_cast<OpenGL::Texture2D*>(texture)->m_id, 0);
+			ma_colour = texture;
 		}
 		void BufferFrame::attach_depth_stencil(Nova::Texture2D* texture) {
 			nova_gl_bind(GL_DRAW_FRAMEBUFFER_BINDING, m_id);
 			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, static_cast<OpenGL::Texture2D*>(texture)->m_id, 0);
+			set_attachment_depth(texture);
 		}
 
 		const bool BufferFrame::validate() {
