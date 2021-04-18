@@ -34,6 +34,8 @@ namespace Nova {
 			
 			glfwMakeContextCurrent(m_window);
 
+			glfwSwapInterval(false); // Vsync Disable
+
 			glfwSetWindowUserPointer(m_window, &m_properties);
 			if (!s_instances++ && glewInit() != GLEW_OK) {
 				delete this;
