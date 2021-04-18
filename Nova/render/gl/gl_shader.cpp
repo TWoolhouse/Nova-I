@@ -4,9 +4,8 @@
 #include "render/gl/gl_bind_helper.h"
 #include <GL/glew.h>
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include "gl_shader.h"
+#include "fileio/shader.h"
 
 namespace Nova {
 
@@ -18,20 +17,6 @@ namespace Nova {
 		default:
 			return GL_NONE;
 		}
-	}
-
-	ShaderSource::Type get_string_shader_type(const std::string& str) {
-		// Must match the Shader::Type layout
-		constexpr static size_t types_size = 4;
-		static const std::string type_names[types_size] = { "none", "vertex", "fragment", "compute" };
-
-		if (str.find("#shader") == std::string::npos)
-			return ShaderSource::Type::None;
-		for (size_t i = 0; i < types_size; i++) {
-			if (str.find(type_names[i]) != std::string::npos)
-				return ShaderSource::Type(i);
-		}
-		return ShaderSource::Type::None;
 	}
 
 	ShaderSource* ShaderSource::Create(const std::string& filename) {
@@ -68,18 +53,8 @@ namespace Nova {
 	namespace OpenGL {
 
 		Shader::Shader(const std::string& filename) : Nova::ShaderSource(), m_id(GL_NONE) {
-			std::ifstream file(filename);
-			if (file.is_open()) {
-				std::stringstream source;
-				std::string line;
-				std::getline(file, line);
-				auto type = get_string_shader_type(line);
-				source << file.rdbuf();
-				file.close();
-				create_shader(type, source.str());
-			} else { // Not Open
-				create_shader(Nova::ShaderSource::Type::None, "");
-			}
+			auto [st, src] = FileIO::ShaderSource(filename);
+			create_shader(st, src);
 		}
 
 		Shader::Shader(const Nova::ShaderSource::Type& type, const std::string& source) : Nova::ShaderSource(type), m_id(GL_NONE) {
@@ -102,7 +77,7 @@ namespace Nova {
 			if (!success) {
 				char info[512];
 				glGetShaderInfoLog(m_id, 512, NULL, info);
-				std::cerr << "ERROR: Shader Compliation\n" << info << std::endl;
+				std::cerr << "ERROR: Shader Compliation:\n" << info << std::endl;
 				glDeleteShader(m_id);
 				m_id = GL_NONE;
 				return false;
@@ -116,32 +91,10 @@ namespace Nova {
 
 		ShaderProgram::ShaderProgram(const std::string& filename) : m_id(GL_NONE) {
 			std::vector<Nova::ShaderSource*> shaders;
-
-			std::ifstream file(filename);
-			if (file.is_open()) {
-				std::stringstream source;
-				std::string line;
-				auto type = Nova::ShaderSource::Type::None;
-
-				while (type == Nova::ShaderSource::Type::None) {
-					std::getline(file, line);
-					type = get_string_shader_type(line);
-				}
-
-				while (std::getline(file, line)) {
-					auto t = get_string_shader_type(line);
-					if (t != Nova::ShaderSource::Type::None) {
-						shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
-						source.str(std::string());
-						type = t;
-						continue;
-					}
-					source << line << '\n';
-				}
-				shaders.push_back(Nova::ShaderSource::Create(type, source.str()));
-				file.close();
-			} else { // Not Open
-				shaders.push_back(Nova::ShaderSource::Create(Nova::ShaderSource::Type::None, ""));
+			auto loader = FileIO::Shader(filename);
+			while (++loader) {
+				auto [st, src] = *loader;
+				shaders.push_back(Nova::ShaderSource::Create(st, src));
 			}
 			create_shader_program(shaders);
 		}

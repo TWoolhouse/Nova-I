@@ -4,8 +4,8 @@
 #include <GL/glew.h>
 #include <exception>
 #include <iostream>
-#include <stb_image.h>
 #include "gl_texture.h"
+#include "fileio/texture.h"
 
 namespace Nova {
 
@@ -67,9 +67,7 @@ namespace Nova {
 
 		Texture2D::Texture2D(const std::string& filename, const Texture::Properties& properties)
 			: Texture2D(properties) {
-			int width, height, channels;
-			stbi_set_flip_vertically_on_load(true);
-			unsigned char* data = stbi_load(filename.c_str(), &width, &height, &channels, 4);
+			auto [width, height, data] = FileIO::Texture(filename);
 			m_width = width; m_height = height;
 			if (data) {
 				glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, data);
@@ -80,7 +78,7 @@ namespace Nova {
 				glDeleteTextures(1, &m_id);
 				m_id = GL_NONE;
 			}
-			stbi_image_free(data);
+			FileIO::Texture(data);
 		}
 
 		void Texture2D::bind(unsigned int slot) {

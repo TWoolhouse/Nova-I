@@ -120,6 +120,12 @@
     <ClInclude Include="phys\random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="fileio\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileio\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -174,6 +180,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="phys\maths.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileio\fio_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileio\fio_texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
