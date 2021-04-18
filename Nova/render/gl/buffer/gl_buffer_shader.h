@@ -14,8 +14,14 @@ namespace Nova::OpenGL {
 
 		virtual void get(const std::string& name, void* const data) override;
 		virtual void get(const std::string& name, const unsigned int size, void* const data) override;
+		virtual void get(const std::string& name, const unsigned int offset, const unsigned int size, void* const data) override;
+
 		virtual void set(const std::string& name, const void* data) override;
 		virtual void set(const std::string& name, const unsigned int size, const void* data) override;
+		virtual void set(const std::string& name, const unsigned int offset, const unsigned int size, void* const data) override;
+		virtual void set(const std::string& name, const unsigned int size) override;
+
+		virtual void sync() override;
 
 		virtual ~BufferShader() override;
 	protected:

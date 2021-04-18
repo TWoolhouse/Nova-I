@@ -3,6 +3,7 @@
 #ifdef NOVA_OPENGL
 #include "render/gl/gl_bind_helper.h"
 #include <GL/glew.h>
+#include <iostream>
 #include "gl_buffer_shader.h"
 
 namespace Nova {
@@ -23,9 +24,13 @@ namespace Nova {
 			glGetProgramInterfaceiv(gl_shader->m_id, GL_BUFFER_VARIABLE, GL_MAX_NAME_LENGTH, &var_max_length);
 			auto index = glGetProgramResourceIndex(gl_shader->m_id, GL_SHADER_STORAGE_BLOCK, name.c_str());
 
+			GLenum prop = GL_NUM_ACTIVE_VARIABLES;
+			GLint count;
+			glGetProgramResourceiv(gl_shader->m_id, GL_SHADER_STORAGE_BLOCK, index, 1, &prop, (GLsizei)1, nullptr, &count);
+
 			auto& elms = m_layout.elements();
-			std::vector<GLint> indices(elms.size());
-			GLenum prop = GL_ACTIVE_VARIABLES;
+			std::vector<GLint> indices(count);
+			prop = GL_ACTIVE_VARIABLES;
 			glGetProgramResourceiv(gl_shader->m_id, GL_SHADER_STORAGE_BLOCK, index, 1, &prop, (GLsizei)indices.size(), nullptr, indices.data());
 
 			prop = GL_BUFFER_DATA_SIZE;
@@ -34,6 +39,7 @@ namespace Nova {
 
 			prop = GL_OFFSET;
 			std::vector<Spec::Element*> selms(elms.size());
+			size_t found_count = 0;
 			for (size_t i = 0; i < indices.size(); i++) {
 				auto& var_index = indices[i];
 
@@ -47,10 +53,17 @@ namespace Nova {
 				if (pos != std::string::npos) {
 					var_str = var_str.substr(0, pos);
 				}
-				auto& elm = elms.at(var_str);
-				selms[i] = &elm;
+				auto search = elms.find(var_str);
+				if (search == elms.end()) continue;
+				auto& elm = search->second;
+				if (!search->second.size) {
+					elm.size = 1;
+					selms[found_count++] = &elm;
+				}
 
-				glGetProgramResourceiv(gl_shader->m_id, GL_BUFFER_VARIABLE, var_index, 1, &prop, (GLsizei)elms.size(), nullptr, (GLint*)(&elm.offset));
+				GLint offset;
+				glGetProgramResourceiv(gl_shader->m_id, GL_BUFFER_VARIABLE, var_index, 1, &prop, (GLsizei)elms.size(), nullptr, (GLint*)(&offset));
+				elm.offset = std::min(static_cast<unsigned int>(offset), elm.offset);
 			}
 
 			std::sort(selms.begin(), selms.end(), [](const Spec::Element* a, const Spec::Element* b) -> bool {
@@ -82,6 +95,14 @@ namespace Nova {
 			glGetNamedBufferSubData(m_id, elm.offset, size, data);
 		}
 
+		void BufferShader::get(const std::string& name, const unsigned int offset, const unsigned int size, void* const data) {
+			const auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			assert(offset < elm.size, "Offset out of range");
+			assert((offset + size) <= elm.size, "Offset and Size out of Range");
+			glGetNamedBufferSubData(m_id, elm.offset + offset, size, data);
+		}
+
 		void BufferShader::set(const std::string& name, const void* data) {
 			const auto& elm = m_layout.elements()[name];
 			assert(elm.name == name, "Element Name is not valid");
@@ -91,6 +112,25 @@ namespace Nova {
 			const auto& elm = m_layout.elements()[name];
 			assert(elm.name == name, "Element Name is not valid");
 			glNamedBufferSubData(m_id, elm.offset, size, data);
+		}
+
+		void BufferShader::set(const std::string& name, const unsigned int offset, const unsigned int size, void* const data) {
+			const auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			assert(offset < elm.size, "Offset out of range");
+			assert((offset + size) <= elm.size, "Offset and Size out of Range");
+			glNamedBufferSubData(m_id, elm.offset + offset, size, data);
+		}
+
+		void BufferShader::set(const std::string& name, const unsigned int size) {
+			auto& elm = m_layout.elements()[name];
+			assert(elm.name == name, "Element Name is not valid");
+			glNamedBufferData(m_id, size, nullptr, GL_STREAM_DRAW);
+			elm.size = size;
+		}
+
+		void BufferShader::sync() {
+			glMemoryBarrierByRegion(GL_SHADER_STORAGE_BARRIER_BIT);
 		}
 
 		BufferShader::~BufferShader() {
