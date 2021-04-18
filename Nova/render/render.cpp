@@ -14,6 +14,14 @@ namespace FrameOutput {
 	// 1080
 	constexpr unsigned int width = 1920;
 	constexpr unsigned int height = 1080;
+
+	// Wide 1080
+	//constexpr unsigned int width = 1920 * 2;
+	//constexpr unsigned int height = 1080;
+
+	// Wide 1440
+	//constexpr unsigned int width = 2560 * 2;
+	//constexpr unsigned int height = 1440;
 }
 
 namespace Nova {
@@ -23,7 +31,6 @@ namespace Nova {
 		Shader* shader;
 		Buffer::Context* buffer_context;
 		Buffer::Frame* framebuffer;
-		Texture2D* output;
 
 		RenderState(Buffer::Frame* fbuff) : buffer_context(Buffer::Context::Create()) , framebuffer(fbuff) {
 			constexpr float vb_data[] = {
@@ -48,7 +55,7 @@ namespace Nova {
 				});
 
 			shader = Nova::Shader::Create("Nova/res/shader/main_render.glsl");
-			output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
+			auto output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
 				{ Nova::Texture::Colour::Type::RGB }
 			});
 			shader->Upload()->Int("u_tex", 0);
@@ -99,7 +106,7 @@ namespace Nova {
 	void Render::Scene() {
 		render_state->framebuffer->unbind();
 		Render::Command::Viewport(render_state->frame_size.first, render_state->frame_size.second);
-		render_state->output->bind();
+		render_state->framebuffer->get_colour()->bind();
 		Draw(render_state->buffer_context, render_state->shader);
 	}
 
