@@ -7,7 +7,7 @@ namespace Nova {
 	public:
 		enum class Type: unsigned char {
 			None = 0,
-			Vertex, Fragment, Compute,
+			Vertex, Fragment, Compute, Geometry,
 		};
 
 		static ShaderSource* Create(const std::string& filename);

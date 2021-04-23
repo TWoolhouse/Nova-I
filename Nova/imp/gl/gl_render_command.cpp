@@ -11,7 +11,7 @@
 
 #ifndef NDEBUG
 #include "buffer/gl_buffer_array.h"
-#endif // NDEBUG
+#endif // !NDEBUG
 
 static GLFWwindow* s_window;
 
@@ -57,9 +57,13 @@ namespace Nova {
 		glClearColor(r, g, b, a);
 	}
 
-	void Render::Command::Draw(Buffer::Context* bc) {
+	void Render::Command::Draw(Buffer::Context* bc, const unsigned int count) {
 		nova_gl_bind(GL_VERTEX_ARRAY_BINDING, static_cast<OpenGL::BufferVertexArray*>(bc)->m_id);
-		glDrawElements(GL_TRIANGLES, bc->index().count(), GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
+	}
+	void Render::Command::DrawPoint(Buffer::Context* bc, const unsigned int count) {
+		nova_gl_bind(GL_VERTEX_ARRAY_BINDING, static_cast<OpenGL::BufferVertexArray*>(bc)->m_id);
+		glDrawElements(GL_POINTS, count, GL_UNSIGNED_INT, nullptr);
 	}
 
 	void Render::Command::VSync(const bool flag) {

@@ -132,6 +132,12 @@
     <ClInclude Include="imp\gl\gl_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="render\draw\draw_quad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\draw\draw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -200,6 +206,9 @@
     <ClCompile Include="imp\gl\gl_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render\draw\draw_quad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
@@ -210,6 +219,9 @@
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
     <None Include="dep\glm\README.md" />
+    <None Include="Nova\res\shader\draw\frag.glsl" />
+    <None Include="Nova\res\shader\draw\vert.glsl" />
+    <None Include="Nova\res\shader\draw\quad.geom.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="fileio\stblib\LICENSE.txt" />

@@ -8,8 +8,8 @@ namespace Nova::FileIO {
 
 	ShaderSource::Type get_string_shader_type(const std::string& str) {
 		// Must match the Shader::Type layout
-		constexpr static size_t types_size = 4;
-		static const std::string type_names[types_size] = { "none", "vertex", "fragment", "compute" };
+		constexpr static size_t types_size = 5;
+		static const std::string type_names[types_size] = { "none", "vertex", "fragment", "compute", "geometry" };
 
 		if (str.find("#shader") == std::string::npos)
 			return ShaderSource::Type::None;

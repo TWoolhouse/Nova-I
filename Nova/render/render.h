@@ -18,6 +18,8 @@ namespace Nova {
 		static void Scene(bool b); // Vars for starting
 		static void Scene(); // Empty for end
 
+		static void Flush();
+
 		class NOVA_API Draw {
 		public:
 			static void Quad(const mlb::vec2& pos);

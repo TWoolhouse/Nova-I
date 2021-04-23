@@ -129,6 +129,8 @@
     <ClInclude Include="imp\gl\buffer\gl_buffer_array.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_frame.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_shader.h" />
+    <ClInclude Include="render\draw\draw_quad.h" />
+    <ClInclude Include="render\draw\draw.h" />
     <ClInclude Include="render\render_batch.h" />
     <ClInclude Include="imp\gl\gl_bind_helper.h" />
     <ClInclude Include="imp\gl\gl_window.h" />
@@ -166,6 +168,7 @@
     <ClCompile Include="imp\gl\gl_texture.cpp" />
     <ClCompile Include="imp\gl\gl_window.cpp" />
     <ClCompile Include="imp\gl\gl_shader.cpp" />
+    <ClCompile Include="render\draw\draw_quad.cpp" />
     <ClCompile Include="render\render.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +177,9 @@
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
     <None Include="fileio\stblib\README.md" />
+    <None Include="Nova\res\shader\draw\frag.glsl" />
+    <None Include="Nova\res\shader\draw\quad.geom.glsl" />
+    <None Include="Nova\res\shader\draw\vert.glsl" />
     <None Include="Nova\res\shader\frag.glsl" />
     <None Include="Nova\res\shader\main_render.glsl" />
     <None Include="Nova\res\shader\vertex.glsl" />

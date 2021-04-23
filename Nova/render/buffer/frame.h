@@ -49,10 +49,14 @@ namespace Nova::Buffer {
 		virtual ~Frame() {
 			delete ma_colour;
 			#ifndef NDEBUG
-			delete std::get_if<Nova::Texture2D*>(&ma_depth);
-			delete std::get_if<Render*>(&ma_depth);
-			delete std::get_if<Nova::Texture2D*>(&ma_stencil);
-			delete std::get_if<Render*>(&ma_stencil);
+			if (auto b = std::get_if<Nova::Texture2D*>(&ma_depth))
+				delete* b;
+			else if (auto b = std::get_if<Render*>(&ma_depth))
+				delete* b;
+			if (auto b = std::get_if<Nova::Texture2D*>(&ma_stencil))
+				delete* b;
+			else if (auto b = std::get_if<Render*>(&ma_stencil))
+				delete* b;
 			#else
 			delete ma_depth.texture;
 			delete ma_stencil.texture;

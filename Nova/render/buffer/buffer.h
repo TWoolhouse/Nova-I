@@ -46,12 +46,12 @@ namespace Nova::Buffer {
 		};
 
 		static Vertex* Create(const unsigned int size);
-		static Vertex* Create(const unsigned int size, const float* data);
+		static Vertex* Create(const unsigned int size, const void* data);
 
 		virtual void bind() = 0;
 		virtual void unbind() = 0;
 
-		virtual void set(const unsigned int size, const float* data) = 0;
+		virtual void set(const unsigned int size, const void* data) = 0;
 		virtual ~Vertex() {};
 	};
 

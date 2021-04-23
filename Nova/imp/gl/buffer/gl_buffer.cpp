@@ -10,7 +10,7 @@ namespace Nova {
 	Buffer::Vertex* Buffer::Vertex::Create(const unsigned int size) {
 		return new OpenGL::BufferVertex(size);
 	}
-	Buffer::Vertex* Buffer::Vertex::Create(const unsigned int size, const float* data) {
+	Buffer::Vertex* Buffer::Vertex::Create(const unsigned int size, const void* data) {
 		return new OpenGL::BufferVertex(size, data);
 	}
 
@@ -32,7 +32,7 @@ namespace Nova {
 			glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
 		}
 
-		BufferVertex::BufferVertex(const unsigned int size, const float* data) : BufferVertex() {
+		BufferVertex::BufferVertex(const unsigned int size, const void* data) : BufferVertex() {
 			glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 		}
 
@@ -49,7 +49,7 @@ namespace Nova {
 			glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
 		}
 
-		void BufferVertex::set(const unsigned int size, const float* data) {
+		void BufferVertex::set(const unsigned int size, const void* data) {
 			glNamedBufferSubData(m_id, 0, size, data);
 		}
 

@@ -8,13 +8,13 @@ namespace Nova::OpenGL {
 	public:
 		BufferVertex();
 		BufferVertex(const unsigned int size);
-		BufferVertex(const unsigned int size, const float* data);
+		BufferVertex(const unsigned int size, const void* data);
 		~BufferVertex();
 
 		virtual void bind() override;
 		virtual void unbind() override;
 
-		virtual void set(const unsigned int size, const float* data) override;
+		virtual void set(const unsigned int size, const void* data) override;
 	private:
 		unsigned int m_id;
 	};

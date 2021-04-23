@@ -14,3 +14,4 @@
 #include <memory>
 #include <cassert>
 #include <variant>
+#include <type_traits>

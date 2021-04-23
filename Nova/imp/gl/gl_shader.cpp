@@ -14,6 +14,7 @@ namespace Nova {
 		case ShaderSource::Type::Vertex:	return GL_VERTEX_SHADER;
 		case ShaderSource::Type::Fragment:	return GL_FRAGMENT_SHADER;
 		case ShaderSource::Type::Compute:	return GL_COMPUTE_SHADER;
+		case ShaderSource::Type::Geometry:	return GL_GEOMETRY_SHADER;
 		default:
 			return GL_NONE;
 		}
@@ -72,6 +73,7 @@ namespace Nova {
 			glShaderSource(m_id, 1, &cstr, NULL);
 			glCompileShader(m_id);
 
+			#ifndef NDEBUG
 			int success;
 			glGetShaderiv(m_id, GL_COMPILE_STATUS, &success);
 			if (!success) {
@@ -82,6 +84,7 @@ namespace Nova {
 				m_id = GL_NONE;
 				return false;
 			}
+			#endif // !NDEBUG
 			return true;
 		}
 
@@ -123,6 +126,16 @@ namespace Nova {
 				glAttachShader(m_id, static_cast<OpenGL::Shader*>(shader)->m_id);
 			}
 			glLinkProgram(m_id);
+
+			#ifndef NDEBUG
+			int success;
+			glGetProgramiv(m_id, GL_LINK_STATUS, &success);
+			if (!success) {
+				char info[512];
+				glGetProgramInfoLog(m_id, 512, NULL, info);
+				std::cout << "ERROR: Shader Linking:\n" << info << std::endl;
+			}
+			#endif // !NDEBUG
 
 			// Work around dynamic casting inside contructor
 			m_uniform_upload = Uniform::Create(static_cast<Nova::Shader*>(this));

@@ -6,6 +6,8 @@
 #include "shader.h"
 #include "core/application.h"
 
+#include "draw/draw_quad.h"
+
 namespace FrameOutput {
 	// 4K
 	//constexpr unsigned int width = 3840;
@@ -75,41 +77,55 @@ namespace Nova {
 		}
 	};
 
-	static RenderState* render_state = nullptr;
+	static RenderState* rs = nullptr;
 
 	bool Render::Initialise() {
-		render_state = new RenderState(
+		rs = new RenderState(
 			Buffer::Frame::Create()
 		);
 		auto& window_prop = App().window().properties();
-		render_state->frame_size.first = window_prop.width;
-		render_state->frame_size.second = window_prop.height;
+		rs->frame_size.first = window_prop.width;
+		rs->frame_size.second = window_prop.height;
+
+		// Sub Renderers
+		RenderDraw::Quad::Initialise();
+
 		return Render::Command::Initialise();
 	}
 
 	bool Render::Termintate() {
-		return Render::Command::Termintate();
-		delete render_state;
+		RenderDraw::Quad::Terminate();
+
+		// Sub Renderers
+		Render::Command::Termintate();
+
+		delete rs;
+		return true;
 	}
 
 	void Render::FrameSize(unsigned int width, unsigned int height) {
-		render_state->frame_size.first = width;
-		render_state->frame_size.second = height;
+		rs->frame_size.first = width;
+		rs->frame_size.second = height;
 	}
 
 	void Render::Scene(bool b) {
-		render_state->framebuffer->bind();
+		rs->framebuffer->bind();
 		Render::Command::Viewport(FrameOutput::width, FrameOutput::height);
 		Render::Command::Clear();
 	}
 
 	void Render::Scene() {
-		render_state->framebuffer->unbind();
-		Render::Command::Viewport(render_state->frame_size.first, render_state->frame_size.second);
-		render_state->framebuffer->get_colour()->bind();
-		render_state->shader->bind();
-		render_state->buffer_context->bind();
-		Command::Draw(render_state->buffer_context);
+		Flush();
+		rs->framebuffer->unbind();
+		Render::Command::Viewport(rs->frame_size.first, rs->frame_size.second);
+		rs->framebuffer->get_colour()->bind();
+		rs->shader->bind();
+		rs->buffer_context->bind();
+		Command::Draw(rs->buffer_context);
+	}
+
+	void Render::Flush() {
+		RenderDraw::Quad::Flush();
 	}
 
 }

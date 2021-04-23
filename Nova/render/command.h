@@ -16,7 +16,10 @@ namespace Nova {
 		static void Clear();
 		static void ClearColour(float r= 0.0, float g= 0.0, float b=0.0, float a=1.0);
 
-		static void Draw(Buffer::Context* bc);
+		static void Draw(Buffer::Context* bc) { Draw(bc, bc->index().count()); }
+		static void Draw(Buffer::Context* bc, const unsigned int count);
+		static void DrawPoint(Buffer::Context* bc) { DrawPoint(bc, bc->index().count()); }
+		static void DrawPoint(Buffer::Context* bc, const unsigned int count);
 
 		// Move out to properties?
 		static void VSync(const bool flag);
