@@ -6,6 +6,7 @@
 class Sol : public Nova::Application {
 public:
 	Sol() : bc(Nova::Buffer::Context::Create()) {
+		Nova::Render::Command::VSync(true);
 
 		float vb_data[] = {
 			-1.0f,  1.0f,	1.0f, 1.0f, 1.0f,	0.0f, 1.0f,
@@ -30,8 +31,6 @@ public:
 
 		shader = Nova::Shader::Create("Nova/res/shader/simple.glsl");
 
-		texture = Nova::Texture2D::Create("Nova/res/texture/test.jpg", {});
-
 		shader_buffer = Nova::Buffer::Shader::Create(shader, "test", {
 			"mult",
 			"buffer_colour",
@@ -42,7 +41,11 @@ public:
 		std::array<float, 3> shader_colour = {1.0f, 1.0f, 1.0f};
 		shader_buffer->set("buffer_colour", shader_colour.data());
 
-		ants = new Ants(1024, 2560, 1440);
+		ants = new Ants(2, 640, 360);
+	}
+
+	~Sol() {
+		delete ants;
 	}
 
 	virtual void update() override {
@@ -51,8 +54,9 @@ public:
 
 		shader_buffer->bind(0);
 		ants->get_texture()->bind();
-		//texture->bind();
-		Nova::Render::Draw(bc, shader);
+		shader->bind();
+		bc->bind();
+		Nova::Render::Command::Draw(bc);
 	}
 
 	virtual void event(Nova::Event::Event& event) override {
@@ -68,7 +72,6 @@ public:
 private:
 	Nova::Buffer::Context* bc;
 	Nova::Shader* shader;
-	Nova::Texture2D* texture;
 	Nova::Buffer::Shader* shader_buffer;
 	Ants* ants;
 };

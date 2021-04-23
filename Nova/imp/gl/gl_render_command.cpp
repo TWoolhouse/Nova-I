@@ -1,12 +1,17 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
+#include "gl_bind_helper.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "render/command.h"
 #include "gl_window.h"
 
 #include "core/application.h"
+
+#ifndef NDEBUG
+#include "buffer/gl_buffer_array.h"
+#endif // NDEBUG
 
 static GLFWwindow* s_window;
 
@@ -53,7 +58,7 @@ namespace Nova {
 	}
 
 	void Render::Command::Draw(Buffer::Context* bc) {
-		bc->bind();
+		nova_gl_bind(GL_VERTEX_ARRAY_BINDING, static_cast<OpenGL::BufferVertexArray*>(bc)->m_id);
 		glDrawElements(GL_TRIANGLES, bc->index().count(), GL_UNSIGNED_INT, nullptr);
 	}
 

@@ -110,6 +110,7 @@
     <ClInclude Include="event\window.h" />
     <ClInclude Include="fileio\shader.h" />
     <ClInclude Include="fileio\texture.h" />
+    <ClInclude Include="fileio\vertex.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="input\poll.h" />
@@ -124,14 +125,15 @@
     <ClInclude Include="render\buffer\shader.h" />
     <ClInclude Include="render\buffer\type.h" />
     <ClInclude Include="render\command.h" />
-    <ClInclude Include="render\gl\buffer\gl_buffer.h" />
-    <ClInclude Include="render\gl\buffer\gl_buffer_array.h" />
-    <ClInclude Include="render\gl\buffer\gl_buffer_frame.h" />
-    <ClInclude Include="render\gl\buffer\gl_buffer_shader.h" />
-    <ClInclude Include="render\gl\gl_bind_helper.h" />
-    <ClInclude Include="render\gl\gl_window.h" />
-    <ClInclude Include="render\gl\gl_shader.h" />
-    <ClInclude Include="render\gl\gl_texture.h" />
+    <ClInclude Include="imp\gl\buffer\gl_buffer.h" />
+    <ClInclude Include="imp\gl\buffer\gl_buffer_array.h" />
+    <ClInclude Include="imp\gl\buffer\gl_buffer_frame.h" />
+    <ClInclude Include="imp\gl\buffer\gl_buffer_shader.h" />
+    <ClInclude Include="render\render_batch.h" />
+    <ClInclude Include="imp\gl\gl_bind_helper.h" />
+    <ClInclude Include="imp\gl\gl_window.h" />
+    <ClInclude Include="imp\gl\gl_shader.h" />
+    <ClInclude Include="imp\gl\gl_texture.h" />
     <ClInclude Include="render\render.h" />
     <ClInclude Include="render\shader.h" />
     <ClInclude Include="render\texture.h" />
@@ -149,19 +151,21 @@
     </ClCompile>
     <ClCompile Include="fileio\fio_shader.cpp" />
     <ClCompile Include="fileio\fio_texture.cpp" />
+    <ClCompile Include="fileio\fio_vertex.cpp" />
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
     <ClCompile Include="phys\maths.cpp" />
     <ClCompile Include="phys\quadtree.cpp" />
-    <ClCompile Include="render\gl\buffer\gl_buffer.cpp" />
-    <ClCompile Include="render\gl\buffer\gl_buffer_array.cpp" />
-    <ClCompile Include="render\gl\buffer\gl_buffer_frame.cpp" />
-    <ClCompile Include="render\gl\buffer\gl_buffer_shader.cpp" />
-    <ClCompile Include="render\gl\gl_bind_helper.cpp" />
-    <ClCompile Include="render\gl\gl_render_command.cpp" />
-    <ClCompile Include="render\gl\gl_texture.cpp" />
-    <ClCompile Include="render\gl\gl_window.cpp" />
-    <ClCompile Include="render\gl\gl_shader.cpp" />
+    <ClCompile Include="imp\gl\buffer\gl_buffer.cpp" />
+    <ClCompile Include="imp\gl\buffer\gl_buffer_array.cpp" />
+    <ClCompile Include="imp\gl\buffer\gl_buffer_frame.cpp" />
+    <ClCompile Include="imp\gl\buffer\gl_buffer_shader.cpp" />
+    <ClCompile Include="imp\gl\draw\gl_draw_quad.cpp" />
+    <ClCompile Include="imp\gl\gl_bind_helper.cpp" />
+    <ClCompile Include="imp\gl\gl_render_command.cpp" />
+    <ClCompile Include="imp\gl\gl_texture.cpp" />
+    <ClCompile Include="imp\gl\gl_window.cpp" />
+    <ClCompile Include="imp\gl\gl_shader.cpp" />
     <ClCompile Include="render\render.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -76,7 +76,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 			m_buffer->set("agents", sizeof(Agent) * blocksize * i, sizeof(Agent) * agents.size(), agents.data());
 			m_buffer->sync();
 			if (!(i % iterations)) std::cout << (100 * i) / blocks << " ";
-		} std::cout << std::endl;
+		} std::cout << "Done!" << std::endl;
 	}
 }
 

@@ -1,10 +1,10 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
-#include "render/gl/gl_bind_helper.h"
+#include "imp/gl/gl_bind_helper.h"
 #include <GL/glew.h>
 #include "gl_buffer_frame.h"
-#include "render/gl/gl_texture.h"
+#include "imp/gl/gl_texture.h"
 
 namespace Nova {
 

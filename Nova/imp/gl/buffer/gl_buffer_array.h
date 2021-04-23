@@ -1,9 +1,16 @@
 #pragma once
 #include "render/buffer/context.h"
 
+#ifndef NDEBUG
+#include "render/render.h"
+#endif // NDEBUG
+
 namespace Nova::OpenGL {
 
 	class BufferVertexArray : public Buffer::Context {
+		#ifndef NDEBUG
+		friend class Nova::Render::Command;
+		#endif // NDEBUG
 	public:
 		BufferVertexArray();
 		~BufferVertexArray();

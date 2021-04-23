@@ -107,12 +107,9 @@ namespace Nova {
 		render_state->framebuffer->unbind();
 		Render::Command::Viewport(render_state->frame_size.first, render_state->frame_size.second);
 		render_state->framebuffer->get_colour()->bind();
-		Draw(render_state->buffer_context, render_state->shader);
-	}
-
-	void Render::Draw(Buffer::Context* context, Shader* shader) {
-		shader->bind();
-		Render::Command::Draw(context);
+		render_state->shader->bind();
+		render_state->buffer_context->bind();
+		Command::Draw(render_state->buffer_context);
 	}
 
 }

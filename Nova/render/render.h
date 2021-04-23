@@ -2,6 +2,7 @@
 #include "npch.h"
 #include "buffer/context.h"
 #include "shader.h"
+#include "phys/maths.h"
 
 namespace Nova {
 
@@ -17,7 +18,10 @@ namespace Nova {
 		static void Scene(bool b); // Vars for starting
 		static void Scene(); // Empty for end
 
-		static void Draw(Buffer::Context* context, Shader* shader);
+		class NOVA_API Draw {
+		public:
+			static void Quad(const mlb::vec2& pos);
+		};
 
 	};
 
