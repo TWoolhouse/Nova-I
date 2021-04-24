@@ -11,6 +11,25 @@ namespace Nova {
 		return new OpenGL::BufferVertexArray();
 	}
 
+	bool is_mat_type(const Buffer::Type& type) {
+		switch (type) {
+		case Buffer::Type::Mat2:	return true;
+		case Buffer::Type::Mat3:	return true;
+		case Buffer::Type::Mat4:	return true;
+		default:
+			return false;
+		}
+	}
+
+	unsigned int mat_width(const Buffer::Type& type) {
+		switch (type) {
+		case Buffer::Type::Mat2:	return 2;
+		case Buffer::Type::Mat3:	return 3;
+		case Buffer::Type::Mat4:	return 4;
+		default: return 0;
+		}
+	}
+
 	namespace OpenGL {
 
 		GLenum TypeConvert(const Buffer::Type& type) {
@@ -64,8 +83,16 @@ namespace Nova {
 			auto size = m_vertex_buffers.size();
 			unsigned int index = 0;
 			for (auto& elm : spec.vector()) {
-				glEnableVertexAttribArray(size + index);
-				glVertexAttribPointer(size + index++, elm.count, TypeConvert(elm.type), elm.normalise, spec.stride(), (void*)elm.offset);
+				if (is_mat_type(elm.type)) {
+					auto width = mat_width(elm.type);
+					for (unsigned int i = 0; i < width; ++i) {
+						glEnableVertexAttribArray(size + index);
+						glVertexAttribPointer(size + index++, width, TypeConvert(elm.type), elm.normalise, spec.stride(), (void*)(elm.offset + i * Buffer::TypeSize(Buffer::Type::Float4)));
+					}
+				} else {
+					glEnableVertexAttribArray(size + index);
+					glVertexAttribPointer(size + index++, elm.count, TypeConvert(elm.type), elm.normalise, spec.stride(), (void*)elm.offset);
+				}
 			}
 			m_vertex_buffers.push_back(buffer);
 		}

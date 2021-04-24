@@ -5,7 +5,7 @@ layout(points) in;
 layout(triangle_strip, max_vertices = 4) out;
 
 in VG {
-	vec2 size;
+	mat4 mat;
 	vec4 colour;
 } vertex[];
 
@@ -16,13 +16,13 @@ out GF {
 void main() {
 	frag.colour = vertex[0].colour;
 
-	gl_Position = gl_in[0].gl_Position + vec4(vec2(-0.5, 0.5) * vertex[0].size, 0.0, 0.0);
+	gl_Position = vertex[0].mat * vec4(-0.5,  0.5, 0.0, 1.0); // vertex[0].mat
 	EmitVertex();
-	gl_Position = gl_in[0].gl_Position + vec4(vec2(0.5, 0.5) * vertex[0].size, 0.0, 0.0);
+	gl_Position = vertex[0].mat * vec4( 0.5,  0.5, 0.0, 1.0); // vertex[0].mat
 	EmitVertex();
-	gl_Position = gl_in[0].gl_Position + vec4(vec2(-0.5, -0.5) * vertex[0].size, 0.0, 0.0);
+	gl_Position = vertex[0].mat * vec4(-0.5, -0.5, 0.0, 1.0); // vertex[0].mat
 	EmitVertex();
-	gl_Position = gl_in[0].gl_Position + vec4(vec2(0.5, -0.5) * vertex[0].size, 0.0, 0.0);
+	gl_Position = vertex[0].mat * vec4( 0.5, -0.5, 0.0, 1.0); // vertex[0].mat
 	EmitVertex();
 
 	EndPrimitive();

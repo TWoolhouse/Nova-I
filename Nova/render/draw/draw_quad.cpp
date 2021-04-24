@@ -4,8 +4,7 @@
 namespace Nova {
 
 	Buffer::Vertex::Spec RenderDraw::Quad::Block::Layout = {
-		{ Nova::Buffer::Type::Float2, "pos" },
-		{ Nova::Buffer::Type::Float2, "size" },
+		{ Nova::Buffer::Type::Mat4, "mat" },
 		{ Nova::Buffer::Type::Float4, "colour" },
 	};
 	RenderBatch::Buffer<RenderDraw::Quad::Block, RenderDraw::Quad::BATCH_SIZE>* RenderDraw::Quad::batch = nullptr;
@@ -30,8 +29,7 @@ namespace Nova {
 		}
 
 		auto& quad = RenderDraw::Quad::batch->next();
-		quad.pos = pos;
-		quad.size = size;
+		quad.mat = mlb::scale(mlb::translate(mlb::mat4{ 1.0f }, mlb::vec3(pos, 0.0f)), mlb::vec3(size, 0.0f));
 		quad.colour = { 1.0, 0.0, 1.0, 1.0 };
 	}
 

@@ -10,8 +10,7 @@ namespace Nova::RenderDraw {
 		constexpr static unsigned int BATCH_SIZE = 1000;
 		struct Block : RenderBatch::Block {
 			static Nova::Buffer::Vertex::Spec Layout;
-			mlb::vec2 pos;
-			mlb::vec2 size{ 1.0f };
+			mlb::mat4 mat{ 1.0f };
 			mlb::vec4 colour{ 1.0f };
 		};
 
