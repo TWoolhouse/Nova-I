@@ -50,10 +50,16 @@ public:
 
 	virtual void update() override {
 		//std::cout << Nova::DeltaTime::dt() * 1000 << std::endl;
-		//ants->update();
+		ants->update();
 
-		for (int i = -5; i < 5; i++) {
-			Nova::Render::Draw::Quad({ i * 0.1f, i * 0.1f }, { 0.1, 0.1 });
+		for (int x = -10; x <= 10; ++x) {
+			for (int y = -10; y <= 10; ++y) {
+				Nova::Render::Draw::Quad(
+					{ 0.1 * x, 0.1 * y },
+					{ 0.05, 0.05 },
+					{ (static_cast<float>(x+10)/20.0), (static_cast<float>(y+10)/20.0), 0.5, 1.0 }
+				);
+			}
 		}
 
 		shader_buffer->bind(0);

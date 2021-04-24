@@ -23,14 +23,14 @@ namespace Nova {
 		delete shader;
 	}
 
-	void Render::Draw::Quad(const mlb::vec2& pos, const mlb::vec2& size) {
+	void Render::Draw::Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& colour) {
 		if (RenderDraw::Quad::batch->count() >= RenderDraw::Quad::batch->size) {
 			RenderDraw::Quad::Flush();
 		}
 
 		auto& quad = RenderDraw::Quad::batch->next();
 		quad.mat = mlb::scale(mlb::translate(mlb::mat4{ 1.0f }, mlb::vec3(pos, 0.0f)), mlb::vec3(size, 0.0f));
-		quad.colour = { 1.0, 0.0, 1.0, 1.0 };
+		quad.colour = colour;
 	}
 
 }
