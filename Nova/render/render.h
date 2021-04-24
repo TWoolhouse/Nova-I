@@ -22,7 +22,7 @@ namespace Nova {
 
 		class NOVA_API Draw {
 		public:
-			static void Quad(const mlb::vec2& pos);
+			static void Quad(const mlb::vec2& pos, const mlb::vec2& size);
 		};
 
 	};

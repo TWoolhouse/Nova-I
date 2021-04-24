@@ -14,7 +14,7 @@ namespace Nova {
 
 		shader->bind();
 		batch->context().bind();
-		Render::Command::Draw(&batch->context(), batch->count());
+		Render::Command::DrawPoint(&batch->context(), batch->count());
 		batch->reset();
 	}
 

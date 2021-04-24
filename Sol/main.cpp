@@ -50,7 +50,11 @@ public:
 
 	virtual void update() override {
 		//std::cout << Nova::DeltaTime::dt() * 1000 << std::endl;
-		ants->update();
+		//ants->update();
+
+		for (int i = -5; i < 5; i++) {
+			Nova::Render::Draw::Quad({ i * 0.1f, i * 0.1f }, { 0.1, 0.1 });
+		}
 
 		shader_buffer->bind(0);
 		ants->get_texture()->bind();

@@ -5,6 +5,8 @@ namespace Nova {
 
 	Buffer::Vertex::Spec RenderDraw::Quad::Block::Layout = {
 		{ Nova::Buffer::Type::Float2, "pos" },
+		{ Nova::Buffer::Type::Float2, "size" },
+		{ Nova::Buffer::Type::Float4, "colour" },
 	};
 	RenderBatch::Buffer<RenderDraw::Quad::Block, RenderDraw::Quad::BATCH_SIZE>* RenderDraw::Quad::batch = nullptr;
 	Shader* RenderDraw::Quad::shader = nullptr;
@@ -14,7 +16,7 @@ namespace Nova {
 		shader = Shader::Create({
 			ShaderSource::Create("Nova/res/shader/draw/vert.glsl"),
 			ShaderSource::Create("Nova/res/shader/draw/frag.glsl"),
-			//ShaderSource::Create("Nova/res/shader/draw/quad.geom.glsl"),
+			ShaderSource::Create("Nova/res/shader/draw/quad.geom.glsl"),
 		});
 	}
 	void RenderDraw::Quad::Terminate() {
@@ -22,13 +24,15 @@ namespace Nova {
 		delete shader;
 	}
 
-	void Render::Draw::Quad(const mlb::vec2& pos) {
+	void Render::Draw::Quad(const mlb::vec2& pos, const mlb::vec2& size) {
 		if (RenderDraw::Quad::batch->count() >= RenderDraw::Quad::batch->size) {
 			RenderDraw::Quad::Flush();
 		}
 
 		auto& quad = RenderDraw::Quad::batch->next();
 		quad.pos = pos;
+		quad.size = size;
+		quad.colour = { 1.0, 0.0, 1.0, 1.0 };
 	}
 
 }

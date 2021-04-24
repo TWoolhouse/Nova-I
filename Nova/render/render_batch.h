@@ -18,9 +18,10 @@ namespace Nova::RenderBatch {
 			m_vertex(Nova::Buffer::Vertex::Create(S)), m_index(nullptr) {
 			static_assert(std::is_base_of_v<Block, T>, "Buffer Type must derive from Block");
 			m_context->buffer(m_vertex, T::Layout);
-			unsigned int* ibuffer = new unsigned int[S];
+			unsigned int* ibuffer = new uint32_t[S];
 			for (size_t i = 0; i < S; i++) { ibuffer[i] = i; }
 			m_index = Nova::Buffer::Index::Create(S, ibuffer);
+			m_context->buffer(m_index);
 		}
 
 		~Buffer() {

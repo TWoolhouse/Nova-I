@@ -12,6 +12,7 @@ namespace Nova::RenderDraw {
 			static Nova::Buffer::Vertex::Spec Layout;
 			mlb::vec2 pos;
 			mlb::vec2 size{ 1.0f };
+			mlb::vec4 colour{ 1.0f };
 		};
 
 		static void Initialise();
