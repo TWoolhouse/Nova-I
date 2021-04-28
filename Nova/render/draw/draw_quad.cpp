@@ -13,9 +13,9 @@ namespace Nova {
 	void RenderDraw::Quad::Initialise() {
 		batch = new RenderBatch::Buffer<Block, BATCH_SIZE>;
 		shader = Shader::Create({
-			ShaderSource::Create("Nova/res/shader/draw/vert.glsl"),
-			ShaderSource::Create("Nova/res/shader/draw/frag.glsl"),
-			ShaderSource::Create("Nova/res/shader/draw/quad.geom.glsl"),
+			ShaderSource::Create("Nova/shader/draw/vert.glsl"),
+			ShaderSource::Create("Nova/shader/draw/frag.glsl"),
+			ShaderSource::Create("Nova/shader/draw/quad.geom.glsl"),
 		});
 	}
 	void RenderDraw::Quad::Terminate() {
@@ -23,14 +23,14 @@ namespace Nova {
 		delete shader;
 	}
 
-	void Render::Draw::Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& colour) {
+	void Render::Draw::Quad(const mlb::mat4& mat, const mlb::vec4& col) {
 		if (RenderDraw::Quad::batch->count() >= RenderDraw::Quad::batch->size) {
 			RenderDraw::Quad::Flush();
 		}
 
 		auto& quad = RenderDraw::Quad::batch->next();
-		quad.mat = mlb::scale(mlb::translate(mlb::mat4{ 1.0f }, mlb::vec3(pos, 0.0f)), mlb::vec3(size, 0.0f));
-		quad.colour = colour;
+		quad.mat = mat;
+		quad.colour = col;
 	}
 
 }

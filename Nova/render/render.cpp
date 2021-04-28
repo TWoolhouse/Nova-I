@@ -56,7 +56,7 @@ namespace Nova {
 				{ Nova::Buffer::Type::Float2, "v_tex" },
 				});
 
-			shader = Nova::Shader::Create("Nova/res/shader/main_render.glsl");
+			shader = Nova::Shader::Create("Nova/shader/main_render.glsl");
 			auto output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
 				{ Nova::Texture::Colour::Type::RGB }
 			});

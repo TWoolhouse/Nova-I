@@ -138,6 +138,9 @@
     <ClInclude Include="render\draw\draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="render\draw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -215,13 +218,13 @@
     <None Include="Nova\res\shader\vertex.glsl" />
     <None Include="Nova\res\shader\frag.glsl" />
     <None Include="fileio\stblib\README.md" />
-    <None Include="Nova\res\shader\main_render.glsl" />
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
     <None Include="dep\glm\README.md" />
-    <None Include="Nova\res\shader\draw\frag.glsl" />
-    <None Include="Nova\res\shader\draw\vert.glsl" />
-    <None Include="Nova\res\shader\draw\quad.geom.glsl" />
+    <None Include="Nova\shader\draw\frag.glsl" />
+    <None Include="Nova\shader\draw\quad.geom.glsl" />
+    <None Include="Nova\shader\draw\vert.glsl" />
+    <None Include="Nova\shader\main_render.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="fileio\stblib\LICENSE.txt" />

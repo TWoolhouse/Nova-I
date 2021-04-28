@@ -29,7 +29,7 @@ public:
 			{ Nova::Buffer::Type::Float2, "v_tex" },
 		});
 
-		shader = Nova::Shader::Create("Nova/res/shader/simple.glsl");
+		shader = Nova::Shader::Create("shader/simple.glsl");
 
 		shader_buffer = Nova::Buffer::Shader::Create(shader, "test", {
 			"mult",
@@ -41,7 +41,7 @@ public:
 		std::array<float, 3> shader_colour = {1.0f, 1.0f, 1.0f};
 		shader_buffer->set("buffer_colour", shader_colour.data());
 
-		ants = new Ants(2, 640, 360);
+		ants = new Ants(128, 1280, 720);
 	}
 
 	~Sol() {
@@ -57,7 +57,8 @@ public:
 				Nova::Render::Draw::Quad(
 					{ 0.1 * x, 0.1 * y },
 					{ 0.05, 0.05 },
-					{ (static_cast<float>(x+10)/20.0), (static_cast<float>(y+10)/20.0), 0.5, 1.0 }
+					{ (static_cast<float>(x + 10) / 20.0), (static_cast<float>(y + 10) / 20.0), 0.5, 1.0 },
+					(x + y) * 18.0f
 				);
 			}
 		}

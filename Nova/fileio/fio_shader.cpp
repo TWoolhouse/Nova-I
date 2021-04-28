@@ -35,7 +35,11 @@ namespace Nova::FileIO {
 		return { ShaderSource::Type::None, "" };
 	}
 
-	Shader::Shader(const std::string& filename) : file(filename), current(ShaderSource::Type::None, ""), next(ShaderSource::Type::None) {}
+	Shader::Shader(const std::string& filename) : file(filename), current(ShaderSource::Type::None, ""), next(ShaderSource::Type::None) {
+		if (!file.is_open()) {
+			std::cerr << "Shader File Unable to Read: " << filename << std::endl;
+		}
+	}
 
 	Shader& Shader::operator++() {
 		if (file.is_open()) {

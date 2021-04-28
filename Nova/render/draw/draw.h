@@ -1,5 +1,6 @@
 #pragma once
 #include "npch.h"
+#include "render/draw.h"
 
 namespace Nova::RenderDraw {
 

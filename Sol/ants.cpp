@@ -18,7 +18,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 		{},
 		{Nova::Texture::Filtering::Type::Linear, Nova::Texture::Filtering::Type::Nearest},
 		});
-	m_agent = Nova::ShaderCompute::Create("Nova/res/shader/trail.agent.glsl", { blocks, 1, 1 });
+	m_agent = Nova::ShaderCompute::Create("shader/trail.agent.glsl", { blocks, 1, 1 });
 	m_agent->Upload()->Int("output_image", 0);
 	m_agent->Upload()->Float("dt", 0.0f);
 
@@ -30,7 +30,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 		"agents",
 		});
 
-	m_fade = Nova::ShaderCompute::Create("Nova/res/shader/trail.fade.glsl", { m_texture->size().first / 64, m_texture->size().second / 18, 1 });
+	m_fade = Nova::ShaderCompute::Create("shader/trail.fade.glsl", { m_texture->size().first / 64, m_texture->size().second / 18, 1 });
 	m_fade->Upload()->Int("output_image", 0);
 	m_fade->Upload()->Float("u_fade", s_properties.fade);
 	m_fade->Upload()->Float("u_diffuse", s_properties.diffuse);

@@ -7,8 +7,8 @@ namespace Nova {
 	public:
 		operator float() const { return dt(); }
 		operator double() const { return dt(); }
-		static inline const float dt();
-		constexpr static inline const float phys();
+		static const float dt();
+		constexpr static const float phys();
 
 		static inline void update();
 	};

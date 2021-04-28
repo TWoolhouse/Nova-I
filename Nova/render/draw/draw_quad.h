@@ -7,7 +7,7 @@ namespace Nova::RenderDraw {
 
 	class NOVA_API Quad : public Draw {
 	public:
-		constexpr static unsigned int BATCH_SIZE = 1000;
+		constexpr static unsigned int BATCH_SIZE = 1024;
 		struct Block : RenderBatch::Block {
 			static Nova::Buffer::Vertex::Spec Layout;
 			mlb::mat4 mat{ 1.0f };

@@ -36,6 +36,7 @@
 // Renderer
 #include "render/render.h"
 #include "render/command.h"
+#include "render/draw.h"
 
 // Maths Lib
 #include "phys/random.h"

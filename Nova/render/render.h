@@ -9,6 +9,7 @@ namespace Nova {
 	class NOVA_API Render {
 	public:
 		class NOVA_API Command;
+		class NOVA_API Draw;
 
 		static bool Initialise();
 		static bool Termintate();
@@ -19,11 +20,6 @@ namespace Nova {
 		static void Scene(); // Empty for end
 
 		static void Flush();
-
-		class NOVA_API Draw {
-		public:
-			static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& colour);
-		};
 
 	};
 
