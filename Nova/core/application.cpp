@@ -20,15 +20,14 @@ namespace Nova {
 	Application ::~Application() {
 		Render::Termintate();
 		delete m_window;
-		s_instance = nullptr;
+		if (s_instance == this)
+			s_instance = nullptr;
 	}
 
 	void Application::main() {
 		m_window->update();
 		DeltaTime::update();
-		Render::Scene(true);
 		update();
-		Render::Scene();
 	}
 
 	void Application::event_callback(Event::Event& event) {

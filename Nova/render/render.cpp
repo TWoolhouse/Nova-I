@@ -4,6 +4,7 @@
 #include "buffer/context.h"
 #include "buffer/frame.h"
 #include "shader.h"
+#include "camera.h"
 #include "core/application.h"
 
 #include "draw/draw_quad.h"
@@ -33,6 +34,7 @@ namespace Nova {
 		Shader* shader;
 		Buffer::Context* buffer_context;
 		Buffer::Frame* framebuffer;
+		mlb::mat4 matrix;
 
 		RenderState(Buffer::Frame* fbuff) : buffer_context(Buffer::Context::Create()) , framebuffer(fbuff) {
 			constexpr float vb_data[] = {
@@ -108,13 +110,14 @@ namespace Nova {
 		rs->frame_size.second = height;
 	}
 
-	void Render::Scene(bool b) {
+	void Render::Draw(Camera* camera) {
+		memcpy(&rs->matrix, &camera->compute(), sizeof(mlb::mat4));
 		rs->framebuffer->bind();
 		Render::Command::Viewport(FrameOutput::width, FrameOutput::height);
 		Render::Command::Clear();
 	}
 
-	void Render::Scene() {
+	void Render::Draw() {
 		Flush();
 		rs->framebuffer->unbind();
 		Render::Command::Viewport(rs->frame_size.first, rs->frame_size.second);

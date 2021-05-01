@@ -38,6 +38,10 @@
 #include "render/command.h"
 #include "render/draw.h"
 
+// Camera
+#include "render/camera.h"
+#include "render/camera/ortho.h"
+
 // Maths Lib
 #include "phys/random.h"
 

@@ -23,7 +23,7 @@ namespace Nova {
 		delete shader;
 	}
 
-	void Render::Draw::Quad(const mlb::mat4& mat, const mlb::vec4& col) {
+	void Draw::Quad(const mlb::mat4& mat, const mlb::vec4& col) {
 		if (RenderDraw::Quad::batch->count() >= RenderDraw::Quad::batch->size) {
 			RenderDraw::Quad::Flush();
 		}

@@ -141,6 +141,12 @@
     <ClInclude Include="render\draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="render\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\camera\ortho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -210,6 +216,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render\draw\draw_quad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render\camera\camera_ortho.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,17 +5,18 @@
 
 class Sol : public Nova::Application {
 public:
-	Sol() : bc(Nova::Buffer::Context::Create()) {
+	Sol()
+		: bc(Nova::Buffer::Context::Create()), ants(128, 1280, 720), camera() {
 		Nova::Render::Command::VSync(true);
 
-		float vb_data[] = {
+		constexpr float vb_data[] = {
 			-1.0f,  1.0f,	1.0f, 1.0f, 1.0f,	0.0f, 1.0f,
 			 1.0f,  1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f,
 			-1.0f, -1.0f,	1.0f, 1.0f, 1.0f,	0.0f, 0.0f,
 			 1.0f, -1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 0.0f,
 		};
 		constexpr size_t ib_size = 6;
-		unsigned int ib_data[ib_size] = {
+		constexpr unsigned int ib_data[ib_size] = {
 			0, 1, 2, 2, 1, 3
 		};
 
@@ -40,21 +41,22 @@ public:
 		shader_buffer->set("mult", &mult);
 		std::array<float, 3> shader_colour = {1.0f, 1.0f, 1.0f};
 		shader_buffer->set("buffer_colour", shader_colour.data());
-
-		ants = new Ants(128, 1280, 720);
 	}
 
 	~Sol() {
-		delete ants;
+		delete shader_buffer;
+		delete shader;
+		delete bc;
 	}
 
 	virtual void update() override {
+		Nova::Render::Draw(&camera);
 		//std::cout << Nova::DeltaTime::dt() * 1000 << std::endl;
-		ants->update();
+		ants.update();
 
 		for (int x = -10; x <= 10; ++x) {
 			for (int y = -10; y <= 10; ++y) {
-				Nova::Render::Draw::Quad(
+				Nova::Draw::Quad(
 					{ 0.1 * x, 0.1 * y },
 					{ 0.05, 0.05 },
 					{ (static_cast<float>(x + 10) / 20.0), (static_cast<float>(y + 10) / 20.0), 0.5, 1.0 },
@@ -64,10 +66,11 @@ public:
 		}
 
 		shader_buffer->bind(0);
-		ants->get_texture()->bind();
+		ants.get_texture()->bind();
 		shader->bind();
 		bc->bind();
 		Nova::Render::Command::Draw(bc);
+		Nova::Render::Draw();
 	}
 
 	virtual void event(Nova::Event::Event& event) override {
@@ -77,14 +80,15 @@ public:
 				event_callback(close);
 			}
 		}
-		ants->event(event);
+		ants.event(event);
 	}
 
 private:
+	Nova::Camera::Ortho camera;
 	Nova::Buffer::Context* bc;
 	Nova::Shader* shader;
 	Nova::Buffer::Shader* shader_buffer;
-	Ants* ants;
+	Ants ants;
 };
 
 Nova::Application* Nova::Application::Create() {

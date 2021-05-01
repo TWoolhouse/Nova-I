@@ -2,6 +2,7 @@
 #include "npch.h"
 #include "draw.h"
 #include "render/render_batch.h"
+#include "render/shader.h"
 
 namespace Nova::RenderDraw {
 

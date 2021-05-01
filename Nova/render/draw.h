@@ -1,10 +1,10 @@
 #pragma once
 #include "npch.h"
-#include "render.h"
+#include "phys/maths.h"
 
 namespace Nova {
 
-	class Render::Draw {
+	class NOVA_API Draw {
 	public:
 		inline static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const float rot = 0) { return Quad(mlb::vec3{ pos, 0.0f }, size, rot); }
 		inline static void Quad(const mlb::vec3& pos, const mlb::vec2& size, const float rot = 0) { return Quad(gen_mat(pos, size, rot)); }

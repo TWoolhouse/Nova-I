@@ -124,6 +124,8 @@
     <ClInclude Include="render\buffer\frame.h" />
     <ClInclude Include="render\buffer\shader.h" />
     <ClInclude Include="render\buffer\type.h" />
+    <ClInclude Include="render\camera.h" />
+    <ClInclude Include="render\camera\ortho.h" />
     <ClInclude Include="render\command.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_array.h" />
@@ -169,6 +171,7 @@
     <ClCompile Include="imp\gl\gl_texture.cpp" />
     <ClCompile Include="imp\gl\gl_window.cpp" />
     <ClCompile Include="imp\gl\gl_shader.cpp" />
+    <ClCompile Include="render\camera\camera_ortho.cpp" />
     <ClCompile Include="render\draw\draw_quad.cpp" />
     <ClCompile Include="render\render.cpp" />
   </ItemGroup>
