@@ -27,4 +27,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="shader\trail.fade.glsl" />
+    <None Include="shader\simple.glsl" />
+    <None Include="shader\trail.agent.glsl" />
+  </ItemGroup>
 </Project>

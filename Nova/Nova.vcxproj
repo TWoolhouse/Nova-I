@@ -110,14 +110,12 @@
     <ClInclude Include="event\window.h" />
     <ClInclude Include="fileio\shader.h" />
     <ClInclude Include="fileio\texture.h" />
-    <ClInclude Include="fileio\vertex.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="input\poll.h" />
     <ClInclude Include="nova.h" />
     <ClInclude Include="npch.h" />
     <ClInclude Include="phys\maths.h" />
-    <ClInclude Include="phys\quadtree.h" />
     <ClInclude Include="phys\random.h" />
     <ClInclude Include="render\buffer\buffer.h" />
     <ClInclude Include="render\buffer\context.h" />
@@ -156,11 +154,9 @@
     </ClCompile>
     <ClCompile Include="fileio\fio_shader.cpp" />
     <ClCompile Include="fileio\fio_texture.cpp" />
-    <ClCompile Include="fileio\fio_vertex.cpp" />
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
     <ClCompile Include="phys\maths.cpp" />
-    <ClCompile Include="phys\quadtree.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_array.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_frame.cpp" />

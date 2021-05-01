@@ -84,9 +84,6 @@
     <ClInclude Include="dep\stblib\include\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="phys\quadtree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="phys\maths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -100,9 +97,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fileio\texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fileio\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\render_batch.h">
@@ -167,9 +161,6 @@
     <ClCompile Include="dep\stblib\stblib_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="phys\quadtree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\deltatime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -180,9 +171,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fileio\fio_texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fileio\fio_vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imp\gl\buffer\gl_buffer.cpp">
