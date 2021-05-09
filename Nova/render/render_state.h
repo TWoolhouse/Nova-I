@@ -4,7 +4,7 @@
 #include "buffer/context.h"
 #include "buffer/frame.h"
 #include "buffer/uniform.h"
-#include "phys/maths.h"
+#include "phys/lib.h"
 
 namespace Nova {
 

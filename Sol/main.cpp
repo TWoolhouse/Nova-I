@@ -42,7 +42,7 @@ public:
 		std::array<float, 3> shader_colour = {1.0f, 1.0f, 1.0f};
 		shader_buffer->set("buffer_colour", shader_colour.data());
 
-		texture = Nova::Texture2D::Create("Nova/texture/test.jpg", {});
+		texture = Nova::Texture2D::Create("asset/texture/test.jpg", {});
 	}
 
 	~Sol() {
@@ -55,8 +55,17 @@ public:
 		//ants.update();
 
 		if (Nova::Input::Poll(Nova::Input::Key::O))
-			camera.rot.z += 5 * Nova::DeltaTime();
-
+			camera.rot.z += 15 * Nova::DeltaTime();
+		if (Nova::Input::Poll(Nova::Input::Key::U))
+			camera.rot.z -= 15 * Nova::DeltaTime();
+		if (Nova::Input::Poll(Nova::Input::Key::I))
+			camera.pos.y += 1 * Nova::DeltaTime();
+		if (Nova::Input::Poll(Nova::Input::Key::K))
+			camera.pos.y -= 1 * Nova::DeltaTime();
+		if (Nova::Input::Poll(Nova::Input::Key::L))
+			camera.pos.x += 1 * Nova::DeltaTime();
+		if (Nova::Input::Poll(Nova::Input::Key::J))
+			camera.pos.x -= 1 * Nova::DeltaTime();
 
 		for (int x = -10; x <= 10; ++x) {
 			for (int y = -10; y <= 10; ++y) {

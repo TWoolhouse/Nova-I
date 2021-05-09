@@ -2,7 +2,7 @@
 
 #include "npch.h"
 
-#include "phys/maths.h"
+#include "phys/lib.h"
 
 // Core
 #include "core/application.h"

@@ -1,7 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "render.h"
-#include "phys/maths.h"
+#include "phys/lib.h"
 
 namespace Nova {
 

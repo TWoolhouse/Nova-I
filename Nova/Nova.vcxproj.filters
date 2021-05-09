@@ -84,9 +84,6 @@
     <ClInclude Include="dep\stblib\include\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="phys\maths.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="core\deltatime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -153,6 +150,9 @@
     <ClInclude Include="render\render_state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="phys\lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -174,9 +174,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\deltatime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="phys\maths.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fileio\fio_shader.cpp">
@@ -230,6 +227,9 @@
     <ClCompile Include="render\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="phys\lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
@@ -248,5 +248,6 @@
     <Text Include="fileio\stblib\LICENSE.txt" />
     <Text Include="dep\stblib\LICENSE.txt" />
     <Text Include="dep\glm\LICENSE.txt" />
+    <Text Include="todo.txt" />
   </ItemGroup>
 </Project>
