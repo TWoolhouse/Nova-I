@@ -14,8 +14,8 @@ namespace Nova::OpenGL {
 
 		virtual const bool validate() override;
 
-		virtual void attach_colour(Nova::Texture2D* texture) override;
-		virtual void attach_depth_stencil(Nova::Texture2D* texture) override;
+		virtual void attach_colour(const Star<Nova::Texture2D>& texture) override;
+		virtual void attach_depth_stencil(const Star<Nova::Texture2D>& texture) override;
 
 		virtual operator bool() override { return m_success; };
 	protected:

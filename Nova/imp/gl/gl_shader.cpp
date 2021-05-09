@@ -27,28 +27,28 @@ namespace Nova {
 		return new OpenGL::Shader(type, source);
 	}
 
-	Shader* Shader::Create(const std::string& filename) {
-		return new OpenGL::ShaderProgram(filename);
+	Star<Shader> Shader::Create(const std::string& filename) {
+		return std::make_shared<OpenGL::ShaderProgram>(filename);
 	}
-	Shader* Shader::Create(const std::initializer_list<ShaderSource*>& shaders) {
-		return new OpenGL::ShaderProgram(shaders);
+	Star<Shader> Shader::Create(const std::initializer_list<ShaderSource*>& shaders) {
+		return std::make_shared<OpenGL::ShaderProgram>(shaders);
 	}
-	Shader* Shader::Create(const std::initializer_list<ShaderSource*>& shaders, bool save) {
-		return new OpenGL::ShaderProgram(shaders, true);
+	Star<Shader> Shader::Create(const std::initializer_list<ShaderSource*>& shaders, bool save) {
+		return std::make_shared<OpenGL::ShaderProgram>(shaders, true);
 	}
 
 	Shader::Uniform* Shader::Uniform::Create(Shader* shader) {
 		return new OpenGL::UniformUpload(shader);
 	}
 
-	ShaderCompute* Nova::ShaderCompute::Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
-		return new OpenGL::ShaderProgramCompute(filename, work_group);
+	Star<ShaderCompute> Nova::ShaderCompute::Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
+		return std::make_shared<OpenGL::ShaderProgramCompute>(filename, work_group);
 	}
-	ShaderCompute* ShaderCompute::Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
-		return new OpenGL::ShaderProgramCompute(source, work_group);
+	Star<ShaderCompute> ShaderCompute::Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
+		return std::make_shared<OpenGL::ShaderProgramCompute>(source, work_group);
 	}
-	ShaderCompute* ShaderCompute::Create(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
-		return new OpenGL::ShaderProgramCompute(source, save, work_group);
+	Star<ShaderCompute> ShaderCompute::Create(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group) {
+		return std::make_shared<OpenGL::ShaderProgramCompute>(source, save, work_group);
 	}
 
 	namespace OpenGL {
@@ -145,11 +145,18 @@ namespace Nova {
 
 		UniformUpload::UniformUpload(Nova::Shader* shader) : m_shader_id(dynamic_cast<ShaderProgram*>(shader)->m_id), m_location_cache() {}
 
-		void UniformUpload::Int(const std::string& name, const int value) {
+		void UniformUpload::Int(const std::string& name, const int& value) {
 			glProgramUniform1i(m_shader_id, get_location(name), value);
 		}
-		void UniformUpload::Float(const std::string& name, const float value) {
+		void UniformUpload::Int(const std::string& name, const unsigned int count, const int* value) {
+			glProgramUniform1iv(m_shader_id, get_location(name), count, value);
+		}
+
+		void UniformUpload::Float(const std::string& name, const float& value) {
 			glProgramUniform1f(m_shader_id, get_location(name), value);
+		}
+		void UniformUpload::Float(const std::string& name, const unsigned int count, const float* value) {
+			glProgramUniform1fv(m_shader_id, get_location(name), count, value);
 		}
 
 		const int UniformUpload::get_location(const std::string& name) {

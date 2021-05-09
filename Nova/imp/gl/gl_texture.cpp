@@ -37,14 +37,14 @@ namespace Nova {
 		}
 	}
 
-	Texture2D* Texture2D::Create(const Texture::Properties& properties) {
-		return new OpenGL::Texture2D(properties);
+	Star<Texture2D> Texture2D::Create(const Texture::Properties& properties) {
+		return std::make_shared<OpenGL::Texture2D>(properties);
 	}
-	Texture2D* Texture2D::Create(const unsigned int width, const unsigned int height, const Texture::Properties& properties) {
-		return new OpenGL::Texture2D(width, height, properties);
+	Star<Texture2D> Texture2D::Create(const unsigned int width, const unsigned int height, const Texture::Properties& properties) {
+		return std::make_shared<OpenGL::Texture2D>(width, height, properties);
 	}
-	Texture2D* Texture2D::Create(const std::string& filename, const Texture::Properties& properties) {
-		return new OpenGL::Texture2D(filename, properties);
+	Star<Texture2D> Texture2D::Create(const std::string& filename, const Texture::Properties& properties) {
+		return std::make_shared<OpenGL::Texture2D>(filename, properties);
 	}
 
 	namespace OpenGL {
@@ -52,7 +52,7 @@ namespace Nova {
 		Texture2D::Texture2D(const Texture::Properties& properties) : m_id(GL_NONE), m_colour(properties.colour) {
 			glCreateTextures(GL_TEXTURE_2D, 1, &m_id);
 			glBindTexture(GL_TEXTURE_2D, m_id);
-			
+
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, WrapType(properties.wrap.x));
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, WrapType(properties.wrap.y));
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, FilteringType(properties.filter.minify));
@@ -91,6 +91,14 @@ namespace Nova {
 
 		void Texture2D::image(unsigned int slot) {
 			glBindImageTexture(slot, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+		}
+
+		void Texture2D::set(const unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int xoff, const unsigned int yoff) {
+			assert(xoff <= m_width && "Invalid X-offset");
+			assert(yoff <= m_height&& "Invalid Y-offset");
+			assert((xoff + width) <= m_width && "Invalid Width");
+			assert((yoff + height) <= m_height && "Invalid Height");
+			glTextureSubImage2D(m_id, 0, xoff, yoff, width, height, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, data);
 		}
 
 		Texture2D::~Texture2D() {

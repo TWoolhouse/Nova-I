@@ -1,15 +1,14 @@
 #pragma once
 #include "npch.h"
-#include "render/buffer/shader.h"
-#include "imp/gl/gl_shader.h"
+#include "render/buffer/uniform.h"
 
 namespace Nova::OpenGL {
 
-	class BufferShader : public Buffer::Shader {
+	class BufferUniform : public Buffer::Uniform {
 	public:
-		BufferShader(const Star<Nova::Shader>& shader, const std::string& name, const Buffer::Shader::Spec& spec);
+		BufferUniform(const Star<Nova::Shader>& shader, const std::string& name, const Buffer::Uniform::Spec& spec);
 
-		virtual void bind(unsigned int slot=0) override;
+		virtual void bind(unsigned int slot = 0) override;
 		virtual void unbind() override;
 
 		virtual void get(const std::string& name, void* const data) override;
@@ -19,9 +18,7 @@ namespace Nova::OpenGL {
 		virtual void set(const std::string& name, const void* data, const unsigned int size, const unsigned int offset = 0) override;
 		virtual void set(const std::string& name, const unsigned int size) override;
 
-		virtual void sync() override;
-
-		virtual ~BufferShader() override;
+		virtual ~BufferUniform() override;
 	protected:
 		unsigned int m_id;
 	};

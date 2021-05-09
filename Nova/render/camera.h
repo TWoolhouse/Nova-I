@@ -13,7 +13,10 @@ namespace Nova {
 		mlb::vec3 rot{ 0.0f };
 		const mlb::mat4& matrix() const { return m_vp; }
 		const mlb::mat4& compute() {
-			m_view = mlb::inverse(mlb::rotate(mlb::translate(mlb::mat4(1.0f), pos), rot.z, { 0, 0, 1 } ));
+			// Add extra rot dimensions
+			m_view = mlb::inverse(mlb::rotate(mlb::translate(mlb::mat4(1.0f), pos), mlb::radians(rot.z), { 0, 0, 1 } ));
+			// Do not recompute every frame
+			make_projection();
 
 			m_vp = m_projection * m_view;
 			return m_vp;

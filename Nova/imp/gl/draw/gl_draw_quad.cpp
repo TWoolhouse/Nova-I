@@ -10,10 +10,11 @@ namespace Nova {
 	void Nova::RenderDraw::Quad::Flush() {
 		const auto& buff = batch->data();
 
-		batch->vertex().set(batch->count() * sizeof(Block), buff);
+		batch->vertex().set(buff, batch->count() * sizeof(Block), 0);
 
 		shader->bind();
 		batch->context().bind();
+		textures.bind();
 		Render::Command::DrawPoint(&batch->context(), batch->count());
 		batch->reset();
 	}

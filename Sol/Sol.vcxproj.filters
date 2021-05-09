@@ -28,8 +28,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\trail.fade.glsl" />
-    <None Include="shader\simple.glsl" />
-    <None Include="shader\trail.agent.glsl" />
+    <None Include="asset\shader\simple.glsl" />
+    <None Include="asset\shader\trail.agent.glsl" />
+    <None Include="asset\shader\trail.fade.glsl" />
   </ItemGroup>
 </Project>

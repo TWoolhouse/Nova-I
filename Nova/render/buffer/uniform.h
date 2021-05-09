@@ -1,11 +1,10 @@
 #pragma once
 #include "npch.h"
-#include "type.h"
-#include "render/shader.h"
+#include "shader.h"
 
 namespace Nova::Buffer {
 
-	class NOVA_API Shader {
+	class NOVA_API Uniform {
 	public:
 		class NOVA_API Spec {
 		public:
@@ -24,7 +23,7 @@ namespace Nova::Buffer {
 			}
 			Spec(const std::initializer_list<std::string>& names) : m_elements(names.size()) {
 				for (auto& name : names) {
-					m_elements[name] = {name};
+					m_elements[name] = { name };
 				}
 			}
 
@@ -34,10 +33,10 @@ namespace Nova::Buffer {
 			std::unordered_map<std::string, Element> m_elements;
 		};
 
-		static Star<Shader> Create(const Star<Nova::Shader>& shader, const std::string& name, const Spec& spec);
-		Shader(const Spec& spec) : m_layout(spec) {}
+		static Star<Uniform> Create(const Star<Nova::Shader>& shader, const std::string& name, const Spec& spec);
+		Uniform(const Spec& spec) : m_layout(spec) {}
 
-		virtual void bind(unsigned int slot=0) = 0;
+		virtual void bind(unsigned int slot = 0) = 0;
 		virtual void unbind() = 0;
 
 		virtual void get(const std::string& name, void* const data) = 0;
@@ -47,12 +46,11 @@ namespace Nova::Buffer {
 		virtual void set(const std::string& name, const void* data, const unsigned int size, const unsigned int offset = 0) = 0;
 		virtual void set(const std::string& name, const unsigned int size) = 0;
 
-		virtual void sync() = 0;
-
 		Spec::Element& operator[](const std::string& name) { return m_layout.elements()[name]; }
 		const Spec& layout() const { return m_layout; }
 
-		virtual ~Shader() {};
+		virtual ~Uniform() {};
+
 	protected:
 		Spec m_layout;
 	};

@@ -13,13 +13,16 @@ namespace Nova::RenderDraw {
 			static Nova::Buffer::Vertex::Spec Layout;
 			mlb::mat4 mat{ 1.0f };
 			mlb::vec4 colour{ 1.0f };
+			float texture;
+			mlb::vec2 tex_pos[4];
 		};
 
 		static void Initialise();
 		static void Terminate();
 		static void Flush();
 		static RenderBatch::Buffer<Quad::Block, BATCH_SIZE>* batch;
-		static Shader* shader;
+		static Star<Shader> shader;
+		static TextureMap<Quad> textures;
 	};
 
 }

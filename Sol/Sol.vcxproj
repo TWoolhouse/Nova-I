@@ -70,6 +70,7 @@
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)asset\ $(TargetDir)asset\ /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
     <PostBuildEvent>
@@ -101,6 +102,7 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)asset\ $(TargetDir)asset\ /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
     <PostBuildEvent>
@@ -118,9 +120,9 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <ClInclude Include="ants.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\simple.glsl" />
-    <None Include="shader\trail.agent.glsl" />
-    <None Include="shader\trail.fade.glsl" />
+    <None Include="asset\shader\simple.glsl" />
+    <None Include="asset\shader\trail.agent.glsl" />
+    <None Include="asset\shader\trail.fade.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

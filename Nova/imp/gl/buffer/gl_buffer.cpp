@@ -10,15 +10,15 @@ namespace Nova {
 	Buffer::Vertex* Buffer::Vertex::Create(const unsigned int size) {
 		return new OpenGL::BufferVertex(size);
 	}
-	Buffer::Vertex* Buffer::Vertex::Create(const unsigned int size, const void* data) {
-		return new OpenGL::BufferVertex(size, data);
+	Buffer::Vertex* Buffer::Vertex::Create(const void* data, const unsigned int size) {
+		return new OpenGL::BufferVertex(data, size);
 	}
 
 	Buffer::Index* Buffer::Index::Create(const unsigned int count) {
 		return new OpenGL::BufferIndex(count);
 	}
-	Buffer::Index* Buffer::Index::Create(const unsigned int count, const unsigned int* indices) {
-		return new OpenGL::BufferIndex(count, indices);
+	Buffer::Index* Buffer::Index::Create(const unsigned int* indices, const unsigned int count) {
+		return new OpenGL::BufferIndex(indices, count);
 	}
 
 	namespace OpenGL {
@@ -32,7 +32,7 @@ namespace Nova {
 			glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
 		}
 
-		BufferVertex::BufferVertex(const unsigned int size, const void* data) : BufferVertex() {
+		BufferVertex::BufferVertex(const void* data, const unsigned int size) : BufferVertex() {
 			glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 		}
 
@@ -49,8 +49,14 @@ namespace Nova {
 			glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
 		}
 
-		void BufferVertex::set(const unsigned int size, const void* data) {
-			glNamedBufferSubData(m_id, 0, size, data);
+		void BufferVertex::set(const void* data, const unsigned int size) {
+			glNamedBufferData(m_id, size, data, GL_DYNAMIC_DRAW);
+		}
+		void BufferVertex::set(const void* data, const unsigned int size, const unsigned int offset) {
+			glNamedBufferSubData(m_id, offset, size, data);
+		}
+		void BufferVertex::set(const unsigned int size) {
+			glNamedBufferData(m_id, size, nullptr, GL_DYNAMIC_DRAW);
 		}
 
 		BufferIndex::BufferIndex(const unsigned int count) : Buffer::Index(count), m_id(GL_NONE) {
@@ -59,7 +65,7 @@ namespace Nova {
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * count, nullptr, GL_DYNAMIC_DRAW);
 		}
 
-		BufferIndex::BufferIndex(const unsigned int count, const unsigned int* indices) : Buffer::Index(count), m_id(GL_NONE) {
+		BufferIndex::BufferIndex(const unsigned int* indices, const unsigned int count) : Buffer::Index(count), m_id(GL_NONE) {
 			glCreateBuffers(1, &m_id);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * count, indices, GL_STATIC_DRAW);
@@ -68,6 +74,16 @@ namespace Nova {
 		BufferIndex::~BufferIndex() {
 			glDeleteBuffers(1, &m_id);
 			m_id = GL_NONE;
+		}
+
+		void BufferIndex::set(const unsigned int* indices, const unsigned int size) {
+			glNamedBufferData(m_id, size, indices, GL_DYNAMIC_DRAW);
+		}
+		void BufferIndex::set(const unsigned int* indices, const unsigned int size, const unsigned int offset) {
+			glNamedBufferSubData(m_id, offset, size, indices);
+		}
+		void BufferIndex::set(const unsigned int size) {
+			glNamedBufferData(m_id, size, nullptr, GL_DYNAMIC_DRAW);
 		}
 
 		void BufferIndex::bind() {

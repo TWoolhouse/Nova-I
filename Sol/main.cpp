@@ -20,8 +20,8 @@ public:
 			0, 1, 2, 2, 1, 3
 		};
 
-		auto vb = Nova::Buffer::Vertex::Create(sizeof(vb_data), vb_data);
-		auto ib = Nova::Buffer::Index::Create(ib_size, ib_data);
+		auto vb = Nova::Buffer::Vertex::Create(vb_data, sizeof(vb_data));
+		auto ib = Nova::Buffer::Index::Create(ib_data, ib_size);
 
 		bc->buffer(ib);
 		bc->buffer(vb, {
@@ -30,7 +30,7 @@ public:
 			{ Nova::Buffer::Type::Float2, "v_tex" },
 		});
 
-		shader = Nova::Shader::Create("shader/simple.glsl");
+		shader = Nova::Shader::Create("asset/shader/simple.glsl");
 
 		shader_buffer = Nova::Buffer::Shader::Create(shader, "test", {
 			"mult",
@@ -41,25 +41,30 @@ public:
 		shader_buffer->set("mult", &mult);
 		std::array<float, 3> shader_colour = {1.0f, 1.0f, 1.0f};
 		shader_buffer->set("buffer_colour", shader_colour.data());
+
+		texture = Nova::Texture2D::Create("Nova/texture/test.jpg", {});
 	}
 
 	~Sol() {
-		delete shader_buffer;
-		delete shader;
 		delete bc;
 	}
 
 	virtual void update() override {
 		Nova::Render::Draw(&camera);
-		//std::cout << Nova::DeltaTime::dt() * 1000 << std::endl;
-		ants.update();
+		std::cout << Nova::DeltaTime::dt() * 1000 << std::endl;
+		//ants.update();
+
+		if (Nova::Input::Poll(Nova::Input::Key::O))
+			camera.rot.z += 5 * Nova::DeltaTime();
+
 
 		for (int x = -10; x <= 10; ++x) {
 			for (int y = -10; y <= 10; ++y) {
 				Nova::Draw::Quad(
 					{ 0.1 * x, 0.1 * y },
 					{ 0.05, 0.05 },
-					{ (static_cast<float>(x + 10) / 20.0), (static_cast<float>(y + 10) / 20.0), 0.5, 1.0 },
+					{ 0.5, (static_cast<float>(y + 10) / 20.0), (static_cast<float>(x + 10) / 20.0), 1.0 },
+					texture,
 					(x + y) * 18.0f
 				);
 			}
@@ -86,8 +91,9 @@ public:
 private:
 	Nova::Camera::Ortho camera;
 	Nova::Buffer::Context* bc;
-	Nova::Shader* shader;
-	Nova::Buffer::Shader* shader_buffer;
+	Nova::Star<Nova::Shader> shader;
+	Nova::Star<Nova::Buffer::Shader> shader_buffer;
+	Nova::Star<Nova::Texture2D> texture;
 	Ants ants;
 };
 

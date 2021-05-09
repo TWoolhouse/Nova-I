@@ -10,7 +10,7 @@
 void _nova_gl_check_bind(unsigned int target, int name) {
 	int ret;
 	glGetIntegerv(target, &ret);
-	assert(name == ret, "Object not Bound During Bound Operation");
+	assert(name == ret && "Object not Bound During Bound Operation");
 }
 
 #endif // !NDEBUG

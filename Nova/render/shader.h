@@ -25,18 +25,11 @@ namespace Nova {
 
 	class NOVA_API Shader {
 	public:
-		class NOVA_API Uniform {
-		public:
-			static Uniform* Create(Shader* shader);
-			virtual ~Uniform() {};
+		class NOVA_API Uniform;
 
-			virtual void Int(const std::string& name, const int value) = 0;
-			virtual void Float(const std::string& name, const float value) = 0;
-		};
-
-		static Shader* Create(const std::string& filename);
-		static Shader* Create(const std::initializer_list<ShaderSource*>& shaders);
-		static Shader* Create(const std::initializer_list<ShaderSource*>& shaders, bool save);
+		static Star<Shader> Create(const std::string& filename);
+		static Star<Shader> Create(const std::initializer_list<ShaderSource*>& shaders);
+		static Star<Shader> Create(const std::initializer_list<ShaderSource*>& shaders, bool save);
 
 		Shader() : m_uniform_upload() {}
 
@@ -54,13 +47,24 @@ namespace Nova {
 		Uniform* m_uniform_upload;
 	};
 
+	class NOVA_API Shader::Uniform {
+	public:
+		static Uniform* Create(Shader* shader);
+		virtual ~Uniform() {};
+
+		virtual void Int(const std::string & name, const int& value) = 0;
+		virtual void Int(const std::string & name, const unsigned int count, const int* value) = 0;
+		virtual void Float(const std::string & name, const float& value) = 0;
+		virtual void Float(const std::string & name, const unsigned int count, const float* value) = 0;
+	};
+
 	class NOVA_API ShaderCompute : public virtual Shader {
 		// Add safety so only compute shaders can be added
 		// require compute shader source
 	public:
-		static ShaderCompute* Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
-		static ShaderCompute* Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
-		static ShaderCompute* Create(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
+		static Star<ShaderCompute> Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
+		static Star<ShaderCompute> Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
+		static Star<ShaderCompute> Create(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
 
 		ShaderCompute(const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = {1, 1, 1}) : Shader(), m_work_group(work_group) {}
 

@@ -15,6 +15,8 @@ namespace Nova::OpenGL {
 		virtual void unbind(unsigned int slot = 0) override;
 		virtual void image(unsigned int slot = 0) override;
 
+		virtual void set(const unsigned char* data, const unsigned int width, const unsigned int height = 1, const unsigned int xoff = 0, const unsigned int yoff = 0) override;
+
 		virtual operator bool() override { return m_id; }
 
 		virtual ~Texture2D() override;

@@ -11,14 +11,14 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 	constexpr unsigned int width_unit = 64, height_unit = 18;
 	constexpr unsigned int blocksize = 1024;
 
-	assert(!(width % width_unit), "Width must be a multiple of the width unit");
-	assert(!(height % height_unit), "Height must be a multiple of the height unit");
+	assert(!(width % width_unit) && "Width must be a multiple of the width unit");
+	assert(!(height % height_unit) && "Height must be a multiple of the height unit");
 	m_texture = Nova::Texture2D::Create(width, height, {
 		{Nova::Texture::Colour::Type::RGBAW, Nova::Texture::Colour::Type::RGBA},
 		{},
 		{Nova::Texture::Filtering::Type::Linear, Nova::Texture::Filtering::Type::Nearest},
 		});
-	m_agent = Nova::ShaderCompute::Create("shader/trail.agent.glsl", { blocks, 1, 1 });
+	m_agent = Nova::ShaderCompute::Create("asset/shader/trail.agent.glsl", { blocks, 1, 1 });
 	m_agent->Upload()->Int("output_image", 0);
 	m_agent->Upload()->Float("dt", 0.0f);
 
@@ -30,7 +30,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 		"agents",
 		});
 
-	m_fade = Nova::ShaderCompute::Create("shader/trail.fade.glsl", { m_texture->size().first / 64, m_texture->size().second / 18, 1 });
+	m_fade = Nova::ShaderCompute::Create("asset/shader/trail.fade.glsl", { m_texture->size().x / 64, m_texture->size().y / 18, 1 });
 	m_fade->Upload()->Int("output_image", 0);
 	m_fade->Upload()->Float("u_fade", s_properties.fade);
 	m_fade->Upload()->Float("u_diffuse", s_properties.diffuse);
@@ -53,7 +53,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 	{
 		unsigned int iterations = std::max(static_cast<unsigned int>(1), blocks / 100);
 		float speed = 125.0f;
-		const unsigned int x = m_texture->size().first / 2, y = m_texture->size().second / 2;
+		const unsigned int x = m_texture->size().x / 2, y = m_texture->size().y / 2;
 		auto rand_dir = Nova::mlb::Random::generatorf<float>(0, 1);
 		auto random = Nova::mlb::Random::generatorf<float>(speed * 0.75, speed);
 
@@ -73,7 +73,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 					random(Nova::mlb::Random::generator()) * (rand_dir(Nova::mlb::Random::generator()) < 0.5 ? 1 : -1),
 				};
 			}
-			m_buffer->set("agents", sizeof(Agent) * blocksize * i, sizeof(Agent) * agents.size(), agents.data());
+			m_buffer->set("agents", agents.data(), sizeof(Agent) * agents.size(), sizeof(Agent) * blocksize * i);
 			m_buffer->sync();
 			if (!(i % iterations)) std::cout << (100 * i) / blocks << " ";
 		} std::cout << "Done!" << std::endl;

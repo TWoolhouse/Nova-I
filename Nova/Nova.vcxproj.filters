@@ -141,6 +141,18 @@
     <ClInclude Include="render\camera\ortho.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="render\buffer\uniform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imp\gl\buffer\gl_buffer_uniform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imp\gl\buffer\gl_buffer_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\render_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -207,6 +219,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render\camera\camera_ortho.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\gl\buffer\gl_buffer_uniform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\gl\buffer\gl_buffer_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

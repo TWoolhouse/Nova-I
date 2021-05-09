@@ -46,23 +46,30 @@ namespace Nova::Buffer {
 		};
 
 		static Vertex* Create(const unsigned int size);
-		static Vertex* Create(const unsigned int size, const void* data);
+		static Vertex* Create(const void* data, const unsigned int size);
 
 		virtual void bind() = 0;
 		virtual void unbind() = 0;
 
-		virtual void set(const unsigned int size, const void* data) = 0;
+		virtual void set(const void* data, const unsigned int size) = 0;
+		virtual void set(const void* data, const unsigned int size, const unsigned int offset) = 0;
+		virtual void set(const unsigned int size) = 0;
 		virtual ~Vertex() {};
 	};
 
 	class NOVA_API Index {
 	public:
 		static Index* Create(const unsigned int count);
-		static Index* Create(const unsigned int count, const unsigned int* indices);
+		static Index* Create(const unsigned int* indices, const unsigned int count);
 		Index(const unsigned int count) : m_count(count) {}
 
 		virtual void bind() = 0;
 		virtual void unbind() = 0;
+
+		virtual void set(const unsigned int* indices, const unsigned int size) = 0;
+		virtual void set(const unsigned int* indices, const unsigned int size, const unsigned int offset) = 0;
+		virtual void set(const unsigned int size) = 0;
+
 		const unsigned int count() const { return m_count; }
 
 		virtual ~Index() {};

@@ -1,12 +1,12 @@
 #include "npch.h"
 #include "render.h"
 #include "command.h"
-#include "buffer/context.h"
-#include "buffer/frame.h"
-#include "shader.h"
+#include "render_state.h"
+
 #include "camera.h"
 #include "core/application.h"
 
+#include "draw.h"
 #include "draw/draw_quad.h"
 
 namespace FrameOutput {
@@ -29,57 +29,68 @@ namespace FrameOutput {
 
 namespace Nova {
 
-	struct RenderState {
-		std::pair<unsigned int, unsigned int> frame_size;
-		Shader* shader;
-		Buffer::Context* buffer_context;
-		Buffer::Frame* framebuffer;
-		mlb::mat4 matrix;
+	RenderState::RenderState(Buffer::Frame* fbuff)
+		: buffer_context(Buffer::Context::Create()), framebuffer(fbuff), blank_texture(Texture2D::Create(1, 1, {})) {
+		constexpr float vb_data[] = {
+			-1.0f,  1.0f,	0.0f, 1.0f,
+			 1.0f,  1.0f,	1.0f, 1.0f,
+			-1.0f, -1.0f,	0.0f, 0.0f,
+			 1.0f, -1.0f,	1.0f, 0.0f,
+		};
+		constexpr size_t ib_size = 6;
+		unsigned int ib_data[ib_size] = {
+			0, 1, 2, 2, 1, 3
+		};
 
-		RenderState(Buffer::Frame* fbuff) : buffer_context(Buffer::Context::Create()) , framebuffer(fbuff) {
-			constexpr float vb_data[] = {
-				-1.0f,  1.0f,	0.0f, 1.0f,
-				 1.0f,  1.0f,	1.0f, 1.0f,
-				-1.0f, -1.0f,	0.0f, 0.0f,
-				 1.0f, -1.0f,	1.0f, 0.0f,
-			};
-			constexpr size_t ib_size = 6;
-			unsigned int ib_data[ib_size] = {
-				0, 1, 2, 2, 1, 3
-			};
+		auto vb = Buffer::Vertex::Create(vb_data, sizeof(vb_data));
+		auto ib = Buffer::Index::Create(ib_data, ib_size);
 
-			auto vb = Buffer::Vertex::Create(sizeof(vb_data), vb_data);
-			auto ib = Buffer::Index::Create(ib_size, ib_data);
-
-			buffer_context->bind();
-			buffer_context->buffer(ib);
-			buffer_context->buffer(vb, {
-				{ Nova::Buffer::Type::Float2, "v_pos" },
-				{ Nova::Buffer::Type::Float2, "v_tex" },
-				});
-
-			shader = Nova::Shader::Create("Nova/shader/main_render.glsl");
-			auto output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
-				{ Nova::Texture::Colour::Type::RGB }
+		buffer_context->bind();
+		buffer_context->buffer(ib);
+		buffer_context->buffer(vb, {
+			{ Nova::Buffer::Type::Float2, "v_pos" },
+			{ Nova::Buffer::Type::Float2, "v_tex" },
 			});
-			shader->Upload()->Int("u_tex", 0);
-			framebuffer->attach_colour(output);
 
-			framebuffer->validate();
+		shader = Nova::Shader::Create("Nova/shader/main_render.glsl");
+		auto output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
+			{ Nova::Texture::Colour::Type::RGB }
+			});
+		shader->Upload()->Int("u_tex", 0);
+		framebuffer->attach_colour(output);
 
-			buffer_context->unbind();
-			shader->unbind();
-			framebuffer->unbind();
+		framebuffer->validate();
+
+		{ // Blank Texture Data
+			unsigned char tex = 0xffffffff;
+			blank_texture->set(&tex, 1);
 		}
 
-		~RenderState() {
-			delete buffer_context;
-			delete shader;
-			delete framebuffer;
+		{ // Generate Uniform Buffers
+			auto gen_buffers = Nova::Shader::Create("Nova/shader/buffers.glsl");
+
+			uniform = Buffer::Uniform::Create(gen_buffers, "camera", {
+				"matrix",
+			});
+
 		}
-	};
+
+		uniform->set("matrix", &matrix);
+
+		buffer_context->unbind();
+		shader->unbind();
+		framebuffer->unbind();
+	}
+
+	RenderState::~RenderState() {
+		delete buffer_context;
+		delete framebuffer;
+	}
 
 	static RenderState* rs = nullptr;
+	RenderState& Nova::RenderState::Get() {
+		return *rs;
+	}
 
 	bool Render::Initialise() {
 		rs = new RenderState(
@@ -112,12 +123,14 @@ namespace Nova {
 
 	void Render::Draw(Camera* camera) {
 		memcpy(&rs->matrix, &camera->compute(), sizeof(mlb::mat4));
+		rs->uniform->set("matrix", &rs->matrix);
 		rs->framebuffer->bind();
 		Render::Command::Viewport(FrameOutput::width, FrameOutput::height);
 		Render::Command::Clear();
 	}
 
 	void Render::Draw() {
+		rs->uniform->bind(0);
 		Flush();
 		rs->framebuffer->unbind();
 		Render::Command::Viewport(rs->frame_size.first, rs->frame_size.second);

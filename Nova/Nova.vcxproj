@@ -110,6 +110,8 @@
     <ClInclude Include="event\window.h" />
     <ClInclude Include="fileio\shader.h" />
     <ClInclude Include="fileio\texture.h" />
+    <ClInclude Include="imp\gl\buffer\gl_buffer_interface.h" />
+    <ClInclude Include="imp\gl\buffer\gl_buffer_uniform.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="input\poll.h" />
@@ -122,6 +124,7 @@
     <ClInclude Include="render\buffer\frame.h" />
     <ClInclude Include="render\buffer\shader.h" />
     <ClInclude Include="render\buffer\type.h" />
+    <ClInclude Include="render\buffer\uniform.h" />
     <ClInclude Include="render\camera.h" />
     <ClInclude Include="render\camera\ortho.h" />
     <ClInclude Include="render\command.h" />
@@ -138,6 +141,7 @@
     <ClInclude Include="imp\gl\gl_shader.h" />
     <ClInclude Include="imp\gl\gl_texture.h" />
     <ClInclude Include="render\render.h" />
+    <ClInclude Include="render\render_state.h" />
     <ClInclude Include="render\shader.h" />
     <ClInclude Include="render\texture.h" />
   </ItemGroup>
@@ -154,6 +158,8 @@
     </ClCompile>
     <ClCompile Include="fileio\fio_shader.cpp" />
     <ClCompile Include="fileio\fio_texture.cpp" />
+    <ClCompile Include="imp\gl\buffer\gl_buffer_interface.cpp" />
+    <ClCompile Include="imp\gl\buffer\gl_buffer_uniform.cpp" />
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
     <ClCompile Include="phys\maths.cpp" />
@@ -170,6 +176,7 @@
     <ClCompile Include="render\camera\camera_ortho.cpp" />
     <ClCompile Include="render\draw\draw_quad.cpp" />
     <ClCompile Include="render\render.cpp" />
+    <ClCompile Include="render\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
