@@ -1,3 +1,30 @@
-### ECS
+Make 2D Test Game
+	Like Mario w/ Gun - To Test Particles
 
-entt
+~Rework Texture2D & TextureSub2D to be passed into same funcs
+
+ECS
+	entt
+	Parents
+	Traversing Hierarchy
+	~Subsystems
+	Script Component
+		Get Component Ref wo/ storing ref to current world
+	Particle Comp
+	?Animation Comp
+		TextureAtlas
+	Collider2D
+		Obj Main Low Res Calc
+		Sub Children?
+
+Audio
+	Setup PortAudio API
+
+Collision
+	Oct Tree
+	Point, Line, Oval, Rect, Triangle
+	Restituition
+		Impluse
+		Coefficient
+		Incidence = Reflection
+		Strong Force
