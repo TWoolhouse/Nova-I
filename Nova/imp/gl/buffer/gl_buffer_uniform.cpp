@@ -1,7 +1,7 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
-#include "imp/gl/gl_bind_helper.h"
+#include "imp/gl/gl_helper.h"
 #include <GL/glew.h>
 #include <iostream>
 #include "gl_buffer_uniform.h"

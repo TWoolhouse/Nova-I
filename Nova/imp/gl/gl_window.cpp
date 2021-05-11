@@ -1,5 +1,6 @@
 #include "npch.h"
 #ifdef NOVA_OPENGL
+#include "gl_init.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "gl_window.h"
@@ -22,8 +23,7 @@ namespace Nova {
 
 		Window::Window(const Nova::Window::Properties& properties)
 			: Nova::Window(properties), m_window(nullptr) {
-			if (!s_instances && !glfwInit())
-				return;
+			OpenGL::Initialize();
 
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -142,7 +142,7 @@ namespace Nova {
 		Window::~Window() {
 			glfwDestroyWindow(m_window);
 			if (!--s_instances)
-				glfwTerminate();
+				OpenGL::Terminate();
 		}
 
 		void Window::update() {
@@ -155,4 +155,3 @@ namespace Nova {
 }
 
 #endif // NOVA_OPENGL
-

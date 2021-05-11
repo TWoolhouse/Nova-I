@@ -38,6 +38,12 @@
 #include "render/command.h"
 #include "render/draw.h"
 
+// Asset Library
+#include "asset/library.h"
+#include "asset/texture.h"
+#include "asset/shader.h"
+#include "asset/uniform.h"
+
 // Camera
 #include "render/camera.h"
 #include "render/camera/ortho.h"

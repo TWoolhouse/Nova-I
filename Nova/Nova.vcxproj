@@ -98,6 +98,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="asset\library.h" />
+    <ClInclude Include="asset\shader.h" />
+    <ClInclude Include="asset\texture.h" />
+    <ClInclude Include="asset\uniform.h" />
     <ClInclude Include="core\application.h" />
     <ClInclude Include="core\entry_point.h" />
     <ClInclude Include="core\window.h" />
@@ -112,6 +116,7 @@
     <ClInclude Include="fileio\texture.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_interface.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_uniform.h" />
+    <ClInclude Include="imp\gl\gl_init.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="input\poll.h" />
@@ -136,7 +141,7 @@
     <ClInclude Include="render\draw\draw_quad.h" />
     <ClInclude Include="render\draw\draw.h" />
     <ClInclude Include="render\render_batch.h" />
-    <ClInclude Include="imp\gl\gl_bind_helper.h" />
+    <ClInclude Include="imp\gl\gl_helper.h" />
     <ClInclude Include="imp\gl\gl_window.h" />
     <ClInclude Include="imp\gl\gl_shader.h" />
     <ClInclude Include="imp\gl\gl_texture.h" />
@@ -146,6 +151,7 @@
     <ClInclude Include="render\texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="asset\library.cpp" />
     <ClCompile Include="core\application.cpp" />
     <ClCompile Include="core\deltatime.cpp" />
     <ClCompile Include="core\pch.cpp">
@@ -160,6 +166,7 @@
     <ClCompile Include="fileio\fio_texture.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_interface.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_uniform.cpp" />
+    <ClCompile Include="imp\gl\gl_init.cpp" />
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
     <ClCompile Include="phys\lib.cpp" />
@@ -168,7 +175,7 @@
     <ClCompile Include="imp\gl\buffer\gl_buffer_frame.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_shader.cpp" />
     <ClCompile Include="imp\gl\draw\gl_draw_quad.cpp" />
-    <ClCompile Include="imp\gl\gl_bind_helper.cpp" />
+    <ClCompile Include="imp\gl\gl_helper.cpp" />
     <ClCompile Include="imp\gl\gl_render_command.cpp" />
     <ClCompile Include="imp\gl\gl_texture.cpp" />
     <ClCompile Include="imp\gl\gl_window.cpp" />
