@@ -57,6 +57,13 @@ namespace Nova {
 		glClearColor(r, g, b, a);
 	}
 
+	void Render::Command::Depth(const bool enable) {
+		if (enable)
+			glEnable(GL_DEPTH_TEST);
+		else
+			glDisable(GL_DEPTH_TEST);
+	}
+
 	void Render::Command::Draw(Buffer::Context* bc, const unsigned int count) {
 		nova_gl_bind(GL_VERTEX_ARRAY_BINDING, static_cast<OpenGL::BufferVertexArray*>(bc)->m_id);
 		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);

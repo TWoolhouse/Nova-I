@@ -1,5 +1,5 @@
 #pragma once
-
+#include "spch.h"
 #include <nova.h>
 
 class Ants {

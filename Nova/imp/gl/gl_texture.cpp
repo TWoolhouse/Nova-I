@@ -1,6 +1,7 @@
 #include "npch.h"
 
 #ifdef NOVA_OPENGL
+#include "imp/gl/gl_helper.h"
 #include <GL/glew.h>
 #include <exception>
 #include <iostream>
@@ -91,6 +92,12 @@ namespace Nova {
 
 		void Texture2D::image(unsigned int slot) {
 			glBindImageTexture(slot, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+		}
+
+		void Texture2D::resize(const unsigned int width, const unsigned int height) {
+			nova_gl_bind(GL_TEXTURE_BINDING_2D, m_id);
+			glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, nullptr);
+			m_width = width; m_height = height;
 		}
 
 		void Texture2D::set(const unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int xoff, const unsigned int yoff) {

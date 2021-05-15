@@ -3,8 +3,8 @@
 
 namespace Nova::Camera {
 
-	void Ortho::make_projection() {
-		m_projection = mlb::ortho(-1.0, 1.0, -1.0, 1.0);
+	void Ortho::new_projection() {
+		m_projection = mlb::ortho(-m_aspect * m_zoom, m_aspect * m_zoom, -m_zoom, m_zoom, m_near, m_far);
 	}
 
 }

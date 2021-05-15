@@ -41,6 +41,8 @@ namespace Nova {
 			Colour colour;
 			Wrap wrap;
 			Filtering filter;
+
+			// MipMapping
 		};
 	}
 
@@ -60,9 +62,13 @@ namespace Nova {
 
 		virtual void image(unsigned int slot = 0) = 0;
 
+		virtual void resize(const unsigned int width, const unsigned int height) = 0;
 		virtual void set(const unsigned char* data, const unsigned int width, const unsigned int height = 1, const unsigned int xoff = 0, const unsigned int yoff = 0) = 0;
 
 		virtual operator bool() = 0;
+
+		//TEMP
+		virtual const unsigned int& id() const = 0;
 
 		virtual ~Texture2D() {}
 	protected:

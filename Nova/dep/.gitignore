@@ -2,6 +2,7 @@ glew/*
 glfw/*
 glm/*
 stblib/*
+imgui/*
 
 !LICENSE.txt
 !LICENSE.md

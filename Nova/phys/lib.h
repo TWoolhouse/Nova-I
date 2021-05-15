@@ -1,4 +1,5 @@
 #pragma once
+#include "npch.h"
 
 #ifndef NDEBUG
 	#define GLM_FORCE_PURE
@@ -21,3 +22,7 @@
 namespace Nova::mlb {
 	using namespace glm;
 }
+
+std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec2& vec);
+std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec3& vec);
+std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec4& vec);

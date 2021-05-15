@@ -168,6 +168,18 @@
     <ClInclude Include="imp\gl\gl_init.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gui\gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imp\gl\gl_gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imp\imgui\imgui_export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -249,6 +261,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imp\gl\gl_init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\gui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\gl\gl_gui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\imgui\imgui_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\imgui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\imgui\imgui_plat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

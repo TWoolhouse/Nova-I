@@ -14,6 +14,10 @@ namespace FrameOutput {
 	//constexpr unsigned int width = 3840;
 	//constexpr unsigned int height = 2160;
 
+	// 720
+	//constexpr unsigned int width = 1280;
+	//constexpr unsigned int height = 720;
+
 	// 1080
 	constexpr unsigned int width = 1920;
 	constexpr unsigned int height = 1080;
@@ -62,8 +66,8 @@ namespace Nova {
 		framebuffer->validate();
 
 		{ // Blank Texture Data
-			unsigned char tex = 0xffffffff;
-			blank_texture->set(&tex, 1);
+			unsigned int data = 0xffffffff;
+			blank_texture->set((unsigned char*)(&data), 1);
 		}
 
 		{ // Generate Uniform Buffers
@@ -125,7 +129,8 @@ namespace Nova {
 		memcpy(&rs->matrix, &camera->compute(), sizeof(mlb::mat4));
 		rs->uniform->set("matrix", &rs->matrix);
 		rs->framebuffer->bind();
-		Render::Command::Viewport(FrameOutput::width, FrameOutput::height);
+		auto& size = rs->framebuffer->get_colour()->size();
+		Render::Command::Viewport(size.x, size.y);
 		Render::Command::Clear();
 	}
 
@@ -133,6 +138,9 @@ namespace Nova {
 		rs->uniform->bind(0);
 		Flush();
 		rs->framebuffer->unbind();
+	}
+
+	void Render::Frame() {
 		Render::Command::Viewport(rs->frame_size.first, rs->frame_size.second);
 		rs->framebuffer->get_colour()->bind();
 		rs->shader->bind();

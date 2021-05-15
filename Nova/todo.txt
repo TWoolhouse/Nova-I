@@ -1,6 +1,8 @@
 Make 2D Test Game
 	Like Mario w/ Gun - To Test Particles
 
+~Event Heirarchy Check
+
 ~Rework Texture2D & TextureSub2D to be passed into same funcs
 
 ECS

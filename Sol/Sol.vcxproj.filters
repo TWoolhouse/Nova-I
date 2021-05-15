@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="core\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ants.cpp">
+    <ClCompile Include="core\pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="example\ants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ants.h">
+    <ClInclude Include="spch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="example\ants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,10 +6,10 @@ namespace Nova {
 	class NOVA_API DeltaTime {
 	public:
 		operator double() const { return dt(); }
-		static const float dt();
-		constexpr static const float phys();
+		static const double dt();
+		constexpr static const double phys();
 
-		static inline void update();
+		static void update();
 	};
 
 }

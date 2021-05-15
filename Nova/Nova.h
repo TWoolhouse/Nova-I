@@ -7,6 +7,7 @@
 // Core
 #include "core/application.h"
 #include "core/deltatime.h"
+#include "core/layer.h"
 
 // Events
 #include "event/type.h"
@@ -47,6 +48,9 @@
 // Camera
 #include "render/camera.h"
 #include "render/camera/ortho.h"
+
+// Gui
+#include "gui/gui.h"
 
 // Maths Lib
 #include "phys/random.h"

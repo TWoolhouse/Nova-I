@@ -16,6 +16,9 @@ namespace Nova {
 		static void Draw(Camera* camera); // Vars for starting
 		static void Draw(); // Empty for end
 
+		// Draw Frame
+		static void Frame();
+
 		static void Flush();
 	};
 

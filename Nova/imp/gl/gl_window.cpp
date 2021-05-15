@@ -25,16 +25,11 @@ namespace Nova {
 			: Nova::Window(properties), m_window(nullptr) {
 			OpenGL::Initialize();
 
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 			// glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 			m_window = glfwCreateWindow(m_properties.width, m_properties.height, m_properties.name.c_str(), nullptr, nullptr);
 			
 			glfwMakeContextCurrent(m_window);
-
-			glfwSwapInterval(false); // Vsync Disable
 
 			glfwSetWindowUserPointer(m_window, &m_properties);
 			if (!s_instances++ && glewInit() != GLEW_OK) {
@@ -42,7 +37,7 @@ namespace Nova {
 				return;
 			}
 
-			glViewport(0, 0, m_properties.width, m_properties.height);
+			Nova::Render::Command::Viewport(m_properties.width, m_properties.height);
 
 			// Set Event Callbacks //
 
@@ -108,7 +103,7 @@ namespace Nova {
 
 			glfwSetScrollCallback(m_window, [](GLFWwindow* window, double x_off, double y_off) {
 				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
-				Event::MouseScroll event(static_cast<unsigned int>(x_off), static_cast<unsigned int>(y_off));
+				Event::MouseScroll event(static_cast<float>(x_off), static_cast<float>(y_off));
 				cb.event_cb(event);
 			});
 
@@ -136,6 +131,8 @@ namespace Nova {
 					break;
 				}
 			});
+
+			OpenGL::Setup();
 
 		}
 

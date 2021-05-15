@@ -25,7 +25,16 @@ namespace Nova {
 
 	class NOVA_API Shader {
 	public:
-		class NOVA_API Uniform;
+		class NOVA_API Uniform {
+		public:
+			static Uniform* Create(Shader* shader);
+			virtual ~Uniform() {};
+
+			virtual void Int(const std::string& name, const int& value) = 0;
+			virtual void Int(const std::string& name, const unsigned int count, const int* value) = 0;
+			virtual void Float(const std::string& name, const float& value) = 0;
+			virtual void Float(const std::string& name, const unsigned int count, const float* value) = 0;
+		};
 
 		static Star<Shader> Create(const std::string& filename);
 		static Star<Shader> Create(const std::initializer_list<ShaderSource*>& shaders);
@@ -45,17 +54,6 @@ namespace Nova {
 
 	protected:
 		Uniform* m_uniform_upload;
-	};
-
-	class NOVA_API Shader::Uniform {
-	public:
-		static Uniform* Create(Shader* shader);
-		virtual ~Uniform() {};
-
-		virtual void Int(const std::string & name, const int& value) = 0;
-		virtual void Int(const std::string & name, const unsigned int count, const int* value) = 0;
-		virtual void Float(const std::string & name, const float& value) = 0;
-		virtual void Float(const std::string & name, const unsigned int count, const float* value) = 0;
 	};
 
 	class NOVA_API ShaderCompute : public virtual Shader {

@@ -10,7 +10,9 @@ namespace Nova::Event {
 	protected:
 		Window (const bool cast) : Event(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::Window;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 	};
 
 	class WindowClose : public Window {
@@ -20,7 +22,9 @@ namespace Nova::Event {
 	protected:
 		WindowClose(const bool cast) : Window(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowClose;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 	};
 
 	class WindowFocus : public Window {
@@ -30,7 +34,9 @@ namespace Nova::Event {
 	protected:
 		WindowFocus(const bool cast) : Window(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowFocus;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 	};
 
 	class WindowFocusLost : public WindowFocus {
@@ -40,7 +46,9 @@ namespace Nova::Event {
 	protected:
 		WindowFocusLost(const bool cast) : WindowFocus(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowFocusLost;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 	};
 
 	class WindowFocusGain : public WindowFocus {
@@ -50,7 +58,9 @@ namespace Nova::Event {
 	protected:
 		WindowFocusGain(const bool cast) : WindowFocus(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowFocusGain;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 	};
 
 	class WindowMove : public Window {
@@ -63,7 +73,9 @@ namespace Nova::Event {
 	protected:
 		WindowMove(const bool cast) : Window(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowMove;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 		const std::pair<unsigned int, unsigned int> m_pos;
 	};
 
@@ -77,7 +89,9 @@ namespace Nova::Event {
 	protected:
 		WindowResize(const bool cast) : Window(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowResize;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 		const std::pair<unsigned int, unsigned int> m_dim;
 	};
 

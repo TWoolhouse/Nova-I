@@ -58,7 +58,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -78,7 +78,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -104,6 +104,7 @@
     <ClInclude Include="asset\uniform.h" />
     <ClInclude Include="core\application.h" />
     <ClInclude Include="core\entry_point.h" />
+    <ClInclude Include="core\layer.h" />
     <ClInclude Include="core\window.h" />
     <ClInclude Include="core\deltatime.h" />
     <ClInclude Include="dep\stblib\include\stb_image.h" />
@@ -114,9 +115,12 @@
     <ClInclude Include="event\window.h" />
     <ClInclude Include="fileio\shader.h" />
     <ClInclude Include="fileio\texture.h" />
+    <ClInclude Include="gui\gui.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_interface.h" />
     <ClInclude Include="imp\gl\buffer\gl_buffer_uniform.h" />
     <ClInclude Include="imp\gl\gl_init.h" />
+    <ClInclude Include="imp\gl\gl_gui.h" />
+    <ClInclude Include="imp\imgui\imgui_export.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="input\poll.h" />
@@ -164,9 +168,14 @@
     </ClCompile>
     <ClCompile Include="fileio\fio_shader.cpp" />
     <ClCompile Include="fileio\fio_texture.cpp" />
+    <ClCompile Include="gui\gui.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_interface.cpp" />
     <ClCompile Include="imp\gl\buffer\gl_buffer_uniform.cpp" />
     <ClCompile Include="imp\gl\gl_init.cpp" />
+    <ClCompile Include="imp\gl\gl_gui.cpp" />
+    <ClCompile Include="imp\imgui\imgui_draw.cpp" />
+    <ClCompile Include="imp\imgui\imgui_main.cpp" />
+    <ClCompile Include="imp\imgui\imgui_plat.cpp" />
     <ClCompile Include="input\gl_codes.cpp" />
     <ClCompile Include="input\gl_poll.cpp" />
     <ClCompile Include="phys\lib.cpp" />

@@ -17,6 +17,14 @@ namespace Nova::Event {
 		}
 
 		template<typename T>
+		const bool cat(const bool handle = true) {
+			if (tcat() == T::ETC) {
+				done = handle;
+				return true;
+			} return false;
+		}
+
+		template<typename T>
 		T cast(bool handle = true) {
 			if (type() == T::ET) {
 				done = handle;
@@ -39,7 +47,9 @@ namespace Nova::Event {
 	protected:
 		Event(const bool cast = true) : m_cast(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::None;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::None;
 		virtual const Nova::Event::Type& type() { return ET; }
+		virtual const Nova::Event::Type& tcat() { return ETC; }
 		bool m_cast = true;
 	};
 

@@ -8,7 +8,7 @@
 
 namespace Nova {
 
-	struct RenderState {
+	struct NOVA_API RenderState {
 		std::pair<unsigned int, unsigned int> frame_size;
 		Star<Shader> shader;
 		Buffer::Context* buffer_context;

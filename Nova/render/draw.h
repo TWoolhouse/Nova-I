@@ -24,8 +24,8 @@ namespace Nova {
 		inline static void Quad(const mlb::vec3& pos, const mlb::vec2& size, const Texture2D::Sub& texture, const float rot = 0) { return Quad(gen_mat(pos, size, rot), texture); }
 		inline static void Quad(const mlb::mat4& mat, const Texture2D::Sub& texture) { return Quad(mat, mlb::vec4{1.0f}, texture); }
 
-		inline static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& col, const Star<Texture2D>& texture, const float rot = 0) { return Quad(mlb::vec3{ pos, 0.0f }, size, texture, rot); }
-		inline static void Quad(const mlb::vec3& pos, const mlb::vec2& size, const mlb::vec4& col, const Star<Texture2D>& texture, const float rot = 0) { return Quad(gen_mat(pos, size, rot), texture); }
+		inline static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& col, const Star<Texture2D>& texture, const float rot = 0) { return Quad(mlb::vec3{ pos, 0.0f }, size, col, texture, rot); }
+		inline static void Quad(const mlb::vec3& pos, const mlb::vec2& size, const mlb::vec4& col, const Star<Texture2D>& texture, const float rot = 0) { return Quad(gen_mat(pos, size, rot), col, texture); }
 		inline static void Quad(const mlb::mat4& mat, const mlb::vec4& col, const Star<Texture2D>& texture) { return Quad(mat, col, texture, s_quad_tex_pos); }
 
 		inline static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& col, const Texture2D::Sub& texture, const float rot = 0) { return Quad(mlb::vec3{ pos, 0.0f }, size, col, texture, rot); }
@@ -35,7 +35,7 @@ namespace Nova {
 		static void Quad(const mlb::mat4& mat, const mlb::vec4& col, const Star<Texture2D>& texture, const std::array<mlb::vec2, 4>& tex_pos);
 
 	protected:
-		friend class RenderState;
+		friend struct RenderState;
 		static const std::array<mlb::vec2, 4> s_quad_tex_pos;
 
 		inline static mlb::mat4 gen_mat(const mlb::vec3& position, const mlb::vec2& size, const float rotation) {
