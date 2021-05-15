@@ -1,6 +1,6 @@
 #pragma once
 #include "npch.h"
-#include "render/texture.h"
+#include "../texture.h"
 
 namespace Nova::Buffer {
 

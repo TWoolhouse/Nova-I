@@ -1,7 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "type.h"
-#include "render/shader.h"
+#include "../shader.h"
 
 namespace Nova::Buffer {
 

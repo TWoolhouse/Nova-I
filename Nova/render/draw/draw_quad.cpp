@@ -1,7 +1,7 @@
 #include "npch.h"
 #include <numeric>
 #include "draw_quad.h"
-#include "render/render_state.h"
+#include "../render_state.h"
 
 constexpr unsigned int MAX_TEXTURES = 64;
 

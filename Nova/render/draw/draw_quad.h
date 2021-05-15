@@ -1,8 +1,8 @@
 #pragma once
 #include "npch.h"
 #include "draw.h"
-#include "render/render_batch.h"
-#include "render/shader.h"
+#include "../render_batch.h"
+#include "../shader.h"
 
 namespace Nova::RenderDraw {
 

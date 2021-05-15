@@ -1,6 +1,6 @@
 #pragma once
 #include "npch.h"
-#include "render/camera.h"
+#include "../camera.h"
 
 namespace Nova::Camera {
 
