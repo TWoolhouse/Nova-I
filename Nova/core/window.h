@@ -8,13 +8,14 @@ namespace Nova {
 	public:
 		struct Properties {
 			unsigned int width, height;
-			std::string name;
+			std::string name, icon;
 			std::function<void(Event::Event&)> event_cb;
 			Properties(
-				const unsigned int width = 1280,
-				const unsigned int height = 720,
-				const std::string name = "Nova Engine"
-			) : width(width), height(height), name(name) {}
+				const unsigned int& width = 1280,
+				const unsigned int& height = 720,
+				const std::string& name = "Nova Engine",
+				const std::string& icon = "Nova/texture/nova.png"
+			) : width(width), height(height), name(name), icon(icon) {}
 		};
 
 		static Window* Create(const Properties& properties = Properties());

@@ -11,6 +11,8 @@
 
 #include "render/command.h"
 
+#include "fileio/texture.h"
+
 namespace Nova {
 
 	Window* Window::Create(const Window::Properties& properties) {
@@ -133,6 +135,11 @@ namespace Nova {
 			});
 
 			OpenGL::Setup();
+
+			const auto [w, h, i] = FileIO::Texture(properties.icon, false);
+			const GLFWimage ico{w, h, i};
+			glfwSetWindowIcon(m_window, 1, &ico);
+			FileIO::Texture(i);
 
 		}
 
