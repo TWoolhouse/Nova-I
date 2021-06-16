@@ -20,7 +20,7 @@ namespace Nova {
 	bool Render::Command::Initialise() {
 		auto& window = App().window();
 		s_window = static_cast<GLFWwindow*>(window.window());
-		Viewport(window.properties().width, window.properties().height);
+		Viewport(window.width(), window.height());
 
 		// Needs flags to Set?
 		glEnable(GL_BLEND);

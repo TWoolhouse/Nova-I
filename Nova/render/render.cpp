@@ -100,9 +100,8 @@ namespace Nova {
 		rs = new RenderState(
 			Buffer::Frame::Create()
 		);
-		auto& window_prop = App().window().properties();
-		rs->frame_size.first = window_prop.width;
-		rs->frame_size.second = window_prop.height;
+		rs->frame_size.first = App().window().width();
+		rs->frame_size.second = App().window().height();
 
 		// Sub Renderers
 		RenderDraw::Quad::Initialise();

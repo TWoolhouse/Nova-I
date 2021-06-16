@@ -48,7 +48,7 @@ namespace Nova {
 		void GuiApp::end() {
 			auto& io = ImGui::GetIO();
 			auto& app = Nova::App();
-			io.DisplaySize = ImVec2((float)app.window().properties().width, (float)app.window().properties().height);
+			io.DisplaySize = ImVec2((float)app.window().width(), (float)app.window().height());
 
 			// Rendering
 			ImGui::Render();

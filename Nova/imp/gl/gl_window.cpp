@@ -15,56 +15,62 @@
 
 namespace Nova {
 
-	Window* Window::Create(const Window::Properties& properties) {
-		return new OpenGL::Window(properties);
+	Window* Window::Create(
+		std::function<void(Event::Event&)> events,
+		const unsigned int& width, const unsigned int& height,
+		const std::string& name, const std::string& icon) {
+		return new OpenGL::Window(events, width, height, name, icon);
 	}
 
 	namespace OpenGL {
 
 		static unsigned int s_instances = 0;
 
-		Window::Window(const Nova::Window::Properties& properties)
-			: Nova::Window(properties), m_window(nullptr) {
+		Window::Window(
+			std::function<void(Event::Event&)> events,
+			const unsigned int& width, const unsigned int& height,
+			const std::string& name, const std::string& icon
+		) : Nova::Window(events, width, height, name, icon), m_window(nullptr) {
 			OpenGL::Initialize();
 
 			// glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-			m_window = glfwCreateWindow(m_properties.width, m_properties.height, m_properties.name.c_str(), nullptr, nullptr);
+			m_window = glfwCreateWindow(m_width, m_height, m_name.c_str(), nullptr, nullptr);
 			
 			glfwMakeContextCurrent(m_window);
 
-			glfwSetWindowUserPointer(m_window, &m_properties);
+			glfwSetWindowUserPointer(m_window, this);
 			if (!s_instances++ && glewInit() != GLEW_OK) {
 				delete this;
 				return;
 			}
 
-			Nova::Render::Command::Viewport(m_properties.width, m_properties.height);
+			Nova::Render::Command::Viewport(m_width, m_height);
 
 			// Set Event Callbacks //
 
 			// Window Events
 			glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				Event::WindowClose event;
-				cb.event_cb(event);
+				win.properties().event_callback(event);
 			});
 
 			glfwSetWindowFocusCallback(m_window, [](GLFWwindow* window, int gain) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				if (gain) {
 					Event::WindowFocusGain event;
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 				} else {
 					Event::WindowFocusLost event;
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 				}
 			});
 
 			glfwSetWindowPosCallback(m_window, [](GLFWwindow* window, int x_pos, int y_pos) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				Event::WindowMove event(x_pos, y_pos);
-				cb.event_cb(event);
+				win.properties().event_callback(event);
 			});
 
 			glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
@@ -72,30 +78,30 @@ namespace Nova {
 			});
 
 			glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
-				cb.width = width; cb.height = height;
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+				win.width(width); win.height(height);
 				Event::WindowResize event(width, height);
-				cb.event_cb(event);
+				win.properties().event_callback(event);
 			});
 
 			// Mouse Events
 			glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double x_pos, double y_pos) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				Event::MouseMove event = Event::MouseMove(static_cast<unsigned int>(x_pos), static_cast<unsigned int>(y_pos));
-				cb.event_cb(event);
+				win.properties().event_callback(event);
 			});
 
 			glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				switch (action) {
 				case (GLFW_PRESS): {
 					Event::MouseButtonPress event(Input::WindowMouseCode(button));
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 					break;
 				}
 				case (GLFW_RELEASE): {
 					Event::MouseButtonRelease event(Input::WindowMouseCode(button));
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 					break;
 				}
 				default:
@@ -104,29 +110,29 @@ namespace Nova {
 			});
 
 			glfwSetScrollCallback(m_window, [](GLFWwindow* window, double x_off, double y_off) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				Event::MouseScroll event(static_cast<float>(x_off), static_cast<float>(y_off));
-				cb.event_cb(event);
+				win.properties().event_callback(event);
 			});
 
 			// Key Events
 			glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
-				Properties& cb = *static_cast<Properties*>(glfwGetWindowUserPointer(window));
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 
 				switch (action) {
 				case (GLFW_PRESS): {
 					Event::KeyPress event(Input::WindowKeyCode(key), 0);
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 					break;
 				}
 				case (GLFW_RELEASE): {
 					Event::KeyRelease event(Input::WindowKeyCode(key));
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 					break;
 				}
 				case (GLFW_REPEAT): {
 					Event::KeyPress event(Input::WindowKeyCode(key), 1);
-					cb.event_cb(event);
+					win.properties().event_callback(event);
 					break;
 				}
 				default:
@@ -136,7 +142,7 @@ namespace Nova {
 
 			OpenGL::Setup();
 
-			const auto [w, h, i] = FileIO::Texture(properties.icon, false);
+			const auto [w, h, i] = FileIO::Texture(m_icon, false);
 			const GLFWimage ico{w, h, i};
 			glfwSetWindowIcon(m_window, 1, &ico);
 			FileIO::Texture(i);
