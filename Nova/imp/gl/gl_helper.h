@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef NDEBUG
+#ifndef NOVA_RELEASE
 
 #define nova_gl_bind(target, name) _nova_gl_check_bind(target, name)
 void _nova_gl_check_bind(unsigned int target, int name);
@@ -13,4 +13,4 @@ void _nova_gl_error();
 #define nova_gl_bind(target, name)
 #define nova_gl_error()
 
-#endif // !NDEBUG
+#endif // !NOVA_RELEASE

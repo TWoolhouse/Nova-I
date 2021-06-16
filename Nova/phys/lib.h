@@ -1,12 +1,12 @@
 #pragma once
 #include "npch.h"
 
-#ifndef NDEBUG
+#ifndef NOVA_RELEASE
 	#define GLM_FORCE_PURE
 #else
 	#define GLM_FORCE_INTRINSICS
 	#define GLM_FORCE_INLINE
-#endif // NDEBUG
+#endif // NOVA_RELEASE
 #define GLM_ENABLE_EXPERIMENTAL
 
 #ifndef NOVA_EXPORT

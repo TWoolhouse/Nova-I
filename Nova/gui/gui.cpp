@@ -9,9 +9,9 @@
 namespace Nova::gui {
 
 	App::App() {
-		#ifndef NDEBUG
+		#ifndef NOVA_RELEASE
 		IMGUI_CHECKVERSION();
-		#endif !NDEBUG
+		#endif !NOVA_RELEASE
 	}
 
 	void App::event(Nova::Event::Event& event) {

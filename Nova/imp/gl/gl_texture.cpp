@@ -101,10 +101,10 @@ namespace Nova {
 		}
 
 		void Texture2D::set(const unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int xoff, const unsigned int yoff) {
-			assert(xoff <= m_width && "Invalid X-offset");
-			assert(yoff <= m_height&& "Invalid Y-offset");
-			assert((xoff + width) <= m_width && "Invalid Width");
-			assert((yoff + height) <= m_height && "Invalid Height");
+			nova_assert(xoff <= m_width, "Invalid X-offset");
+			nova_assert(yoff <= m_height, "Invalid Y-offset");
+			nova_assert((xoff + width) <= m_width, "Invalid Width");
+			nova_assert((yoff + height) <= m_height, "Invalid Height");
 			glTextureSubImage2D(m_id, 0, xoff, yoff, width, height, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, data);
 		}
 

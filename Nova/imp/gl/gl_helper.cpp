@@ -6,12 +6,12 @@
 #include <stdexcept>
 #include <iostream>
 
-#ifndef NDEBUG
+#ifndef NOVA_RELEASE
 
 void _nova_gl_check_bind(unsigned int target, int name) {
 	int ret;
 	glGetIntegerv(target, &ret);
-	assert(name == ret && "Object not Bound During Bound Operation");
+	nova_assert(name == ret, "Object not Bound During Bound Operation");
 }
 
 void _nova_gl_error() {
@@ -21,6 +21,6 @@ void _nova_gl_error() {
 	}
 }
 
-#endif // !NDEBUG
+#endif // !NOVA_RELEASE
 
 #endif // NOVA_OPENGL

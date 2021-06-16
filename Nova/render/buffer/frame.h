@@ -8,7 +8,7 @@ namespace Nova::Buffer {
 
 	class NOVA_API Frame {
 	public:
-		#ifndef NDEBUG
+		#ifndef NOVA_RELEASE
 		typedef std::variant<Star<Texture2D>, Star<Render>> Attachment;
 		#else
 		union Attachment {
@@ -17,7 +17,7 @@ namespace Nova::Buffer {
 			Attachment() {}
 			~Attachment() {}
 		};
-		#endif // !NDEBUG
+		#endif // !NOVA_RELEASE
 		static Frame* Create();
 
 		Frame() : ma_colour(), ma_depth(), ma_stencil() {}
@@ -33,7 +33,7 @@ namespace Nova::Buffer {
 		const Star<Texture2D>& get_colour() const { return ma_colour; };
 		template<typename T>const Star<T>& get_depth() const = delete;
 		template<typename T>const Star<T>& get_stencil() const = delete;
-		#ifndef NDEBUG
+		#ifndef NOVA_RELEASE
 		template<>const Star<Texture2D>& get_depth<Texture2D>() const { return std::get<Star<Texture2D>>(ma_depth); }
 		template<>const Star<Render>& get_depth<Render>() const { return std::get<Star<Render>>(ma_depth); }
 
@@ -45,7 +45,7 @@ namespace Nova::Buffer {
 
 		template<>const Star<Texture2D>& get_stencil<Texture2D>() const { return ma_stencil.texture; }
 		template<>const Star<Render>& get_stencil<Render>() const { return ma_stencil.renderbuffer; }
-		#endif // !NDEBUG
+		#endif // !NOVA_RELEASE
 		
 		virtual operator bool() = 0;
 		virtual ~Frame() {}
@@ -56,7 +56,7 @@ namespace Nova::Buffer {
 
 		template<typename T> inline void set_attachment_depth(const Star<T>& depth) = delete;
 		template<typename T> inline void set_attachment_stencil(const Star<T>& stencil) = delete;
-		#ifndef NDEBUG
+		#ifndef NOVA_RELEASE
 		template<> inline void set_attachment_depth(const Star<Texture2D>& depth) { ma_depth = depth; }
 		template<> inline void set_attachment_depth(const Star<Render>& depth) { ma_depth = depth; }
 
@@ -68,7 +68,7 @@ namespace Nova::Buffer {
 
 		template<> inline void set_attachment_stencil(const Star<Texture2D>& stencil) { ma_stencil.texture = stencil; }
 		template<> inline void set_attachment_stencil(const Star<Render>& stencil) { ma_stencil.renderbuffer = stencil; }
-		#endif // !NDEBUG
+		#endif // !NOVA_RELEASE
 
 	}; 
 

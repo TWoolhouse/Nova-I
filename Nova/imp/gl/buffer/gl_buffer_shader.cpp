@@ -34,35 +34,35 @@ namespace Nova {
 
 		void BufferShader::get(const std::string& name, void* const data) {
 			const auto& elm = m_layout.elements()[name];
-			assert(elm.name == name && "Element Name is not valid");
+			nova_assert(elm.name == name, "Element Name is not valid");
 			glGetNamedBufferSubData(m_id, elm.offset, elm.size, data);
 		}
 
 		void BufferShader::get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset) {
 			const auto& elm = m_layout.elements()[name];
-			assert(elm.name == name && "Element Name is not valid");
-			assert(offset < elm.size && "Offset out of range");
-			assert((offset + size) <= elm.size && "Offset and Size out of Range");
+			nova_assert(elm.name == name, "Element Name is not valid");
+			nova_assert(offset < elm.size, "Offset out of range");
+			nova_assert((offset + size) <= elm.size, "Offset and Size out of Range");
 			glGetNamedBufferSubData(m_id, elm.offset + offset, size, data);
 		}
 
 		void BufferShader::set(const std::string& name, const void* data) {
 			const auto& elm = m_layout.elements()[name];
-			assert(elm.name == name && "Element Name is not valid");
+			nova_assert(elm.name == name, "Element Name is not valid");
 			glNamedBufferSubData(m_id, elm.offset, elm.size, data);
 		}
 
 		void BufferShader::set(const std::string& name, const void* data, const unsigned int size, const unsigned int offset) {
 			const auto& elm = m_layout.elements()[name];
-			assert(elm.name == name && "Element Name is not valid");
-			assert(offset < elm.size && "Offset out of range");
-			assert((offset + size) <= elm.size && "Offset and Size out of Range");
+			nova_assert(elm.name == name, "Element Name is not valid");
+			nova_assert(offset < elm.size, "Offset out of range");
+			nova_assert((offset + size) <= elm.size, "Offset and Size out of Range");
 			glNamedBufferSubData(m_id, elm.offset + offset, size, data);
 		}
 
 		void BufferShader::set(const std::string& name, const unsigned int size) {
 			auto& elm = m_layout.elements()[name];
-			assert(elm.name == name && "Element Name is not valid");
+			nova_assert(elm.name == name, "Element Name is not valid");
 			glNamedBufferData(m_id, size, nullptr, GL_STREAM_DRAW);
 			elm.size = size;
 		}

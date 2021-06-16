@@ -73,7 +73,7 @@ namespace Nova {
 			glShaderSource(m_id, 1, &cstr, NULL);
 			glCompileShader(m_id);
 
-			#ifndef NDEBUG
+			#ifndef NOVA_RELEASE
 			int success;
 			glGetShaderiv(m_id, GL_COMPILE_STATUS, &success);
 			if (!success) {
@@ -84,7 +84,7 @@ namespace Nova {
 				m_id = GL_NONE;
 				return false;
 			}
-			#endif // !NDEBUG
+			#endif // !NOVA_RELEASE
 			return true;
 		}
 
@@ -127,7 +127,7 @@ namespace Nova {
 			}
 			glLinkProgram(m_id);
 
-			#ifndef NDEBUG
+			#ifndef NOVA_RELEASE
 			int success;
 			glGetProgramiv(m_id, GL_LINK_STATUS, &success);
 			if (!success) {
@@ -135,7 +135,7 @@ namespace Nova {
 				glGetProgramInfoLog(m_id, 512, NULL, info);
 				std::cout << "ERROR: Shader Linking:\n" << info << std::endl;
 			}
-			#endif // !NDEBUG
+			#endif // !NOVA_RELEASE
 
 			// Work around dynamic casting inside contructor
 			m_uniform_upload = Uniform::Create(static_cast<Nova::Shader*>(this));

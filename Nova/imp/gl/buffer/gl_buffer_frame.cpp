@@ -24,9 +24,9 @@ namespace Nova {
 		}
 
 		void BufferFrame::bind() {
-			#ifndef NDEBUG
+			#ifndef NOVA_RELEASE
 			if (!m_success) throw std::runtime_error("FrameBuffer Not Complete");
-			#endif
+			#endif // NOVA_RELEASE
 			glBindFramebuffer(GL_FRAMEBUFFER, m_id);
 		}
 

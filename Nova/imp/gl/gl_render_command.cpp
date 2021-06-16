@@ -9,9 +9,9 @@
 
 #include "core/application.h"
 
-#ifndef NDEBUG
+#ifndef NOVA_RELEASE
 #include "buffer/gl_buffer_array.h"
-#endif // !NDEBUG
+#endif // !NOVA_RELEASE
 
 static GLFWwindow* s_window;
 

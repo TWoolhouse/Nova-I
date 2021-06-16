@@ -6,9 +6,9 @@ namespace Nova::RenderDraw {
 
 	class Draw {
 	public:
-		static void Initialise() { assert(false && "Abstract Class"); }
-		static void Terminate() { assert(false && "Abstract Class"); }
-		static void Flush() { assert(false && "Abstract Class"); }
+		static void Initialise() { nova_assert(false, "Abstract Class"); }
+		static void Terminate() { nova_assert(false, "Abstract Class"); }
+		static void Flush() { nova_assert(false, "Abstract Class"); }
 	};
 
 	template<typename Drawer>

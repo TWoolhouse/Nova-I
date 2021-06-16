@@ -22,12 +22,12 @@ namespace Nova::OpenGL {
 
 	bool Initialize() {
 		if (!s_instance && !glfwInit()) {
-			#ifndef NDEBUG
+			#ifndef NOVA_RELEASE
 			glEnable(GL_DEBUG_OUTPUT);
 			glDebugMessageCallback(callback_error, 0);
 			#else
 			glDisable(GL_DEBUG_OUTPUT);
-			#endif // !NDEBUG
+			#endif // !NOVA_RELEASE
 
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
