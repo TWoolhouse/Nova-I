@@ -4,6 +4,7 @@
 #include "event/event.h"
 
 int main(int argc, char const* argv[]);
+int WinMain(int argc, char const* argv[]);
 
 namespace Nova {
 
@@ -22,6 +23,7 @@ namespace Nova {
 		void event_callback(Event::Event& event);
 
 	private:
+		friend int ::WinMain(int argc, char const* argv[]);
 		friend int ::main(int argc, char const* argv[]);
 		void main();
 		static Application* s_instance;

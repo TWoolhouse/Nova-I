@@ -4,7 +4,17 @@
 #include "npch.h"
 #include "application.h"
 
-int main(int argc, char const* argv[]) {
+#ifdef NOVA_DEBUG
+	int main(int argc, char const* argv[])
+#else
+#ifdef _WIN64
+	int WinMain(int argc, char const* argv[])
+#else
+	int main(int argc, char const* argv[])
+#endif // Platform
+#endif // NOVA_DEBUG
+
+{
 	Nova::Application* app = Nova::Application::Create();
 	while (app->active()) {
 		app->main();
