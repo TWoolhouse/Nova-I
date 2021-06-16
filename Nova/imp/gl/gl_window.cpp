@@ -141,12 +141,7 @@ namespace Nova {
 			});
 
 			OpenGL::Setup();
-
-			const auto [w, h, i] = FileIO::Texture(m_icon, false);
-			const GLFWimage ico{w, h, i};
-			glfwSetWindowIcon(m_window, 1, &ico);
-			FileIO::Texture(i);
-
+			this->icon(icon);
 		}
 
 		Window::~Window() {
@@ -159,6 +154,28 @@ namespace Nova {
 			Render::Command::SwapBuffers();
 			glfwPollEvents();
 			Render::Command::Clear();
+		}
+
+		void Window::resize(const unsigned int& width, const unsigned int& height) {
+			m_width = width; m_height = height;
+			glfwSetWindowSize(m_window, m_width, m_height);
+			Event::WindowResize event(width, height);
+			m_properties.event_callback(event);
+		}
+
+		const std::string& Window::name(const std::string& name) {
+			m_name = name;
+			glfwSetWindowTitle(m_window, m_name.c_str());
+			return m_name;
+		}
+
+		const std::string& Window::icon(const std::string& icon) {
+			m_icon = icon;
+			const auto [w, h, i] = FileIO::Texture(m_icon, false);
+			const GLFWimage ico{ w, h, i };
+			glfwSetWindowIcon(m_window, 1, &ico);
+			FileIO::Texture(i);
+			return m_icon;
 		}
 
 	}

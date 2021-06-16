@@ -14,6 +14,10 @@ namespace Nova::OpenGL {
 		virtual ~Window() override;
 		virtual void update() override;
 		virtual void* window() const override { return m_window; }
+
+		virtual void resize(const unsigned int& width, const unsigned int& height) override;
+		virtual const std::string& name(const std::string& name) override;
+		virtual const std::string& icon(const std::string& icon) override;
 	private:
 		GLFWwindow* m_window;
 	};

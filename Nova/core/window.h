@@ -32,11 +32,11 @@ namespace Nova {
 
 		Properties& properties() { return m_properties; }
 
-		// TODO: updates should make changes
-		const unsigned int& width(const unsigned int& width) { m_width = width; return m_width; }
-		const unsigned int& height(const unsigned int& height) { m_height = height; return m_height; }
-		const std::string& name(const std::string& name) { m_name = name; return m_name; }
-		const std::string& icon(const std::string& icon) { m_icon = icon; return m_icon; }
+		const unsigned int& width(const unsigned int& width) { resize(width, m_height) ; return m_width; }
+		const unsigned int& height(const unsigned int& height) { resize(m_width, height); return m_height; }
+		virtual void resize(const unsigned int& width, const unsigned int& height) = 0;
+		virtual const std::string& name(const std::string& name) = 0;
+		virtual const std::string& icon(const std::string& icon) = 0;
 
 	protected:
 		struct Properties {
