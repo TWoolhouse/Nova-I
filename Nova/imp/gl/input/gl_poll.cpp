@@ -3,11 +3,11 @@
 #ifdef NOVA_OPENGL
 #include <GLFW/glfw3.h>
 #include "core/application.h"
-#include "poll.h"
+#include "input/poll.h"
 
 namespace Nova::Input {
 
-	const bool Poll(const Key& key) {
+	const bool PollWin(const Key& key) {
 		GLFWwindow* window = static_cast<GLFWwindow*>(Nova::App().window().window());
 		int state = glfwGetKey(window, WindowCode(key));
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
@@ -20,7 +20,7 @@ namespace Nova::Input {
 		return {x_pos, y_pos};
 	}
 
-	const bool Poll(const Mouse& button) {
+	const bool PollWin(const Mouse& button) {
 		GLFWwindow* window = static_cast<GLFWwindow*>(Nova::App().window().window());
 		int state = glfwGetMouseButton(window, WindowCode(button));
 		return state == GLFW_PRESS;

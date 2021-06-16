@@ -4,7 +4,7 @@
 #include "imp/gl/gl_helper.h"
 #include <GL/glew.h>
 #include "gl_buffer_frame.h"
-#include "imp/gl/gl_texture.h"
+#include "imp/gl/render/gl_texture.h"
 
 namespace Nova {
 

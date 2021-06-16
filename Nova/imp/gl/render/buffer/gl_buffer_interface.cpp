@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include <iostream>
 #include "gl_buffer_interface.h"
-#include "imp/gl/gl_shader.h"
+#include "imp/gl/render/gl_shader.h"
 
 #include "gl_buffer_shader.h"
 #include "gl_buffer_uniform.h"

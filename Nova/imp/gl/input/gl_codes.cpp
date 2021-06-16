@@ -1,6 +1,6 @@
 #include "npch.h"
-#include "key.h"
-#include "mouse.h"
+#include "input/key.h"
+#include "input/mouse.h"
 
 namespace Nova::Input {
 

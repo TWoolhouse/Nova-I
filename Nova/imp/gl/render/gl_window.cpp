@@ -1,6 +1,6 @@
 #include "npch.h"
 #ifdef NOVA_OPENGL
-#include "gl_init.h"
+#include "imp/gl/gl_init.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "gl_window.h"

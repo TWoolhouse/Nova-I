@@ -1,6 +1,6 @@
 #pragma once
 #include "event.h"
-#include "input/mouse.h"
+#include "input/poll.h"
 
 namespace Nova::Event {
 
@@ -34,7 +34,9 @@ namespace Nova::Event {
 	class MouseButtonPress : public MouseButton {
 	public:
 		friend Event;
-		MouseButtonPress(const Input::Mouse& button) : MouseButton(button) {}
+		MouseButtonPress(const Input::Mouse& button) : MouseButton(button) {
+			Input::State::set(button, true);
+		}
 	protected:
 		MouseButtonPress(const bool cast) : MouseButton(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::MouseButtonPress;
@@ -46,7 +48,9 @@ namespace Nova::Event {
 	class MouseButtonRelease : public MouseButton {
 	public:
 		friend Event;
-		MouseButtonRelease(const Input::Mouse& button) : MouseButton(button) {}
+		MouseButtonRelease(const Input::Mouse& button) : MouseButton(button) {
+			Input::State::set(button, false);
+		}
 	protected:
 		MouseButtonRelease(const bool cast) : MouseButton(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::MouseButtonRelease;
@@ -58,17 +62,17 @@ namespace Nova::Event {
 	class MouseMove : public Mouse {
 	public:
 		friend Event;
-		MouseMove(const unsigned int x, const unsigned int y) : Mouse(), m_pos({x, y}) {}
-		const std::pair<unsigned int, unsigned int>& pos() const { return m_pos; }
-		const unsigned int& x() const { return m_pos.first; }
-		const unsigned int& y() const { return m_pos.second; }
+		MouseMove(const int x, const int y) : Mouse(), m_pos({x, y}) {}
+		const std::pair<int, int>& pos() const { return m_pos; }
+		const int& x() const { return m_pos.first; }
+		const int& y() const { return m_pos.second; }
 	protected:
 		MouseMove(const bool cast) : Mouse(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::MouseMove;
 		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Mouse;
 		virtual const Nova::Event::Type& type() { return ET; }
 		virtual const Nova::Event::Type& tcat() { return ETC; }
-		const std::pair<unsigned int, unsigned int> m_pos;
+		const std::pair<int, int> m_pos;
 	};
 
 	class MouseScroll : public Mouse {

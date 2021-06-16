@@ -1,6 +1,6 @@
 #pragma once
 #include "event.h"
-#include "input/key.h"
+#include "input/poll.h"
 
 namespace Nova::Event {
 
@@ -22,7 +22,9 @@ namespace Nova::Event {
 	class KeyPress : public Key {
 	public:
 		friend Event;
-		KeyPress(const Input::Key& key, const unsigned int repeat = 0) : Key(key), m_repeat(repeat) {}
+		KeyPress(const Input::Key& key, const unsigned int repeat = 0) : Key(key), m_repeat(repeat) {
+			Input::State::set(key, true);
+		}
 		const unsigned int repeat() const { return m_repeat; }
 	protected:
 		KeyPress(const bool cast) : Key(cast), m_repeat(0) {}
@@ -36,7 +38,9 @@ namespace Nova::Event {
 	class KeyRelease : public Key {
 	public:
 		friend Event;
-		KeyRelease(const Input::Key& key) : Key(key) {}
+		KeyRelease(const Input::Key& key) : Key(key) {
+			Input::State::set(key, false);
+		}
 	protected:
 		KeyRelease(const bool cast) : Key(cast) {}
 		constexpr static Nova::Event::Type ET = Nova::Event::Type::KeyRelease;

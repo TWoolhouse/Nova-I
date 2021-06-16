@@ -8,6 +8,7 @@
 #include <memory>
 #include <variant>
 #include <type_traits>
+#include <bitset>
 
 #ifdef NOVA_EXPORT
 #define NOVA_API __declspec(dllexport)

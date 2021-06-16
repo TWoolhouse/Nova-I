@@ -1,7 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "render/buffer/shader.h"
-#include "imp/gl/gl_shader.h"
+#include "imp/gl/render/gl_shader.h"
 
 namespace Nova::OpenGL {
 
