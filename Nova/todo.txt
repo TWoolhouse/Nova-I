@@ -1,14 +1,31 @@
 Make 2D Test Game
 	Like Mario w/ Gun - To Test Particles
+3D Planet System
+	Solar System thingy
+	?Procedural
 
-~Event Heirarchy Check
-
+Event Heirarchy Check
 ~Rework Texture2D & TextureSub2D to be passed into same funcs
 
+3D
+	Meshs
+	Material
+		Shader
+		Texture
+
+SOL
+	entity picking
+		entity attachement
+	gizmos
+	Drag and Drop into Components
+
 ECS
-	entt
-	Parents
-	Traversing Hierarchy
+	~entt
+	Sprite
+		Textures
+	~Parents
+	Traversing Parent Hierarchy
+	Serialization
 	~Subsystems
 	Script Component
 		Get Component Ref wo/ storing ref to current world

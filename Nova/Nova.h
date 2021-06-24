@@ -7,7 +7,7 @@
 // Core
 #include "core/application.h"
 #include "core/deltatime.h"
-#include "core/layer.h"
+//#include "core/layer.h"
 
 // Events
 #include "event/type.h"
@@ -41,16 +41,24 @@
 
 // Asset Library
 #include "asset/library.h"
-#include "asset/texture.h"
-#include "asset/shader.h"
-#include "asset/uniform.h"
 
 // Camera
 #include "render/camera.h"
 #include "render/camera/ortho.h"
+#include "render/camera/perspective.h"
+
+// ECS
+#include "ecs/ecs.h"
+#include "ecs/entity.h"
+#include "ecs/component.h"
+#include "ecs/system.h"
+#include "ecs/world.h"
+#include "ecs/component/components.h"
+#include "ecs/system/systems.h"
 
 // Gui
 #include "gui/gui.h"
+#include "gui/ext.h"
 
 // Maths Lib
 #include "phys/random.h"
