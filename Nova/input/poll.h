@@ -18,6 +18,13 @@ namespace Nova::Input {
 	};
 
 	inline const bool Poll(const Key& key) { return State::get(key); }
+	inline const bool Poll(const Key& key, const Key& modifier, const bool& is) { return Poll(key) && (is ? Poll(modifier) : !Poll(modifier)); }
+	template<typename ...K>
+	inline const bool Poll(const K& ...keys) {
+		static_assert(var::all_same<Key, K...>() && var::count<2, K...>(), "Arguments must be Key type");
+		return (Poll(keys) && ...);
+	}
+
 	inline const std::pair<int, int> NOVA_API Poll();
 	inline const bool Poll(const Mouse& button) { return State::get(button); }
 
