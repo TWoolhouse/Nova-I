@@ -24,9 +24,10 @@ namespace Nova {
 		static void DrawPoint(Buffer::Context* bc) { DrawPoint(bc, bc->index().count()); }
 		static void DrawPoint(Buffer::Context* bc, const unsigned int count);
 
-		// Move out to properties?
+		static const bool& VSync() { return s_vsync; }
 		static void VSync(const bool flag);
-
+	protected:
+		static bool s_vsync;
 	};
 
 }

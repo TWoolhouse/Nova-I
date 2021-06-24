@@ -26,9 +26,6 @@ namespace Nova {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		// Black Screen!
-		// glEnable(GL_DEPTH_TEST);
-
 		return true;
 	}
 
@@ -74,6 +71,7 @@ namespace Nova {
 	}
 
 	void Render::Command::VSync(const bool flag) {
+		s_vsync = flag;
 		glfwSwapInterval(flag);
 	}
 
