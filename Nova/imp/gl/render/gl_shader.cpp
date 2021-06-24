@@ -133,7 +133,7 @@ namespace Nova {
 			if (!success) {
 				char info[512];
 				glGetProgramInfoLog(m_id, 512, NULL, info);
-				std::cout << "ERROR: Shader Linking:\n" << info << std::endl;
+				std::cerr << "ERROR: Shader Linking:\n" << info << std::endl;
 			}
 			#endif // !NOVA_RELEASE
 

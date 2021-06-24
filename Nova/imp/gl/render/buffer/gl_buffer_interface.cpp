@@ -87,11 +87,11 @@ namespace Nova::OpenGL {
 	}
 
 	unsigned int BufferInterface::scan(Star<Nova::Shader> shader, const std::string& name, Buffer::Shader::Spec& spec) {
-		auto gl_shader = dynamic_cast<ShaderProgram*>(&*shader);
+		auto gl_shader = dynamic_cast<ShaderProgram*>(shader.get());
 		return scan_variables<Buffer::Shader::Spec::Element>(gl_shader, gl_shader->m_id, name, spec, GL_SHADER_STORAGE_BLOCK, GL_BUFFER_VARIABLE);
 	}
 	unsigned int BufferInterface::scan(Star<Nova::Shader> shader, const std::string& name, Buffer::Uniform::Spec& spec) {
-		auto gl_shader = dynamic_cast<ShaderProgram*>(&*shader);
+		auto gl_shader = dynamic_cast<ShaderProgram*>(shader.get());
 		return scan_variables<Buffer::Uniform::Spec::Element>(gl_shader, gl_shader->m_id, name, spec, GL_UNIFORM_BLOCK, GL_UNIFORM);
 	}
 
