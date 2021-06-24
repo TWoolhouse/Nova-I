@@ -9,6 +9,8 @@
 #include <variant>
 #include <type_traits>
 #include <bitset>
+#include <iostream>
+#include <numeric>
 
 #ifdef NOVA_EXPORT
 #define NOVA_API __declspec(dllexport)
@@ -19,6 +21,10 @@
 // #define NOVA_DEBUG
 // #define NOVA_INTERNAL
 // #define NOVA_RELEASE
+
+#if (defined(NOVA_DEBUG) && (defined(NOVA_INTERNAL) || defined(NOVA_RELEASE))) || (defined(NOVA_INTERNAL) && (defined(NOVA_DEBUG) || defined(NOVA_RELEASE))) || (defined(NOVA_RELEASE) && (defined(NOVA_DEBUG) || defined(NOVA_INTERNAL)))
+#error Multiple Nova runtime requirements
+#endif
 
 #ifndef NOVA_RELEASE
 #define nova_assert(flag, msg) _nova_assert(flag, msg)
