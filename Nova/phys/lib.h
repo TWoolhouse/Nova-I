@@ -23,6 +23,6 @@ namespace Nova::mlb {
 	using namespace glm;
 }
 
-std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec2& vec);
-std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec3& vec);
-std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec4& vec);
+NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec2& vec);
+NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec3& vec);
+NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec4& vec);

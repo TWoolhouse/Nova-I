@@ -1,4 +1,5 @@
 #pragma once
+#include "lib.h"
 #include <random>
 
 namespace Nova::mlb {
