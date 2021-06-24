@@ -5,8 +5,10 @@
 #define IMGUI_API NOVA_API
 #ifndef NOVA_EXPORT
 #include "dep/imgui/imgui/imgui.h"
+#include "dep/imgui/imgui/misc/cpp/imgui_stdlib.h"
 #else
 #include <imgui/imgui.h>
+#include <imgui/misc/cpp/imgui_stdlib.h>
 #endif // NOVA_EXPORT
 
 #include "phys/lib.h"
@@ -32,6 +34,7 @@ namespace Nova::gui {
 		virtual void end() = 0;
 		void event(Nova::Event::Event& event);
 		void block_events(bool block) { m_block = block; }
+		const bool blocking() const { return m_block; }
 	protected:
 		bool m_block = false;
 		void setup();

@@ -1,5 +1,6 @@
 #include "npch.h"
 #include "gui.h"
+#include "ext.h"
 #include "event/key.h"
 #include "event/mouse.h"
 #include "event/window.h"
@@ -29,7 +30,9 @@ namespace Nova::gui {
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 
-		io.IniFilename = "Nova/gui.ini";
+		io.MouseDoubleClickTime = 0.5f;
+
+		io.IniFilename = "gui.ini";
 
 		auto font = io.Fonts->AddFontFromFileTTF("Nova/font/CascadiaCode_VTT.ttf", 17.0f); // 24px for large
 		io.FontDefault = font;
@@ -71,6 +74,17 @@ namespace Nova::gui {
 		style.ColorButtonPosition = ImGuiDir_Right;
 
 
+	}
+
+	void gui::Image(const Star<Texture2D>& texture) {
+		Image(texture, ImGui::GetContentRegionAvail());
+	}
+	void Image(const Star<Texture2D>& texture, const mlb::vec2& size, const mlb::vec4& tint) {
+		Image(texture, vec(size), vec(tint));
+	}
+	void gui::Image(const Star<Texture2D>& texture, const ImVec2& size, const ImVec4& tint) {
+		auto img = (void*)(intptr_t)texture->id();
+		ImGui::Image(img, size, { 0,1 }, { 1,0 }, tint);
 	}
 
 }
