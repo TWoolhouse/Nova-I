@@ -1,5 +1,6 @@
 #pragma once
 #include "npch.h"
+#include "asset/library.h"
 
 namespace Nova {
 
@@ -23,7 +24,9 @@ namespace Nova {
 		Type m_type;
 	};
 
-	class NOVA_API Shader {
+	class NOVA_API Shader : public Asset::Base<Shader> {
+		inline static Star<Shader> LibCreate(const std::string& filename) { return Create(filename); }
+		friend class Asset::Library<Shader>;
 	public:
 		class NOVA_API Uniform {
 		public:
@@ -57,8 +60,10 @@ namespace Nova {
 	};
 
 	class NOVA_API ShaderCompute : public virtual Shader {
+		// TODO
 		// Add safety so only compute shaders can be added
 		// require compute shader source
+		// How it interacts with the Asset Library System
 	public:
 		static Star<ShaderCompute> Create(const std::string& filename, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
 		static Star<ShaderCompute> Create(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
