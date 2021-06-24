@@ -12,14 +12,14 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 	constexpr unsigned int width_unit = 64, height_unit = 18;
 	constexpr unsigned int blocksize = 1024;
 
-	assert(!(width % width_unit) && "Width must be a multiple of the width unit");
-	assert(!(height % height_unit) && "Height must be a multiple of the height unit");
+	nova_assert(!(width % width_unit), "Width must be a multiple of the width unit");
+	nova_assert(!(height % height_unit), "Height must be a multiple of the height unit");
 	m_texture = Nova::Texture2D::Create(width, height, {
-		{Nova::Texture::Colour::Type::RGBAW, Nova::Texture::Colour::Type::RGBA},
+		{Nova::Texture::Colour::Type::RGBA, Nova::Texture::Colour::Type::RGBAW },
 		{},
 		{Nova::Texture::Filtering::Type::Linear, Nova::Texture::Filtering::Type::Nearest},
 		});
-	m_agent = Nova::ShaderCompute::Create("asset/shader/trail.agent.glsl", { blocks, 1, 1 });
+	m_agent = Nova::ShaderCompute::Create("Sol/asset/shader/trail.agent.glsl", { blocks, 1, 1 });
 	m_agent->Upload()->Int("output_image", 0);
 	m_agent->Upload()->Float("dt", 0.0f);
 
@@ -31,7 +31,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 		"agents",
 		});
 
-	m_fade = Nova::ShaderCompute::Create("asset/shader/trail.fade.glsl", { m_texture->size().x / 64, m_texture->size().y / 18, 1 });
+	m_fade = Nova::ShaderCompute::Create("Sol/asset/shader/trail.fade.glsl", { m_texture->size().x / 64, m_texture->size().y / 18, 1 });
 	m_fade->Upload()->Int("output_image", 0);
 	m_fade->Upload()->Float("u_fade", s_properties.fade);
 	m_fade->Upload()->Float("u_diffuse", s_properties.diffuse);
