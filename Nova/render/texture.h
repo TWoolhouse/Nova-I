@@ -1,6 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "phys/lib.h"
+#include "asset/library.h"
 
 namespace Nova {
 
@@ -9,6 +10,7 @@ namespace Nova {
 			enum class Type {
 				RGBA = 0, RGB,
 				RGBAW,
+				DEPTH_STENCIL,
 			};
 			Type format, inner;
 			Colour() = default;
@@ -46,7 +48,9 @@ namespace Nova {
 		};
 	}
 
-	class NOVA_API Texture2D {
+	class NOVA_API Texture2D : public Asset::Base<Texture2D> {
+		inline static Star<Texture2D> LibCreate(const std::string& filename, const Texture::Properties& properties) { return Create(filename, properties); }
+		friend class Asset::Library<Texture2D>;
 	public:
 		class NOVA_API Sub;
 

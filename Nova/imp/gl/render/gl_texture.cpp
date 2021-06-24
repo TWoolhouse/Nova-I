@@ -14,9 +14,32 @@ namespace Nova {
 		switch (colour) {
 		case Texture::Colour::Type::RGBA:	return GL_RGBA;
 		case Texture::Colour::Type::RGB:	return GL_RGB;
-		case Texture::Colour::Type::RGBAW:	return GL_RGBA32F;
+		case Texture::Colour::Type::RGBAW:	return ColourType(Texture::Colour::Type::RGBA);
+		case Texture::Colour::Type::DEPTH_STENCIL:	return GL_DEPTH_STENCIL;
 		default:
-			return GL_RGBA;
+			return ColourType(Texture::Colour::Type::RGBA);
+		}
+	}
+	constexpr GLenum ColourTypeInternal(const Texture::Colour::Type& colour) {
+		switch (colour) {
+		case Texture::Colour::Type::RGBA:	return GL_RGBA;
+		case Texture::Colour::Type::RGB:	return GL_RGB;
+		case Texture::Colour::Type::RGBAW:	return GL_RGBA32F;
+		case Texture::Colour::Type::DEPTH_STENCIL:	return GL_DEPTH24_STENCIL8;
+		default:
+			return ColourTypeInternal(Texture::Colour::Type::RGBA);
+		}
+	}
+	constexpr GLenum TextureDataType(const Texture::Colour::Type& colour) {
+		switch (colour) {
+		case Texture::Colour::Type::RGBA:
+		case Texture::Colour::Type::RGB:
+		case Texture::Colour::Type::RGBAW:
+			return GL_UNSIGNED_BYTE;
+		case Texture::Colour::Type::DEPTH_STENCIL:
+			return GL_UNSIGNED_INT_24_8;
+		default:
+			return TextureDataType(Texture::Colour::Type::RGBA);
 		}
 	}
 	constexpr GLenum WrapType(const Texture::Wrap::Type& wrap) {
@@ -63,7 +86,7 @@ namespace Nova {
 		Texture2D::Texture2D(const unsigned int width, const unsigned int height, const Texture::Properties& properties)
 			: Texture2D(properties) {
 			m_width = width; m_height = height;
-			glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, nullptr);
+			glTexImage2D(GL_TEXTURE_2D, 0, ColourTypeInternal(m_colour.inner), width, height, 0, ColourType(m_colour.format), TextureDataType(m_colour.inner), nullptr);
 		}
 
 		Texture2D::Texture2D(const std::string& filename, const Texture::Properties& properties)
@@ -71,7 +94,7 @@ namespace Nova {
 			auto [width, height, data] = FileIO::Texture(filename);
 			m_width = width; m_height = height;
 			if (data) {
-				glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, data);
+				glTexImage2D(GL_TEXTURE_2D, 0, ColourTypeInternal(m_colour.inner), width, height, 0, ColourType(m_colour.format), TextureDataType(m_colour.inner), data);
 				// glGenerateMipmap(GL_TEXTURE_2D);
 			} else {
 				std::cerr << "Failed to load texture" << std::endl;
@@ -91,12 +114,12 @@ namespace Nova {
 		}
 
 		void Texture2D::image(unsigned int slot) {
-			glBindImageTexture(slot, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+			glBindImageTexture(slot, m_id, 0, GL_FALSE, 0, GL_WRITE_ONLY, ColourTypeInternal(m_colour.inner));
 		}
 
 		void Texture2D::resize(const unsigned int width, const unsigned int height) {
 			nova_gl_bind(GL_TEXTURE_BINDING_2D, m_id);
-			glTexImage2D(GL_TEXTURE_2D, 0, ColourType(m_colour.format), width, height, 0, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, nullptr);
+			glTexImage2D(GL_TEXTURE_2D, 0, ColourTypeInternal(m_colour.inner), width, height, 0, ColourType(m_colour.format), TextureDataType(m_colour.inner), nullptr);
 			m_width = width; m_height = height;
 		}
 
@@ -105,7 +128,7 @@ namespace Nova {
 			nova_assert(yoff <= m_height, "Invalid Y-offset");
 			nova_assert((xoff + width) <= m_width, "Invalid Width");
 			nova_assert((yoff + height) <= m_height, "Invalid Height");
-			glTextureSubImage2D(m_id, 0, xoff, yoff, width, height, ColourType(m_colour.inner), GL_UNSIGNED_BYTE, data);
+			glTextureSubImage2D(m_id, 0, xoff, yoff, width, height, ColourType(m_colour.format), TextureDataType(m_colour.inner), data);
 		}
 
 		Texture2D::~Texture2D() {
