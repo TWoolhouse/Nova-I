@@ -33,6 +33,8 @@ namespace FrameOutput {
 
 namespace Nova {
 
+	bool Render::Command::s_vsync = false;
+
 	RenderState::RenderState(Buffer::Frame* fbuff)
 		: buffer_context(Buffer::Context::Create()), framebuffer(fbuff), blank_texture(Texture2D::Create(1, 1, {})) {
 		constexpr float vb_data[] = {
@@ -62,6 +64,11 @@ namespace Nova {
 			});
 		shader->Upload()->Int("u_tex", 0);
 		framebuffer->attach_colour(output);
+
+		output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
+			{ Nova::Texture::Colour::Type::DEPTH_STENCIL }
+			});
+		framebuffer->attach_depth_stencil(output);
 
 		framebuffer->validate();
 
