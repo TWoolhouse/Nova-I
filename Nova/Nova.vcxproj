@@ -255,6 +255,7 @@
     <ClCompile Include="render\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="dep\.gitignore" />
     <None Include="dep\glm\README.md" />
     <None Include="dep\README.md" />

@@ -336,6 +336,7 @@
     <None Include="Nova\shader\draw\quad.geom.glsl" />
     <None Include="Nova\shader\draw\vert.glsl" />
     <None Include="Nova\shader\main_render.glsl" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="fileio\stblib\LICENSE.txt" />
