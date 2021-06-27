@@ -76,15 +76,31 @@ namespace Nova::gui {
 
 	}
 
-	void gui::Image(const Star<Texture2D>& texture) {
-		Image(texture, ImGui::GetContentRegionAvail());
+	void Image(const Star<Texture2D>& texture) {
+		return Image(texture, ImGui::GetContentRegionAvail());
+	}
+	void gui::Image(const Star<Texture2D>& texture, bool ratio) {
+		auto size = texture->size();
+		auto avail = ImGui::GetContentRegionAvail().x;
+		return Image(texture, ImVec2{ avail, size.y * avail / size.x });
 	}
 	void Image(const Star<Texture2D>& texture, const mlb::vec2& size, const mlb::vec4& tint) {
-		Image(texture, vec(size), vec(tint));
+		return Image(texture, vec(size), vec(tint));
 	}
-	void gui::Image(const Star<Texture2D>& texture, const ImVec2& size, const ImVec4& tint) {
+	void Image(const Star<Texture2D>& texture, const ImVec2& size, const ImVec4& tint) {
 		auto img = (void*)(intptr_t)texture->id();
 		ImGui::Image(img, size, { 0,1 }, { 1,0 }, tint);
+	}
+
+	bool ImageButton(const Star<Texture2D>& texture) {
+		return ImageButton(texture, ImGui::GetContentRegionAvail());
+	}
+	bool ImageButton(const Star<Texture2D>& texture, const mlb::vec2& size) {
+		return ImageButton(texture, vec(size));
+	}
+	bool ImageButton(const Star<Texture2D>& texture, const ImVec2& size) {
+		auto img = (void*)(intptr_t)texture->id();
+		return ImGui::ImageButton(img, size, { 0,1 }, { 1,0 });
 	}
 
 }
