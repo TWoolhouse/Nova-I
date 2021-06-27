@@ -27,8 +27,8 @@
 #endif
 
 #ifndef NOVA_RELEASE
-#define nova_assert(flag, msg) _nova_assert(flag, msg)
-void NOVA_API _nova_assert(const bool& flag, const std::string& msg);
+#define nova_assert(flag, msg) _nova_assert(flag, msg, __FILE__, __LINE__)
+void NOVA_API _nova_assert(const bool& flag, const std::string& msg, const char* file, const long line);
 #else
 #define nova_assert(flag, msg) ((void)0);
 #endif // NOVA_RELEASE
