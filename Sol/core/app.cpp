@@ -31,7 +31,7 @@ namespace Sol {
 		f.emplace<Nova::Component::Parent>(e);
 		f.emplace<Nova::Component::Transform>(Nova::mlb::vec3{0.5, 0.5, 0.1});
 		auto& sprite = f.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{ 0.0, 0.687, 0.41, 1.0 });
-		sprite.texture = Nova::Texture2D::Create("Sol/asset/texture/test.jpg", {});
+		sprite.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
 
 	}
 
