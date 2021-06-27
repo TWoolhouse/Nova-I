@@ -54,9 +54,9 @@ namespace Nova {
 	public:
 		class NOVA_API Sub;
 
-		static Star<Texture2D> Create(const Texture::Properties& properties);
-		static Star<Texture2D> Create(const unsigned int width, const unsigned int height, const Texture::Properties& properties);
-		static Star<Texture2D> Create(const std::string& filename, const Texture::Properties& properties);
+		static Star<Texture2D> Create(const Texture::Properties& properties = {});
+		static Star<Texture2D> Create(const unsigned int width, const unsigned int height, const Texture::Properties& properties = {});
+		static Star<Texture2D> Create(const std::string& filename, const Texture::Properties& properties = {});
 		Texture2D(unsigned int width = 0, unsigned int height = 0) : m_width(width), m_height(height) {}
 
 		virtual void bind(unsigned int slot=0) = 0;
