@@ -88,9 +88,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sol\asset\shader\simple.glsl" />
-    <None Include="Sol\asset\shader\trail.agent.glsl" />
-    <None Include="Sol\asset\shader\trail.fade.glsl" />
+    <None Include="Sol\shader\simple.glsl" />
+    <None Include="Sol\shader\trail.agent.glsl" />
+    <None Include="Sol\shader\trail.fade.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc">
@@ -98,7 +98,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Sol\asset\texture\nova.ico">
+    <Image Include="Sol\texture\nova.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -90,6 +90,7 @@
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)Sol\ $(TargetDir)Sol\ /y /c /s /e /j /d
 xcopy $(ProjectDir)asset\ $(TargetDir)asset\ /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
@@ -123,6 +124,7 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)Sol\ $(TargetDir)Sol\ /y /c /s /e /j /d
 xcopy $(ProjectDir)asset\ $(TargetDir)asset\ /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
@@ -156,6 +158,7 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <PostBuildEvent>
       <Command>xcopy $(TargetDir)..\Nova\ $(TargetDir) /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(ProjectDir)Nova\ /y /c /s /e /j /d
+xcopy $(ProjectDir)Sol\ $(TargetDir)Sol\ /y /c /s /e /j /d
 xcopy $(ProjectDir)asset\ $(TargetDir)asset\ /y /c /s /e /j /d
 xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     </PostBuildEvent>
@@ -198,15 +201,15 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <ClInclude Include="spch.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sol\asset\shader\simple.glsl" />
-    <None Include="Sol\asset\shader\trail.agent.glsl" />
-    <None Include="Sol\asset\shader\trail.fade.glsl" />
+    <None Include="Sol\shader\simple.glsl" />
+    <None Include="Sol\shader\trail.agent.glsl" />
+    <None Include="Sol\shader\trail.fade.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Sol\asset\texture\nova.ico" />
+    <Image Include="Sol\texture\nova.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
