@@ -19,7 +19,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 		{},
 		{Nova::Texture::Filtering::Type::Linear, Nova::Texture::Filtering::Type::Nearest},
 		});
-	m_agent = Nova::ShaderCompute::Create("Sol/shader/trail.agent.glsl", { blocks, 1, 1 });
+	m_agent = Nova::ShaderCompute::Create("asset/shader/trail.agent.glsl", { blocks, 1, 1 });
 	m_agent->Upload()->Int("output_image", 0);
 	m_agent->Upload()->Float("dt", 0.0f);
 
@@ -31,7 +31,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 		"agents",
 		});
 
-	m_fade = Nova::ShaderCompute::Create("Sol/shader/trail.fade.glsl", { m_texture->size().x / 64, m_texture->size().y / 18, 1 });
+	m_fade = Nova::ShaderCompute::Create("asset/shader/trail.fade.glsl", { m_texture->size().x / 64, m_texture->size().y / 18, 1 });
 	m_fade->Upload()->Int("output_image", 0);
 	m_fade->Upload()->Float("u_fade", s_properties.fade);
 	m_fade->Upload()->Float("u_diffuse", s_properties.diffuse);
@@ -47,7 +47,7 @@ Ants::Ants(const unsigned int blocks, const unsigned int width, const unsigned i
 	upload = 0.1f;
 	m_buffer->set("steering", &upload);
 
-	const Nova::mlb::vec4 colour = { 0.1, 1.0, 1.0, 1.0 };
+	const Nova::mlb::vec4 colour = { 1.0, 1.0, 1.0, 1.0 };
 	m_buffer->set("colour", &colour);
 
 	std::vector<Agent> agents(blocksize);
@@ -95,22 +95,22 @@ void Ants::update() {
 
 void Ants::event(Nova::Event::Event& event) {
 	if (auto e = event.cast<Nova::Event::KeyPress>()) {
-		int dir = Nova::Input::Poll(Nova::Input::Key::LCTRL) ? -1 : 1;
-		if (e.match(Nova::Input::Key::A)) {
+		int dir = (Nova::Input::Poll(Nova::Input::Key::LCTRL) || Nova::Input::Poll(Nova::Input::Key::RCTRL)) ? -1 : 1;
+		if (e.match(Nova::Input::Key::J)) {
 			float upload;
 			m_buffer->get("scan_angle", &upload);
 			upload += 1.0f * dir;
 			m_buffer->set("scan_angle", &upload);
 			std::cout << "Angle: " << static_cast<int>(upload) << std::endl;
 
-		} else if (e.match(Nova::Input::Key::S)) {
+		} else if (e.match(Nova::Input::Key::K)) {
 			float upload;
 			m_buffer->get("steering", &upload);
 			upload += 0.01f * dir;
 			m_buffer->set("steering", &upload);
 			std::cout << "Steering: " << upload << std::endl;
 
-		} else if (e.match(Nova::Input::Key::D)) {
+		} else if (e.match(Nova::Input::Key::L)) {
 			float upload;
 			m_buffer->get("scan_dist", &upload);
 			upload += 5.0f * dir;
@@ -127,19 +127,19 @@ void Ants::event(Nova::Event::Event& event) {
 			m_fade->Upload()->Float("u_diffuse", s_properties.diffuse);
 			std::cout << "Diffuse: " << s_properties.diffuse << std::endl;
 
-		} else if (e.match(Nova::Input::Key::Q)) {
+		} else if (e.match(Nova::Input::Key::E)) {
 			Nova::mlb::vec4 upload;
 			m_buffer->get("colour", &upload);
 			upload.r += 0.05f * dir;
 			m_buffer->set("colour", &upload);
 			std::cout << "Colour: " << upload.x << ", " << upload.y << ", " << upload.z << std::endl;
-		} else if (e.match(Nova::Input::Key::W)) {
+		} else if (e.match(Nova::Input::Key::R)) {
 			Nova::mlb::vec4 upload;
 			m_buffer->get("colour", &upload);
 			upload.g += 0.05f * dir;
 			m_buffer->set("colour", &upload);
 			std::cout << "Colour: " << upload.x << ", " << upload.y << ", " << upload.z << std::endl;
-		} else if (e.match(Nova::Input::Key::E)) {
+		} else if (e.match(Nova::Input::Key::T)) {
 			Nova::mlb::vec4 upload;
 			m_buffer->get("colour", &upload);
 			upload.b += 0.05f * dir;
