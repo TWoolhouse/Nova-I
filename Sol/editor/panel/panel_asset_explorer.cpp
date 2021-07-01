@@ -106,7 +106,7 @@ namespace Sol::Panel {
 			for (auto& entry : std::filesystem::directory_iterator(atype.directory)) {
 				auto& epath = entry.path();
 				//Nova::gui::Text(ename.c_str());
-			
+
 				if (entry.is_directory()) { // Directory
 					if (Nova::gui::BeginChild(epath.string().c_str(), { element_width, element_width + text_lines * Nova::gui::GetTextLineHeightWithSpacing() }, true, ImGuiWindowFlags_AlwaysAutoResize || ImGuiWindowFlags_NoScrollbar)) {
 						Nova::gui::PushStyleColor(ImGuiCol_Button, Nova::gui::GetColorU32(ImGuiCol_WindowBg));
@@ -183,7 +183,7 @@ namespace Sol::Panel {
 			return;
 		//Nova::gui::Text(&active->path.string().c_str()[atype.directory.string().size()]);
 		Nova::gui::Text(active.path.filename().string().c_str());
-		
+
 		auto size = active.texture->size();
 		auto max = Nova::gui::GetContentRegionMax();
 		Nova::gui::Image(active.texture, true);

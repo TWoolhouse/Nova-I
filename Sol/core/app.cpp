@@ -3,6 +3,10 @@
 
 #include "editor/panels.h"
 
+#include "example/ants.h"
+
+static Ants* ants;
+
 namespace Sol {
 
 	App::App() :
@@ -25,6 +29,7 @@ namespace Sol {
 
 		auto g = world->instantiate();
 		g.emplace<Nova::Component::Name>("Other");
+		g.emplace<Nova::Component::Transform>();
 
 		auto f = world->instantiate();
 		f.emplace<Nova::Component::Name>("Child");
@@ -33,12 +38,21 @@ namespace Sol {
 		auto& sprite = f.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{ 0.0, 0.687, 0.41, 1.0 });
 		sprite.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
 
+		ants = new Ants(32, 2560, 1440);
+		auto ant = world->instantiate();
+		ant.emplace<Nova::Component::Name>("Ants");
+		ant.emplace<Nova::Component::Transform>(Nova::mlb::vec3{ 1.0, 1.0, 0.0 });
+		auto& s = ant.emplace<Nova::Component::Sprite>();
+		s.texture = ants->get_texture();
+
 	}
 
 	void App::update() {
 
 		// ### Render ###
 		Nova::Render::Draw(camera);
+
+		ants->update();
 
 		if (!gui->blocking())
 			camera_controller.update();
@@ -119,6 +133,7 @@ namespace Sol {
 	}
 
 	void App::event(Nova::Event::Event& event) {
+		ants->event(event);
 		if (auto e = event.cast<Nova::Event::KeyPress>()) {
 			if (e.match(Nova::Input::Key::ESCAPE)) {
 				Nova::Event::WindowClose close;
