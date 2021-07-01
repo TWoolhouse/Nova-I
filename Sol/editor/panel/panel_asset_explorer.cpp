@@ -144,7 +144,7 @@ namespace Sol::Panel {
 
 	AssetExplorer::AssetExplorer() : Panel("Asset Explorer", ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse) {
 		icons.default(Nova::Texture2D::Create("Sol/texture/icon/file.png"));
-		icons.directory = Nova::Texture2D::Create("Sol/texture/test.jpg");
+		icons.directory = Nova::Texture2D::Create("Sol/texture/icon/folder.png");
 		icons.image = Nova::Texture2D::Create("Sol/texture/icon/image.png");
 	}
 

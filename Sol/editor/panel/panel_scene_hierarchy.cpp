@@ -6,11 +6,14 @@
 
 namespace Sol::Panel {
 
+	constexpr static auto context_menu = "EntCntxtMenu";
+	constexpr static auto payload_type = "SceneHierarchy Entity";
+
 	void SceneHierarchy::HierarchyTree::insert(Nova::ecs::Entity entity, Nova::Component::Name* name, Nova::Component::Parent* parent) {
 		E e{ entity, name->name, parent };
 		Node<E>* node = nullptr;
 
-		Trees::iterator s{ trees.end() };
+		Trees::iterator s = trees.find(entity);;
 		while (s == trees.cend() && parent) {
 			auto n = new Node<E>({ entity, name->name, parent });
 			if (node)
@@ -51,8 +54,16 @@ namespace Sol::Panel {
 		for (auto& root : tree.traverse()) {
 			traverse(world, reg, *root);
 		}
+		Nova::gui::Dummy(Nova::gui::GetContentRegionAvail());
+		if (Nova::gui::BeginDragDropTarget()) {
+			if (auto payload = Nova::gui::AcceptDragDropPayload(payload_type)) {
+				Nova::ecs::Entity nchild{ reg , *static_cast<Nova::ecs::Entity::Type*>(payload->Data) };
+				nchild.remove_if_exists<Nova::Component::Parent>();
+			}
+			Nova::gui::EndDragDropTarget();
+		}
 		//static constexpr auto context_menu = ;
-		if (Nova::gui::BeginPopupContextWindow("EnttyCntxtMenu", ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight)) {
+		if (Nova::gui::BeginPopupContextWindow(context_menu, ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight)) {
 			if (Nova::gui::MenuItem("Create New Entity")) {
 				auto e = world->instantiate();
 				e.emplace<Nova::Component::Name>("New Entity");
@@ -82,7 +93,6 @@ namespace Sol::Panel {
 		constexpr static ImGuiTreeNodeFlags s_flags = ImGuiTreeNodeFlags_NavLeftJumpsBackHere
 			| ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen
 			| ImGuiTreeNodeFlags_AllowItemOverlap | ImGuiTreeNodeFlags_SpanAvailWidth;
-		constexpr static auto context_menu = "EntCntxtMenu";
 		Nova::ecs::Entity entity{ reg, std::get<0>(node.data) };
 		if (entity == m_selected)
 			m_selected_valid = true;
@@ -95,6 +105,23 @@ namespace Sol::Panel {
 		auto& name = std::get<1>(node.data);
 		Nova::gui::PushID(std::to_string(entity).c_str());
 		const auto topen = Nova::gui::TreeNodeExV(std::to_string(entity).c_str(), flags, name.c_str(), "");
+		if (Nova::gui::BeginDragDropSource()) {
+			auto eid = entity.entity();
+			Nova::gui::SetDragDropPayload(payload_type, static_cast<void*>(&eid), sizeof(decltype(eid)));
+			Nova::gui::Text(name.c_str());
+			Nova::gui::EndDragDropSource();
+		}
+		auto payload = Nova::gui::GetDragDropPayload();
+		if (payload && payload->IsDataType(payload_type)) {
+			if (Nova::gui::BeginDragDropTarget()) {
+				if (payload = Nova::gui::AcceptDragDropPayload(payload_type)) {
+					Nova::ecs::Entity nchild{ reg , *static_cast<Nova::ecs::Entity::Type*>(payload->Data) };
+					auto& nparent = nchild.get_or_emplace<Nova::Component::Parent>(entity);
+					nparent.entity = entity;
+				}
+				Nova::gui::EndDragDropTarget();
+			}
+		}
 		if ((Nova::gui::IsMouseClicked(ImGuiMouseButton_Left) || Nova::gui::IsKeyPressed(Nova::gui::GetKeyIndex(ImGuiKey_Enter))) && Nova::gui::IsItemHovered()) {
 			m_selected = entity;
 			m_selected_valid = true;
