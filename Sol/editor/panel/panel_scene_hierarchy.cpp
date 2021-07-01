@@ -113,7 +113,18 @@ namespace Sol::Panel {
 		}
 		auto payload = Nova::gui::GetDragDropPayload();
 		if (payload && payload->IsDataType(payload_type)) {
-			if (Nova::gui::BeginDragDropTarget()) {
+			auto& payload_entt = *static_cast<Nova::ecs::Entity::Type*>(payload->Data);
+			auto pentt = entity.try_get<Nova::Component::Parent>();
+			bool flag = true;
+			while (pentt) {
+				if (pentt->entity == payload_entt) {
+					flag = false;
+					break;
+				}
+				pentt = Nova::ecs::Entity{ reg, pentt->entity }.try_get<Nova::Component::Parent>();
+			}
+
+			if (flag && Nova::gui::BeginDragDropTarget()) {
 				if (payload = Nova::gui::AcceptDragDropPayload(payload_type)) {
 					Nova::ecs::Entity nchild{ reg , *static_cast<Nova::ecs::Entity::Type*>(payload->Data) };
 					auto& nparent = nchild.get_or_emplace<Nova::Component::Parent>(entity);
