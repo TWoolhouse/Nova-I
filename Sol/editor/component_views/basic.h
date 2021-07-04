@@ -1,5 +1,6 @@
 #pragma once
 #include "view.h"
+#include "editor/drop_targets.h"
 
 namespace Sol::View {
 
@@ -72,6 +73,20 @@ namespace Sol::View {
 				tint = component.colour;
 
 			Nova::gui::Image(component.texture, Nova::mlb::vec2{ width, tex_size.y * width / tex_size.x }, tint);
+			Editor::Drag::texture(component.texture, ImGuiDragDropFlags_SourceAllowNullID);
+			if (Nova::gui::BeginDragDropTarget()) {
+				auto payload = Nova::gui::AcceptDragDropPayload(Editor::Drag::Drop::texture);
+				if (payload) {
+					component.texture = *static_cast<decltype(component.texture)*>(payload->Data);
+				}
+				Nova::gui::EndDragDropTarget();
+			}
+			if (Nova::gui::BeginPopupContextWindow("TextureContextMenu")) {
+				if (Nova::gui::MenuItem("Clear")) {
+					component.texture = Nova::Resource::Stock::Texture::blank;
+				}
+				Nova::gui::EndPopup();
+			}
 		}
 	};
 

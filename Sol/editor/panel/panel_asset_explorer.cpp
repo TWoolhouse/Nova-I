@@ -2,6 +2,7 @@
 #include "asset_explorer.h"
 #include <filesystem>
 #include <nova.h>
+#include "editor/drop_targets.h"
 
 namespace Sol::Panel {
 
@@ -182,11 +183,15 @@ namespace Sol::Panel {
 		if (!active)
 			return;
 		//Nova::gui::Text(&active->path.string().c_str()[atype.directory.string().size()]);
-		Nova::gui::Text(active.path.filename().string().c_str());
+		auto& name = active.path.filename().string();
+		Nova::gui::Text(name.c_str());
 
 		auto size = active.texture->size();
 		auto max = Nova::gui::GetContentRegionMax();
 		Nova::gui::Image(active.texture, true);
+		Editor::Drag::texture(Nova::Asset<Nova::Texture2D>{
+			""_ns, active.texture, { active.path.string(), {} }
+		}, ImGuiDragDropFlags_SourceAllowNullID);
 	}
 	void display_shader(AssetType& atype) {
 		auto& active = *static_cast<AssetSelected*>(atype.selected);

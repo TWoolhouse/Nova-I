@@ -11,6 +11,7 @@ namespace Sol::Panel {
 	protected:
 		virtual void gui() override;
 
+		Nova::Star<Nova::ecs::World> world;
 		Nova::ecs::Entity m_selected;
 		bool m_selected_valid = false;
 
@@ -53,5 +54,6 @@ namespace Sol::Panel {
 		};
 		void traverse(Nova::Star<Nova::ecs::World>& world, Nova::ecs::Registry& reg, HierarchyTree::Node<HierarchyTree::E>& node);
 		void delete_entity_recurse(Nova::ecs::Entity& entity, HierarchyTree::Node<HierarchyTree::E>& node);
+		void create_entity(const Nova::ecs::Entity* parent=nullptr);
 	};
 }

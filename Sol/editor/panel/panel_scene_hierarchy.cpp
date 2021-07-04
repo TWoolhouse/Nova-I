@@ -35,8 +35,7 @@ namespace Sol::Panel {
 
 	void SceneHierarchy::gui() {
 
-		auto& app = *static_cast<App*>(&Nova::App());
-		auto& world = app.world;
+		world = static_cast<App*>(&Nova::App())->world;
 		auto& reg = world->registry;
 
 		auto v = reg.view<Nova::Component::Name>(Nova::entt::exclude<Nova::Component::Parent>);
@@ -65,9 +64,7 @@ namespace Sol::Panel {
 		//static constexpr auto context_menu = ;
 		if (Nova::gui::BeginPopupContextWindow(context_menu, ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight)) {
 			if (Nova::gui::MenuItem("Create New Entity")) {
-				auto e = world->instantiate();
-				e.emplace<Nova::Component::Name>("New Entity");
-				e.emplace<Nova::Component::Transform>();
+				create_entity();
 			}
 			Nova::gui::EndPopup();
 		}
@@ -139,10 +136,7 @@ namespace Sol::Panel {
 		}
 		if (Nova::gui::BeginPopupContextItem(context_menu)) {
 			if (Nova::gui::MenuItem("Create Child Entity")) {
-				auto e = world->instantiate();
-				e.emplace<Nova::Component::Name>("New Entity");
-				e.emplace<Nova::Component::Transform>();
-				e.emplace<Nova::Component::Parent>(entity);
+				create_entity(&entity);
 			}
 			if (Nova::gui::MenuItem("Delete Entity")) {
 				delete_entity_recurse(entity, node);
@@ -164,6 +158,18 @@ namespace Sol::Panel {
 		}
 
 		Nova::gui::PopID();
+	}
+
+	void SceneHierarchy::create_entity(const Nova::ecs::Entity* parent) {
+		auto e = world->instantiate();
+		e.emplace<Nova::Component::Name>("New Entity");
+		e.emplace<Nova::Component::Transform>();
+		if (parent) {
+			const auto& p = *parent;
+			e.emplace<Nova::Component::Parent>(p);
+		}
+		m_selected = e;
+		m_selected_valid = true;
 	}
 
 }
