@@ -1,5 +1,6 @@
 #pragma once
 #include "npch.h"
+#include "asset/stock.h"
 #include "../draw.h"
 
 namespace Nova::RenderDraw {
@@ -18,7 +19,7 @@ namespace Nova::RenderDraw {
 
 		void clear() {
 			m_bindings.clear();
-			m_bindings[RenderState::Get().blank_texture] = 0;
+			m_bindings[Resource::Stock::Texture::blank] = 0;
 		}
 
 		void bind() {

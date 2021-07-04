@@ -11,6 +11,7 @@
 #include <bitset>
 #include <iostream>
 #include <numeric>
+#include <forward_list>
 
 #ifdef NOVA_EXPORT
 #define NOVA_API __declspec(dllexport)

@@ -1,6 +1,6 @@
 #pragma once
 #include "npch.h"
-#include "asset/library.h"
+#include "asset/type.h"
 
 namespace Nova {
 
@@ -24,18 +24,18 @@ namespace Nova {
 		Type m_type;
 	};
 
-	class NOVA_API Shader : public Asset::Base<Shader> {
+	class NOVA_API Shader {
 		inline static Star<Shader> LibCreate(const std::string& filename) { return Create(filename); }
-		friend class Asset::Library<Shader>;
+		friend class Asset<Shader>;
 	public:
 		class NOVA_API Uniform {
 		public:
 			static Uniform* Create(Shader* shader);
 			virtual ~Uniform() {};
 
-			virtual void Int(const std::string& name, const int& value) = 0;
+			virtual void Int(const std::string& name, const int value) = 0;
 			virtual void Int(const std::string& name, const unsigned int count, const int* value) = 0;
-			virtual void Float(const std::string& name, const float& value) = 0;
+			virtual void Float(const std::string& name, const float value) = 0;
 			virtual void Float(const std::string& name, const unsigned int count, const float* value) = 0;
 		};
 

@@ -3,6 +3,7 @@
 #include "render_state.h"
 #include "phys/lib.h"
 #include "texture.h"
+#include "asset/stock.h"
 
 namespace Nova {
 
@@ -14,7 +15,7 @@ namespace Nova {
 
 		inline static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec4& col, const float rot = 0) { return Quad(mlb::vec3{ pos, 0.0f }, size, col, rot); }
 		inline static void Quad(const mlb::vec3& pos, const mlb::vec2& size, const mlb::vec4& col, const float rot = 0) { return Quad(gen_mat(pos, size, rot), col); }
-		inline static void Quad(const mlb::mat4& mat, const mlb::vec4& col) { return Quad(mat, col, RenderState::Get().blank_texture); }
+		inline static void Quad(const mlb::mat4& mat, const mlb::vec4& col) { return Quad(mat, col, Resource::Stock::Texture::blank); }
 
 		inline static void Quad(const mlb::vec2& pos, const mlb::vec2& size, const Star<Texture2D>& texture, const float rot = 0) { return Quad(mlb::vec3{ pos, 0.0f }, size, texture, rot); }
 		inline static void Quad(const mlb::vec3& pos, const mlb::vec2& size, const Star<Texture2D>& texture, const float rot = 0) { return Quad(gen_mat(pos, size, rot), texture); }
@@ -35,7 +36,7 @@ namespace Nova {
 		static void Quad(const mlb::mat4& mat, const mlb::vec4& col, const Star<Texture2D>& texture, const std::array<mlb::vec2, 4>& tex_pos);
 
 	protected:
-		friend struct RenderState;
+		friend struct Render::RState;
 		static const std::array<mlb::vec2, 4> s_quad_tex_pos;
 
 		inline static mlb::mat4 gen_mat(const mlb::vec3& position, const mlb::vec2& size, const float rotation) {

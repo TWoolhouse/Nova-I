@@ -1,7 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "phys/lib.h"
-#include "asset/library.h"
+#include "asset/type.h"
 
 namespace Nova {
 
@@ -48,9 +48,9 @@ namespace Nova {
 		};
 	}
 
-	class NOVA_API Texture2D : public Asset::Base<Texture2D> {
+	class NOVA_API Texture2D {
 		inline static Star<Texture2D> LibCreate(const std::string& filename, const Texture::Properties& properties) { return Create(filename, properties); }
-		friend class Asset::Library<Texture2D>;
+		friend class Asset<Texture2D>;
 	public:
 		class NOVA_API Sub;
 

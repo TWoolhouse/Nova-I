@@ -40,7 +40,9 @@
 #include "render/draw.h"
 
 // Asset Library
-#include "asset/library.h"
+#include "asset/type.h"
+#include "asset/resource.h"
+#include "asset/stock.h"
 
 // Camera
 #include "render/camera.h"

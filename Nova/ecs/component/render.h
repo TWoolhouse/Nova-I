@@ -5,15 +5,17 @@
 
 #include "phys/lib.h"
 #include "render/texture.h"
+#include "asset/type.h"
 
 namespace Nova::ecs::Components {
 
 	struct Sprite : public Component {
 		mlb::vec4 colour{ 1.0f };
-		Star<Texture2D> texture = RenderState::Get().blank_texture;
+		Asset<Texture2D> texture = Resource::Stock::Texture::blank;
 
 		Sprite() = default;
-		Sprite(const Sprite&) = default;
+		Sprite(Sprite&&) = default;
+		Sprite& operator=(Sprite&&) = default;
 		Sprite(const mlb::vec4& colour) : colour(colour) {}
 	};
 
