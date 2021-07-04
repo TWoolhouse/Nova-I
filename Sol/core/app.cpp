@@ -25,7 +25,8 @@ namespace Sol {
 		auto e = world->instantiate();
 		e.emplace<Nova::Component::Name>("My Entity");
 		e.emplace<Nova::Component::Transform>(Nova::mlb::vec3{ -1.0, -1.0, 0.0 });
-		e.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{0.5, 0.5, 1.0, 1.0});
+		auto& sprite1 = e.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{0.5, 0.5, 1.0, 1.0});
+		sprite1.texture = Nova::Resource::Stock::Texture::invalid;
 
 		auto g = world->instantiate();
 		g.emplace<Nova::Component::Name>("Other");
@@ -35,16 +36,15 @@ namespace Sol {
 		f.emplace<Nova::Component::Name>("Child");
 		f.emplace<Nova::Component::Parent>(e);
 		f.emplace<Nova::Component::Transform>(Nova::mlb::vec3{0.5, 0.5, 0.1});
-		auto& sprite = f.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{ 0.0, 0.687, 0.41, 1.0 });
-		sprite.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
+		auto& sprite2 = f.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{ 0.0, 0.687, 0.41, 1.0 });
+		sprite2.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
 
 		ants = new Ants(32, 2560, 1440);
 		auto ant = world->instantiate();
 		ant.emplace<Nova::Component::Name>("Ants");
 		ant.emplace<Nova::Component::Transform>(Nova::mlb::vec3{ 1.0, 1.0, 0.0 });
-		auto& s = ant.emplace<Nova::Component::Sprite>();
-		s.texture = ants->get_texture();
-
+		auto& sprite3 = ant.emplace<Nova::Component::Sprite>();
+		sprite3.texture = ants->get_texture();
 	}
 
 	void App::update() {
@@ -111,7 +111,7 @@ namespace Sol {
 				gui->block_events(!focus_window || !focus_hover);
 
 				auto size = Nova::gui::GetContentRegionAvail();
-				auto& fb = Nova::RenderState::Get().framebuffer;
+				auto& fb = Nova::Render::State().framebuffer;
 				auto& fbsize = fb->size();
 				auto& tex = fb->get_colour();
 				Nova::gui::Image(tex, size);

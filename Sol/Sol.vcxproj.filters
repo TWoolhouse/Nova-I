@@ -39,6 +39,9 @@
     <ClCompile Include="editor\panel\panel_asset_explorer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="editor\drag_drop_target.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="spch.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="editor\panel\asset_explorer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="editor\drop_targets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -171,6 +171,7 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="core\app.cpp" />
+    <ClCompile Include="editor\drag_drop_target.cpp" />
     <ClCompile Include="editor\panel\panels_init.cpp" />
     <ClCompile Include="editor\panel\panel_asset_explorer.cpp" />
     <ClCompile Include="editor\panel\panel_entity_components.cpp" />
@@ -189,6 +190,7 @@ xcopy $(ProjectDir)..\Nova\Nova\ $(TargetDir)Nova\ /y /c /s /e /j /d</Command>
     <ClInclude Include="editor\camera.h" />
     <ClInclude Include="editor\component_views\basic.h" />
     <ClInclude Include="editor\component_views\view.h" />
+    <ClInclude Include="editor\drop_targets.h" />
     <ClInclude Include="editor\panel\asset_explorer.h" />
     <ClInclude Include="editor\views.h" />
     <ClInclude Include="editor\panels.h" />
