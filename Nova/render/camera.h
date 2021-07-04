@@ -12,7 +12,7 @@ namespace Nova {
 		mlb::vec3 rot{ -90.0f, 0.0f, 0.0f };
 		const mlb::vec3& dir;
 
-		Camera(const float& width, const float& height, const float& near, const float& far, const float& zoom = 1.0f)
+		Camera(const float width, const float height, const float near, const float far, const float zoom = 1.0f)
 			: dir(m_dir), m_width(width), m_height(height), m_aspect(m_width / m_height), m_zoom(zoom), m_near(near), m_far(far) {}
 		~Camera() {}
 
@@ -46,7 +46,7 @@ namespace Nova {
 		}
 
 		const float& zoom() { return m_zoom; }
-		virtual void zoom(const float& value) { m_zoom = std::max(0.0f, m_zoom - value); }
+		virtual void zoom(const float value) { m_zoom = std::max(0.0f, m_zoom - value); }
 
 	protected:
 		mlb::vec3 m_dir{ 0.0f, 0.0f, 0.0f };

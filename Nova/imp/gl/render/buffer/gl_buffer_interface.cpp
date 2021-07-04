@@ -12,7 +12,7 @@
 namespace Nova::OpenGL {
 
 	template<typename Elm, typename Spec>
-	static unsigned int scan_variables(ShaderProgram* shader, const unsigned int& sid, const std::string& name, Spec& spec, GLenum type, GLenum etype) {
+	static unsigned int scan_variables(ShaderProgram* shader, const unsigned int sid, const std::string& name, Spec& spec, GLenum type, GLenum etype) {
 		shader->bind();
 
 		// Get Block Index

@@ -17,7 +17,7 @@ namespace Nova {
 
 	Window* Window::Create(
 		std::function<void(Event::Event&)> events,
-		const unsigned int& width, const unsigned int& height,
+		const unsigned int width, const unsigned int height,
 		const std::string& name, const std::string& icon) {
 		return new OpenGL::Window(events, width, height, name, icon);
 	}
@@ -28,7 +28,7 @@ namespace Nova {
 
 		Window::Window(
 			std::function<void(Event::Event&)> events,
-			const unsigned int& width, const unsigned int& height,
+			const unsigned int width, const unsigned int height,
 			const std::string& name, const std::string& icon
 		) : Nova::Window(events, width, height, name, icon), m_window(nullptr) {
 			OpenGL::Initialize();
@@ -156,7 +156,7 @@ namespace Nova {
 			Render::Command::Clear();
 		}
 
-		void Window::resize(const unsigned int& width, const unsigned int& height) {
+		void Window::resize(const unsigned int width, const unsigned int height) {
 			m_width = width; m_height = height;
 			glfwSetWindowSize(m_window, m_width, m_height);
 			Event::WindowResize event(width, height);

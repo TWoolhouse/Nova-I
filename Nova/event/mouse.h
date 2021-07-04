@@ -78,7 +78,7 @@ namespace Nova::Event {
 	class MouseScroll : public Mouse {
 	public:
 		friend Event;
-		MouseScroll(const float& x, const float& y) : Mouse(), m_offset({ x, y }) {}
+		MouseScroll(const float x, const float y) : Mouse(), m_offset({ x, y }) {}
 		const std::pair<float, float>& offset() const { return m_offset; }
 		const float& x() const { return m_offset.first; }
 		const float& y() const { return m_offset.second; }

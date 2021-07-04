@@ -35,8 +35,8 @@ namespace Nova {
 
 	bool Render::Command::s_vsync = false;
 
-	RenderState::RenderState(Buffer::Frame* fbuff)
-		: buffer_context(Buffer::Context::Create()), framebuffer(fbuff), blank_texture(Texture2D::Create(1, 1, {})) {
+	Render::RState::RState(Buffer::Frame* fbuff)
+		: buffer_context(Buffer::Context::Create()), framebuffer(fbuff) {
 		constexpr float vb_data[] = {
 			-1.0f,  1.0f,	0.0f, 1.0f,
 			 1.0f,  1.0f,	1.0f, 1.0f,
@@ -72,11 +72,6 @@ namespace Nova {
 
 		framebuffer->validate();
 
-		{ // Blank Texture Data
-			unsigned int data = 0xffffffff;
-			blank_texture->set((unsigned char*)(&data), 1);
-		}
-
 		{ // Generate Uniform Buffers
 			auto gen_buffers = Nova::Shader::Create("Nova/shader/buffers.glsl");
 
@@ -93,18 +88,20 @@ namespace Nova {
 		framebuffer->unbind();
 	}
 
-	RenderState::~RenderState() {
+	Render::RState::~RState() {
 		delete buffer_context;
 		delete framebuffer;
 	}
 
-	static RenderState* rs = nullptr;
-	RenderState& Nova::RenderState::Get() {
+	static Render::RState* rs = nullptr;
+	Render::RState& Nova::Render::State() {
 		return *rs;
 	}
 
 	bool Render::Initialise() {
-		rs = new RenderState(
+		Resource::Stock::Initialise();
+
+		rs = new Render::RState(
 			Buffer::Frame::Create()
 		);
 		rs->frame_size.first = App().window().width();

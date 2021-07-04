@@ -42,10 +42,10 @@ namespace Nova::OpenGL {
 		UniformUpload(Nova::Shader* shader);
 		virtual ~UniformUpload() override {};
 
-		virtual void Int(const std::string& name, const int& value) override;
+		virtual void Int(const std::string& name, const int value) override;
 		virtual void Int(const std::string& name, const unsigned int count, const int* value) override;
 
-		virtual void Float(const std::string& name, const float& value) override;
+		virtual void Float(const std::string& name, const float value) override;
 		virtual void Float(const std::string& name, const unsigned int count, const float* value) override;
 	protected:
 		unsigned int& m_shader_id;

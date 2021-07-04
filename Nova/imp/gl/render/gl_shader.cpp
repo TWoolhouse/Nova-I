@@ -145,14 +145,14 @@ namespace Nova {
 
 		UniformUpload::UniformUpload(Nova::Shader* shader) : m_shader_id(dynamic_cast<ShaderProgram*>(shader)->m_id), m_location_cache() {}
 
-		void UniformUpload::Int(const std::string& name, const int& value) {
+		void UniformUpload::Int(const std::string& name, const int value) {
 			glProgramUniform1i(m_shader_id, get_location(name), value);
 		}
 		void UniformUpload::Int(const std::string& name, const unsigned int count, const int* value) {
 			glProgramUniform1iv(m_shader_id, get_location(name), count, value);
 		}
 
-		void UniformUpload::Float(const std::string& name, const float& value) {
+		void UniformUpload::Float(const std::string& name, const float value) {
 			glProgramUniform1f(m_shader_id, get_location(name), value);
 		}
 		void UniformUpload::Float(const std::string& name, const unsigned int count, const float* value) {

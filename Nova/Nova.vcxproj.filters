@@ -123,9 +123,6 @@
     <ClInclude Include="phys\lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="asset\library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gui\gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -225,6 +222,15 @@
     <ClInclude Include="util\hashing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="asset\type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asset\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asset\stock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -321,6 +327,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="input\poll_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asset\asset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

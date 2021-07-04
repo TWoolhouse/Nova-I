@@ -38,10 +38,10 @@ namespace Nova {
 	}
 
 	void Draw::Quad(const mlb::mat4& mat, const mlb::vec4& col, const Star<Texture2D>& texture, const std::array<mlb::vec2, 4>& tex_pos) {
-		const auto& rs = RenderState::Get();
 		if (RenderDraw::Quad::batch->count() >= RenderDraw::Quad::batch->size) {
 			RenderDraw::Quad::Flush();
 		}
+		const auto& rs = Render::State();
 
 		const auto tex = RenderDraw::Quad::textures.index(texture);
 		auto& quad = RenderDraw::Quad::batch->next();

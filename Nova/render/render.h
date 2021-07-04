@@ -7,6 +7,7 @@ namespace Nova {
 	public:
 		class NOVA_API Command;
 		class NOVA_API Camera;
+		struct NOVA_API RState;
 
 		static bool Initialise();
 		static bool Termintate();
@@ -20,6 +21,8 @@ namespace Nova {
 		static void Frame();
 
 		static void Flush();
+
+		static RState& State();
 	};
 
 }

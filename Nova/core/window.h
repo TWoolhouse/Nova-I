@@ -10,14 +10,14 @@ namespace Nova {
 	public:
 		static Window* Create(
 			std::function<void(Event::Event&)> events,
-			const unsigned int& width = 1280,
-			const unsigned int& height = 720,
+			const unsigned int width = 1280,
+			const unsigned int height = 720,
 			const std::string& name = "Nova Engine",
 			const std::string& icon = "Nova/texture/nova.png"
 		);
 		Window(
 			std::function<void(Event::Event&)> events,
-			const unsigned int& width, const unsigned int& height,
+			const unsigned int width, const unsigned int height,
 			const std::string& name, const std::string& icon
 		) : m_properties({events}), m_width(width), m_height(height), m_name(name), m_icon(icon) {}
 		virtual ~Window() {}
@@ -32,9 +32,9 @@ namespace Nova {
 
 		Properties& properties() { return m_properties; }
 
-		const unsigned int& width(const unsigned int& width) { resize(width, m_height) ; return m_width; }
-		const unsigned int& height(const unsigned int& height) { resize(m_width, height); return m_height; }
-		virtual void resize(const unsigned int& width, const unsigned int& height) = 0;
+		const unsigned int& width(const unsigned int width) { resize(width, m_height) ; return m_width; }
+		const unsigned int& height(const unsigned int height) { resize(m_width, height); return m_height; }
+		virtual void resize(const unsigned int width, const unsigned int height) = 0;
 		virtual const std::string& name(const std::string& name) = 0;
 		virtual const std::string& icon(const std::string& icon) = 0;
 

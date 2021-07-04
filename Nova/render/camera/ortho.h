@@ -6,7 +6,7 @@ namespace Nova::Camera {
 
 	class Ortho : public Render::Camera {
 	public:
-		Ortho(const float& width, const float& height, const float& near = 0.1f, const float& far = 100.0f)
+		Ortho(const float width, const float height, const float near = 0.1f, const float far = 100.0f)
 			: Render::Camera(width, height, near, far) { new_projection(); }
 		virtual ~Ortho() {}
 

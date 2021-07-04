@@ -141,7 +141,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="asset\library.h" />
+    <ClInclude Include="asset\resource.h" />
+    <ClInclude Include="asset\stock.h" />
+    <ClInclude Include="asset\type.h" />
     <ClInclude Include="core\application.h" />
     <ClInclude Include="core\entry_point.h" />
     <ClInclude Include="core\layer.h" />
@@ -213,6 +215,7 @@
     <ClInclude Include="util\variadics.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="asset\asset.cpp" />
     <ClCompile Include="core\application.cpp" />
     <ClCompile Include="core\deltatime.cpp" />
     <ClCompile Include="core\pch.cpp">

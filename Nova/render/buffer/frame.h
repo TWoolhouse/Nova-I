@@ -7,7 +7,7 @@ namespace Nova::Buffer {
 	// TEMP CLASS
 	class Render {
 	public:
-		void resize(const unsigned int& width, const unsigned int& height) {}
+		void resize(const unsigned int width, const unsigned int height) {}
 		void bind() {}
 	protected:
 		unsigned int m_id;
@@ -35,7 +35,7 @@ namespace Nova::Buffer {
 			const Star<Texture2D>& texture() const { return get<Texture2D>(); }
 			const Star<Render>& rendered() const { return get<Render>(); }
 
-			void resize(const unsigned int& width, const unsigned int& height) { (this->*func_resize_array[buffer.index()])(width, height); }
+			void resize(const unsigned int width, const unsigned int height) { (this->*func_resize_array[buffer.index()])(width, height); }
 		protected:
 			void init_array() {
 				func_resize_array[0] = &Attachment::resize_impl<0>;
@@ -43,8 +43,8 @@ namespace Nova::Buffer {
 			}
 
 			template<size_t I>
-			void resize_impl(const unsigned int& width, const unsigned int& height) { std::get<I>(buffer)->bind(); std::get<I>(buffer)->resize(width, height); }
-			void (Attachment::* func_resize_array[2])(const unsigned int&, const unsigned int&);
+			void resize_impl(const unsigned int width, const unsigned int height) { std::get<I>(buffer)->bind(); std::get<I>(buffer)->resize(width, height); }
+			void (Attachment::* func_resize_array[2])(const unsigned int, const unsigned int);
 		};
 		static Frame* Create();
 
@@ -55,7 +55,7 @@ namespace Nova::Buffer {
 		virtual const bool validate() = 0;
 
 		const mlb::vec2 size() const { return ma_colour->size(); }
-		void resize(const unsigned int& width, const unsigned int& height) {
+		void resize(const unsigned int width, const unsigned int height) {
 			ma_colour->bind();
 			ma_colour->resize(width, height);
 			for (Attachment* attachment = const_cast<Attachment*>(m_buffer_begin); attachment < m_buffer_end; ++attachment) {
