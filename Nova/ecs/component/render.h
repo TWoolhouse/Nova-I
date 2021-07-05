@@ -10,13 +10,13 @@
 namespace Nova::ecs::Components {
 
 	struct Sprite : public Component {
-		mlb::vec4 colour{ 1.0f };
+		glm::vec4 colour{ 1.0f };
 		Asset<Texture2D> texture = Resource::Stock::Texture::blank;
 
 		Sprite() = default;
 		Sprite(Sprite&&) = default;
 		Sprite& operator=(Sprite&&) = default;
-		Sprite(const mlb::vec4& colour) : colour(colour) {}
+		Sprite(const glm::vec4& colour) : colour(colour) {}
 	};
 
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "../component.h"
+#include "serial/cereal.h"
 
 namespace Nova::ecs::Components {
 
@@ -13,6 +14,8 @@ namespace Nova::ecs::Components {
 
 		operator std::string& () { return name; }
 		operator const std::string& () const { return name; }
+
+		NovaCerealise { serialise(name); }
 	};
 
 }

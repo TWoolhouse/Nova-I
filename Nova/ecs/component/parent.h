@@ -1,6 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "../component.h"
+#include "serial/cereal.h"
 #include "../entity.h"
 
 namespace Nova::ecs::Components {
