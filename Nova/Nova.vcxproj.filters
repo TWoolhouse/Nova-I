@@ -248,9 +248,6 @@
     <ClCompile Include="render\render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dep\stblib\stblib_image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\deltatime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -336,6 +333,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="asset\asset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\stb_image\stblib_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

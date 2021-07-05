@@ -225,11 +225,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Internal|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="dep\stblib\stblib_image.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Internal|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="ecs\ecs.cpp" />
     <ClCompile Include="fileio\fio_shader.cpp" />
     <ClCompile Include="fileio\fio_texture.cpp" />
@@ -243,6 +238,7 @@
     <ClCompile Include="imp\imgui\imgui_plat.cpp" />
     <ClCompile Include="imp\gl\input\gl_codes.cpp" />
     <ClCompile Include="imp\gl\input\gl_poll.cpp" />
+    <ClCompile Include="imp\stb_image\stblib_image.cpp" />
     <ClCompile Include="input\poll_state.cpp" />
     <ClCompile Include="phys\lib.cpp" />
     <ClCompile Include="imp\gl\render\buffer\gl_buffer.cpp" />
