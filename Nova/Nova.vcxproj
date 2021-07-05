@@ -158,6 +158,7 @@
     <ClInclude Include="ecs\component\transform.h" />
     <ClInclude Include="ecs\ecs.h" />
     <ClInclude Include="ecs\entity.h" />
+    <ClInclude Include="ecs\serialise.h" />
     <ClInclude Include="ecs\system.h" />
     <ClInclude Include="ecs\system\systems.h" />
     <ClInclude Include="ecs\system\sys_render.h" />
