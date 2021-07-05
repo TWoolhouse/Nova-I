@@ -14,7 +14,7 @@ namespace Nova {
 		Star<Shader> shader;
 		Buffer::Context* buffer_context;
 		Buffer::Frame* framebuffer;
-		mlb::mat4 matrix{ 1.0f };
+		glm::mat4 matrix{ 1.0f };
 
 		Star<Buffer::Uniform> uniform;
 

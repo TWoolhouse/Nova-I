@@ -11,9 +11,9 @@ namespace Sol::Panel {
 		virtual void gui() override {
 			{
 				bool vsync = Nova::Render::Command::VSync();
-				Nova::gui::Text("VSync");
-				Nova::gui::SameLine();
-				Nova::gui::Checkbox("##vsync", &vsync);
+				Nova::imgui::Text("VSync");
+				Nova::imgui::SameLine();
+				Nova::imgui::Checkbox("##vsync", &vsync);
 				if (vsync != Nova::Render::Command::VSync())
 					Nova::Render::Command::VSync(vsync);
 			}

@@ -213,12 +213,6 @@
     <ClInclude Include="render\camera\perspective.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fileio\serialization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ecs\serialize.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="util\hashing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -229,6 +223,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="asset\stock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\macro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="serial\cereal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="serial\serialise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -352,6 +355,8 @@
     <Text Include="dep\stblib\LICENSE.txt" />
     <Text Include="dep\glm\LICENSE.txt" />
     <Text Include="todo.txt" />
+    <Text Include="dep\nova.txt" />
+    <Text Include="dep\dependancies.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Nova\texture\nova.ico">

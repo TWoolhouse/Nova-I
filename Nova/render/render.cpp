@@ -129,7 +129,7 @@ namespace Nova {
 	}
 
 	void Render::Draw(Camera* camera) {
-		memcpy(&rs->matrix, &camera->compute(), sizeof(mlb::mat4));
+		memcpy(&rs->matrix, &camera->compute(), sizeof(glm::mat4));
 		rs->uniform->set("matrix", &rs->matrix);
 		rs->framebuffer->bind();
 		auto& size = rs->framebuffer->get_colour()->size();

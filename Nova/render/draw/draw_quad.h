@@ -11,10 +11,10 @@ namespace Nova::RenderDraw {
 		constexpr static unsigned int BATCH_SIZE = 1024;
 		struct Block : RenderBatch::Block {
 			static Nova::Buffer::Vertex::Spec Layout;
-			mlb::mat4 mat{ 1.0f };
-			mlb::vec4 colour{ 1.0f };
+			glm::mat4 mat{ 1.0f };
+			glm::vec4 colour{ 1.0f };
 			float texture;
-			mlb::vec2 tex_pos[4];
+			glm::vec2 tex_pos[4];
 		};
 
 		static void Initialise();

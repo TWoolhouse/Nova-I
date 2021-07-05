@@ -17,6 +17,6 @@ protected:
 	Nova::Star<Nova::Buffer::Shader> m_buffer;
 
 	struct Agent {
-		Nova::mlb::vec2 pos{ 0.0 }, vel{ 0.0 }; // , acc{ 0.0 };
+		Nova::glm::vec2 pos{ 0.0 }, vel{ 0.0 }; // , acc{ 0.0 };
 	};
 };

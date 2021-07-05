@@ -11,7 +11,7 @@ namespace Sol {
 
 	App::App() :
 		camera(new Nova::Camera::Ortho(1280, 720)),
-		gui(Nova::gui::App::Create()),
+		gui(Nova::imgui::App::Create()),
 		world(Nova::ecs::World::Create()),
 		camera_controller(camera),
 		m_panels(Panel::generate()) {
@@ -24,8 +24,8 @@ namespace Sol {
 		// Temporary ECS Test
 		auto e = world->instantiate();
 		e.emplace<Nova::Component::Name>("My Entity");
-		e.emplace<Nova::Component::Transform>(Nova::mlb::vec3{ -1.0, -1.0, 0.0 });
-		auto& sprite1 = e.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{0.5, 0.5, 1.0, 1.0});
+		e.emplace<Nova::Component::Transform>(Nova::glm::vec3{ -1.0, -1.0, 0.0 });
+		auto& sprite1 = e.emplace<Nova::Component::Sprite>(Nova::glm::vec4{0.5, 0.5, 1.0, 1.0});
 		sprite1.texture = Nova::Resource::Stock::Texture::invalid;
 
 		auto g = world->instantiate();
@@ -35,14 +35,14 @@ namespace Sol {
 		auto f = world->instantiate();
 		f.emplace<Nova::Component::Name>("Child");
 		f.emplace<Nova::Component::Parent>(e);
-		f.emplace<Nova::Component::Transform>(Nova::mlb::vec3{0.5, 0.5, 0.1});
-		auto& sprite2 = f.emplace<Nova::Component::Sprite>(Nova::mlb::vec4{ 0.0, 0.687, 0.41, 1.0 });
+		f.emplace<Nova::Component::Transform>(Nova::glm::vec3{0.5, 0.5, 0.1});
+		auto& sprite2 = f.emplace<Nova::Component::Sprite>(Nova::glm::vec4{ 0.0, 0.687, 0.41, 1.0 });
 		sprite2.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
 
-		ants = new Ants(32, 2560, 1440);
+		ants = new Ants(16, 1280, 720);
 		auto ant = world->instantiate();
 		ant.emplace<Nova::Component::Name>("Ants");
-		ant.emplace<Nova::Component::Transform>(Nova::mlb::vec3{ 1.0, 1.0, 0.0 });
+		ant.emplace<Nova::Component::Transform>(Nova::glm::vec3{ 1.0, 1.0, 0.0 });
 		auto& sprite3 = ant.emplace<Nova::Component::Sprite>();
 		sprite3.texture = ants->get_texture();
 	}
@@ -65,24 +65,24 @@ namespace Sol {
 		static bool open_viewport = true;
 
 		// Main Menu Bar at top of Main Window
-		if (Nova::gui::BeginMainMenuBar()) {
-			if (Nova::gui::BeginMenu("File")) {
-				if (Nova::gui::MenuItem("Quit", "Alt+F4")) {
+		if (Nova::imgui::BeginMainMenuBar()) {
+			if (Nova::imgui::BeginMenu("File")) {
+				if (Nova::imgui::MenuItem("Quit", "Alt+F4")) {
 					Nova::Event::WindowClose close;
 					event_callback(close);
 				}
-				Nova::gui::EndMenu();
+				Nova::imgui::EndMenu();
 			} // File
 
 			// Open and Close Windows
-			if (Nova::gui::BeginMenu("View")) {
+			if (Nova::imgui::BeginMenu("View")) {
 				static std::string view_menu_items[] = {
 					// "" is a Seperator
 					"", "Settings", "Stats",
 					"", "Scene Hierarchy", "Entity",
 					"", "Asset Explorer",
 				};
-				if (Nova::gui::MenuItem("Viewport", 0, open_viewport)) {
+				if (Nova::imgui::MenuItem("Viewport", 0, open_viewport)) {
 					open_viewport = !open_viewport;
 				}
 				for (auto& name : view_menu_items) {
@@ -91,37 +91,37 @@ namespace Sol {
 						continue;
 					}
 					auto& panel = m_panels[name];
-					if (Nova::gui::MenuItem(name.c_str(), 0, panel->open())) {
+					if (Nova::imgui::MenuItem(name.c_str(), 0, panel->open())) {
 						panel->open_toggle();
 					}
 				}
-				Nova::gui::EndMenu();
+				Nova::imgui::EndMenu();
 			} // View
-			Nova::gui::EndMainMenuBar();
+			Nova::imgui::EndMainMenuBar();
 		} // MainMenu
 
 		// Create Dockspace
-		Nova::gui::DockSpaceOverViewport(Nova::gui::GetMainViewport());
+		Nova::imgui::DockSpaceOverViewport(Nova::imgui::GetMainViewport());
 
 		if (open_viewport) {
-			Nova::gui::PushStyleVar(ImGuiStyleVar_WindowMinSize, { 100, 100 });
-			if (Nova::gui::Begin("Viewport", &open_viewport)) {
-				const auto& focus_window = Nova::gui::IsWindowFocused();
-				const auto& focus_hover = Nova::gui::IsWindowHovered();
+			Nova::imgui::PushStyleVar(ImGuiStyleVar_WindowMinSize, { 100, 100 });
+			if (Nova::imgui::Begin("Viewport", &open_viewport)) {
+				const auto& focus_window = Nova::imgui::IsWindowFocused();
+				const auto& focus_hover = Nova::imgui::IsWindowHovered();
 				gui->block_events(!focus_window || !focus_hover);
 
-				auto size = Nova::gui::GetContentRegionAvail();
+				auto size = Nova::imgui::GetContentRegionAvail();
 				auto& fb = Nova::Render::State().framebuffer;
 				auto& fbsize = fb->size();
 				auto& tex = fb->get_colour();
-				Nova::gui::Image(tex, size);
+				Nova::imgui::Image(tex, size);
 				if (size.x != fbsize.x || size.y != fbsize.y) {
 					static_cast<Sol::Panel::Stats*>(m_panels["Stats"])->state("Resize Framebuffer");
 					fb->resize(size.x, size.y);
 					camera->size(size.x, size.y);
 				}
-			} Nova::gui::End();
-			Nova::gui::PopStyleVar();
+			} Nova::imgui::End();
+			Nova::imgui::PopStyleVar();
 		} // Viewport
 
 		// Render all other Panels

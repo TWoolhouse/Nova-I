@@ -1,28 +1,23 @@
 #pragma once
 #include "npch.h"
-#include "event/event.h"
 
-#define IMGUI_API NOVA_API
-#ifndef NOVA_EXPORT
-#include "dep/imgui/imgui/imgui.h"
-#include "dep/imgui/imgui/misc/cpp/imgui_stdlib.h"
-#else
+//#define IMGUI_API NOVA_API
 #include <imgui/imgui.h>
 #include <imgui/misc/cpp/imgui_stdlib.h>
-#endif // NOVA_EXPORT
 
+#include "event/event.h"
 #include "phys/lib.h"
 
-namespace Nova::gui {
+namespace Nova::imgui {
+	using namespace ::ImGui;
 
-	inline ImVec2 vec(const mlb::vec2& v) {
+	inline ImVec2 vec(const glm::vec2& v) {
 		return { v.x, v.y };
 	}
-	inline ImVec4 vec(const mlb::vec4& v) {
+	inline ImVec4 vec(const glm::vec4& v) {
 		return { v.x, v.y, v.z, v.w };
 	}
 
-	using namespace ImGui;
 
 	class NOVA_API App {
 	public:

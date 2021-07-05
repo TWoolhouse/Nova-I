@@ -2,7 +2,7 @@
 #include "lib.h"
 #include <random>
 
-namespace Nova::mlb {
+namespace Nova::glm {
 
 	class NOVA_API Random {
 	public:

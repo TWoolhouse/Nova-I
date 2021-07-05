@@ -8,7 +8,7 @@
 
 namespace Nova::OpenGL {
 
-	class GuiApp : public gui::App {
+	class GuiApp : public imgui::App {
 	public:
 		GuiApp();
 		virtual ~GuiApp();

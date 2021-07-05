@@ -7,7 +7,7 @@ constexpr unsigned int MAX_TEXTURES = 64;
 
 namespace Nova {
 
-	const std::array<mlb::vec2, 4> Draw::s_quad_tex_pos = { mlb::vec2(0.0f, 0.0f), mlb::vec2(1.0f, 0.0f), mlb::vec2(0.0f, 1.0f), mlb::vec2(1.0f, 1.0f) };
+	const std::array<glm::vec2, 4> Draw::s_quad_tex_pos = { glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 0.0f), glm::vec2(0.0f, 1.0f), glm::vec2(1.0f, 1.0f) };
 
 	Buffer::Vertex::Spec RenderDraw::Quad::Block::Layout = {
 		{ Nova::Buffer::Type::Mat4, "mat" },
@@ -37,7 +37,7 @@ namespace Nova {
 		delete batch;
 	}
 
-	void Draw::Quad(const mlb::mat4& mat, const mlb::vec4& col, const Star<Texture2D>& texture, const std::array<mlb::vec2, 4>& tex_pos) {
+	void Draw::Quad(const glm::mat4& mat, const glm::vec4& col, const Star<Texture2D>& texture, const std::array<glm::vec2, 4>& tex_pos) {
 		if (RenderDraw::Quad::batch->count() >= RenderDraw::Quad::batch->size) {
 			RenderDraw::Quad::Flush();
 		}
@@ -48,7 +48,7 @@ namespace Nova {
 		quad.mat = rs.matrix * mat;
 		quad.colour = col;
 		quad.texture = static_cast<float>(tex);
-		memcpy(quad.tex_pos, tex_pos.data(), tex_pos.size() * sizeof(mlb::vec2));
+		memcpy(quad.tex_pos, tex_pos.data(), tex_pos.size() * sizeof(glm::vec2));
 	}
 
 }

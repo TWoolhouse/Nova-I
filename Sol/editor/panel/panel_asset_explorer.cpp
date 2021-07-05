@@ -12,14 +12,13 @@ namespace Sol::Panel {
 	void display_shader(AssetType&);
 
 	typedef void (*DisplayFunc)(AssetType&);
-	using cstring = const char*;
 
 	static const std::filesystem::path root_dir = std::filesystem::current_path();
 	static constexpr cstring search_path = "asset";
 	static constexpr cstring internal_search_paths[] = { "Nova", "Sol" };
 
 	struct Icons {
-		const Nova::mlb::vec2 size{ 100, 100 };
+		const Nova::glm::vec2 size{ 100, 100 };
 		Nova::Star<Nova::Texture2D> file;
 		Nova::Star<Nova::Texture2D> image;
 		Nova::Star<Nova::Texture2D> directory;
@@ -83,24 +82,24 @@ namespace Sol::Panel {
 	};
 
 	void explorer(AssetType& atype) {
-		Nova::gui::Text(&atype.directory.string().c_str()[root_dir.string().size()]);
-		Nova::gui::Separator();
+		Nova::imgui::Text(&atype.directory.string().c_str()[root_dir.string().size()]);
+		Nova::imgui::Separator();
 
 		if (!atype.depth) {
 			for (auto& sp : internal_search_paths) {
-				Nova::gui::Text((root_dir / sp).string().c_str());
+				Nova::imgui::Text((root_dir / sp).string().c_str());
 			}
 		} else {
-			if (Nova::gui::Button("Back")) {
+			if (Nova::imgui::Button("Back")) {
 				--atype.depth;
 				atype.directory = atype.directory.parent_path();
 			}
-			Nova::gui::SameLine();
+			Nova::imgui::SameLine();
 		}
 		if (std::filesystem::exists(atype.directory)) {
-			auto window_width = Nova::gui::GetContentRegionAvail().x;
-			auto element_width = icons.size.x + 2 * Nova::gui::GetStyle().FramePadding.x;
-			unsigned int element_limit = (window_width - Nova::gui::GetStyle().ScrollbarSize) / element_width;
+			auto window_width = Nova::imgui::GetContentRegionAvail().x;
+			auto element_width = icons.size.x + 2 * Nova::imgui::GetStyle().FramePadding.x;
+			unsigned int element_limit = (window_width - Nova::imgui::GetStyle().ScrollbarSize) / element_width;
 			constexpr auto text_lines = 2;
 
 			size_t count = 0;
@@ -109,34 +108,34 @@ namespace Sol::Panel {
 				//Nova::gui::Text(ename.c_str());
 
 				if (entry.is_directory()) { // Directory
-					if (Nova::gui::BeginChild(epath.string().c_str(), { element_width, element_width + text_lines * Nova::gui::GetTextLineHeightWithSpacing() }, true, ImGuiWindowFlags_AlwaysAutoResize || ImGuiWindowFlags_NoScrollbar)) {
-						Nova::gui::PushStyleColor(ImGuiCol_Button, Nova::gui::GetColorU32(ImGuiCol_WindowBg));
-						auto selected = Nova::gui::ImageButton(icons.lookup(Icons::ID::DIRECTORY), icons.size); // Circumvent short circuit
-						Nova::gui::PopStyleColor();
-						Nova::gui::TextWrapped(epath.filename().string().c_str());
+					if (Nova::imgui::BeginChild(epath.string().c_str(), { element_width, element_width + text_lines * Nova::imgui::GetTextLineHeightWithSpacing() }, true, ImGuiWindowFlags_AlwaysAutoResize || ImGuiWindowFlags_NoScrollbar)) {
+						Nova::imgui::PushStyleColor(ImGuiCol_Button, Nova::imgui::GetColorU32(ImGuiCol_WindowBg));
+						auto selected = Nova::imgui::ImageButton(icons.lookup(Icons::ID::DIRECTORY), icons.size); // Circumvent short circuit
+						Nova::imgui::PopStyleColor();
+						Nova::imgui::TextWrapped(epath.filename().string().c_str());
 						if (selected /*|| Nova::gui::IsMouseClicked(ImGuiMouseButton_Left)*/ ) {
 							++atype.depth;
 							atype.directory = epath;
 						}
-					} Nova::gui::EndChild();
+					} Nova::imgui::EndChild();
 				} else { // File
-					if (Nova::gui::BeginChild(epath.string().c_str(), { element_width, element_width + text_lines * Nova::gui::GetTextLineHeightWithSpacing() }, true, ImGuiWindowFlags_AlwaysAutoResize || ImGuiWindowFlags_NoScrollbar)) {
-						Nova::gui::PushStyleColor(ImGuiCol_Button, Nova::gui::GetColorU32(ImGuiCol_WindowBg));
-						auto selected = Nova::gui::ImageButton(icons.lookup(atype.icon), icons.size); // Circumvent short circuit
-						Nova::gui::PopStyleColor();
-						Nova::gui::TextWrapped(epath.filename().string().c_str());
+					if (Nova::imgui::BeginChild(epath.string().c_str(), { element_width, element_width + text_lines * Nova::imgui::GetTextLineHeightWithSpacing() }, true, ImGuiWindowFlags_AlwaysAutoResize || ImGuiWindowFlags_NoScrollbar)) {
+						Nova::imgui::PushStyleColor(ImGuiCol_Button, Nova::imgui::GetColorU32(ImGuiCol_WindowBg));
+						auto selected = Nova::imgui::ImageButton(icons.lookup(atype.icon), icons.size); // Circumvent short circuit
+						Nova::imgui::PopStyleColor();
+						Nova::imgui::TextWrapped(epath.filename().string().c_str());
 						if (selected /*|| Nova::gui::IsMouseClicked(ImGuiMouseButton_Left)*/ ) {
 							atype.selected->active = true;
 							atype.selected->path = epath;
 							atype.selected->on_select();
 						}
-					} Nova::gui::EndChild();
+					} Nova::imgui::EndChild();
 				}
 				if (++count < element_limit)
-					Nova::gui::SameLine();
+					Nova::imgui::SameLine();
 				else {
 					count = 0;
-					Nova::gui::NewLine();
+					Nova::imgui::NewLine();
 				}
 			}
 		}
@@ -150,31 +149,31 @@ namespace Sol::Panel {
 	}
 
 	void AssetExplorer::gui() {
-		if (Nova::gui::BeginTabBar("asset_browser")) {
+		if (Nova::imgui::BeginTabBar("asset_browser")) {
 			for (auto& atype : assets) {
-				if (Nova::gui::BeginTabItem(atype.name)) {
-					Nova::gui::PopID();
-					if (Nova::gui::BeginTable("asset_browser", 2, ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_Resizable)) {
-						Nova::gui::TableSetupColumn("Preview", ImGuiTableColumnFlags_NoHide);
-						Nova::gui::TableSetupColumn("Browser", ImGuiTableColumnFlags_NoHide);
+				if (Nova::imgui::BeginTabItem(atype.name)) {
+					Nova::imgui::PopID();
+					if (Nova::imgui::BeginTable("asset_browser", 2, ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_Resizable)) {
+						Nova::imgui::TableSetupColumn("Preview", ImGuiTableColumnFlags_NoHide);
+						Nova::imgui::TableSetupColumn("Browser", ImGuiTableColumnFlags_NoHide);
 
-						Nova::gui::TableNextColumn();
-						if (Nova::gui::BeginChild("Target")) {
+						Nova::imgui::TableNextColumn();
+						if (Nova::imgui::BeginChild("Target")) {
 							atype.display_func(atype);
-						} Nova::gui::EndChild();
+						} Nova::imgui::EndChild();
 
-						Nova::gui::TableNextColumn();
-						if (Nova::gui::BeginChild("Browser")) {
+						Nova::imgui::TableNextColumn();
+						if (Nova::imgui::BeginChild("Browser")) {
 							explorer(atype);
-						} Nova::gui::EndChild();
+						} Nova::imgui::EndChild();
 
-						Nova::gui::EndTable();
+						Nova::imgui::EndTable();
 					}
-					Nova::gui::PushID(atype.name);
-					Nova::gui::EndTabItem();
+					Nova::imgui::PushID(atype.name);
+					Nova::imgui::EndTabItem();
 				}
 			}
-			Nova::gui::EndTabBar();
+			Nova::imgui::EndTabBar();
 		}
 	}
 
@@ -184,11 +183,11 @@ namespace Sol::Panel {
 			return;
 		//Nova::gui::Text(&active->path.string().c_str()[atype.directory.string().size()]);
 		auto& name = active.path.filename().string();
-		Nova::gui::Text(name.c_str());
+		Nova::imgui::Text(name.c_str());
 
 		auto size = active.texture->size();
-		auto max = Nova::gui::GetContentRegionMax();
-		Nova::gui::Image(active.texture, true);
+		auto max = Nova::imgui::GetContentRegionMax();
+		Nova::imgui::Image(active.texture, true);
 		Editor::Drag::texture(Nova::Asset<Nova::Texture2D>{
 			""_ns, active.texture, { active.path.string(), {} }
 		}, ImGuiDragDropFlags_SourceAllowNullID);
@@ -197,7 +196,7 @@ namespace Sol::Panel {
 		auto& active = *static_cast<AssetSelected*>(atype.selected);
 		if (!active)
 			return;
-		Nova::gui::Text(active.path.filename().string().c_str());
+		Nova::imgui::Text(active.path.filename().string().c_str());
 	}
 
 }

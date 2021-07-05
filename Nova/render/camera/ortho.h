@@ -12,7 +12,7 @@ namespace Nova::Camera {
 
 	protected:
 		virtual void new_projection() override {
-			m_projection = mlb::ortho(-m_aspect * m_zoom, m_aspect * m_zoom, -m_zoom, m_zoom, m_near, m_far);
+			m_projection = glm::ortho(-m_aspect * m_zoom, m_aspect * m_zoom, -m_zoom, m_zoom, m_near, m_far);
 		}
 	};
 

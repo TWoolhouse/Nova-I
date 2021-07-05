@@ -5,43 +5,43 @@
 namespace Sol::View {
 
 	struct Name : public View<Nova::Component::Name> {
-		constexpr static const char* title = "Name";
+		constexpr static cstring title = "Name";
 		static void render(Component& component) {
-			Nova::gui::Text("Entity");
-			Nova::gui::SameLine();
-			Nova::gui::InputText("##Entity", &component.name);
+			Nova::imgui::Text("Entity");
+			Nova::imgui::SameLine();
+			Nova::imgui::InputText("##Entity", &component.name);
 		}
 	};
 
 	struct Transform : public View<Nova::Component::Transform> {
-		constexpr static const char* title = "Transform";
+		constexpr static cstring title = "Transform";
 		static void render(Component& component) {
 			render_single("Position", "##p", component.pos);
 			render_single("Rotation", "##r", component.rot);
 			render_single("Scale", "##s", component.scl);
 		}
-		static void render_single(const char* name, const char* tag, Nova::mlb::vec3& vec) {
-			if (Nova::gui::TreeNode(name)) {
-				Nova::gui::Text("X");
-				Nova::gui::SameLine();
-				Nova::gui::DragFloat("##x", &vec.x, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
-				Nova::gui::Text("Y");
-				Nova::gui::SameLine();
-				Nova::gui::DragFloat("##y", &vec.y, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
-				Nova::gui::Text("Z");
-				Nova::gui::SameLine();
-				Nova::gui::DragFloat("##z", &vec.z, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
-				Nova::gui::TreePop();
+		static void render_single(cstring name, cstring tag, Nova::glm::vec3& vec) {
+			if (Nova::imgui::TreeNode(name)) {
+				Nova::imgui::Text("X");
+				Nova::imgui::SameLine();
+				Nova::imgui::DragFloat("##x", &vec.x, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::Text("Y");
+				Nova::imgui::SameLine();
+				Nova::imgui::DragFloat("##y", &vec.y, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::Text("Z");
+				Nova::imgui::SameLine();
+				Nova::imgui::DragFloat("##z", &vec.z, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::TreePop();
 			} else {
-				Nova::gui::Indent();
-				Nova::gui::DragFloat3(tag, (float*)&vec, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
-				Nova::gui::Unindent();
+				Nova::imgui::Indent();
+				Nova::imgui::DragFloat3(tag, (float*)&vec, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::Unindent();
 			}
 		}
 	};
 
 	struct Sprite : public View<Nova::Component::Sprite> {
-		constexpr static const char* title = "Sprite";
+		constexpr static cstring title = "Sprite";
 		static void render(Component& component) {
 			static ImGuiColorEditFlags flags = ImGuiColorEditFlags_InputRGB
 				| ImGuiColorEditFlags_AlphaPreviewHalf
@@ -49,43 +49,43 @@ namespace Sol::View {
 				| ImGuiColorEditFlags_HDR
 				| ImGuiColorEditFlags_NoLabel;
 
-			Nova::gui::Text("Colour");
-			Nova::gui::SameLine();
-			Nova::gui::ColorEdit4("Colour Tint", (float*)&component.colour, flags);
+			Nova::imgui::Text("Colour");
+			Nova::imgui::SameLine();
+			Nova::imgui::ColorEdit4("Colour Tint", (float*)&component.colour, flags);
 
 			float width;
 			const auto& tex_size = component.texture->size();
 			static int texture_option = 0;
 
-			if (Nova::gui::TreeNodeEx("Texture")) {
-				width = Nova::gui::GetContentRegionAvailWidth();
-				Nova::gui::RadioButton("Base", &texture_option, 0);
-				Nova::gui::SameLine();
-				Nova::gui::RadioButton("Tint", &texture_option, 1);
-				Nova::gui::TreePop();
+			if (Nova::imgui::TreeNodeEx("Texture")) {
+				width = Nova::imgui::GetContentRegionAvailWidth();
+				Nova::imgui::RadioButton("Base", &texture_option, 0);
+				Nova::imgui::SameLine();
+				Nova::imgui::RadioButton("Tint", &texture_option, 1);
+				Nova::imgui::TreePop();
 			} else {
-				Nova::gui::SameLine();
-				width = Nova::gui::GetFontSize();
+				Nova::imgui::SameLine();
+				width = Nova::imgui::GetFontSize();
 			}
 
-			Nova::mlb::vec4 tint{1};
+			Nova::glm::vec4 tint{1};
 			if (texture_option == 1)
 				tint = component.colour;
 
-			Nova::gui::Image(component.texture, Nova::mlb::vec2{ width, tex_size.y * width / tex_size.x }, tint);
+			Nova::imgui::Image(component.texture, Nova::glm::vec2{ width, tex_size.y * width / tex_size.x }, tint);
 			Editor::Drag::texture(component.texture, ImGuiDragDropFlags_SourceAllowNullID);
-			if (Nova::gui::BeginDragDropTarget()) {
-				auto payload = Nova::gui::AcceptDragDropPayload(Editor::Drag::Drop::texture);
+			if (Nova::imgui::BeginDragDropTarget()) {
+				auto payload = Nova::imgui::AcceptDragDropPayload(Editor::Drag::Drop::texture);
 				if (payload) {
 					component.texture = *static_cast<decltype(component.texture)*>(payload->Data);
 				}
-				Nova::gui::EndDragDropTarget();
+				Nova::imgui::EndDragDropTarget();
 			}
-			if (Nova::gui::BeginPopupContextWindow("TextureContextMenu")) {
-				if (Nova::gui::MenuItem("Clear")) {
+			if (Nova::imgui::BeginPopupContextWindow("TextureContextMenu")) {
+				if (Nova::imgui::MenuItem("Clear")) {
 					component.texture = Nova::Resource::Stock::Texture::blank;
 				}
-				Nova::gui::EndPopup();
+				Nova::imgui::EndPopup();
 			}
 		}
 	};

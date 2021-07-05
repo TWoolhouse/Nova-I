@@ -53,20 +53,20 @@ namespace Sol::Panel {
 		for (auto& root : tree.traverse()) {
 			traverse(world, reg, *root);
 		}
-		Nova::gui::Dummy(Nova::gui::GetContentRegionAvail());
-		if (Nova::gui::BeginDragDropTarget()) {
-			if (auto payload = Nova::gui::AcceptDragDropPayload(payload_type)) {
+		Nova::imgui::Dummy(Nova::imgui::GetContentRegionAvail());
+		if (Nova::imgui::BeginDragDropTarget()) {
+			if (auto payload = Nova::imgui::AcceptDragDropPayload(payload_type)) {
 				Nova::ecs::Entity nchild{ reg , *static_cast<Nova::ecs::Entity::Type*>(payload->Data) };
 				nchild.remove_if_exists<Nova::Component::Parent>();
 			}
-			Nova::gui::EndDragDropTarget();
+			Nova::imgui::EndDragDropTarget();
 		}
 		//static constexpr auto context_menu = ;
-		if (Nova::gui::BeginPopupContextWindow(context_menu, ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight)) {
-			if (Nova::gui::MenuItem("Create New Entity")) {
+		if (Nova::imgui::BeginPopupContextWindow(context_menu, ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight)) {
+			if (Nova::imgui::MenuItem("Create New Entity")) {
 				create_entity();
 			}
-			Nova::gui::EndPopup();
+			Nova::imgui::EndPopup();
 		}
 
 		if (!m_selected_valid)
@@ -100,15 +100,15 @@ namespace Sol::Panel {
 			flags |= ImGuiTreeNodeFlags_Selected;
 
 		auto& name = std::get<1>(node.data);
-		Nova::gui::PushID(std::to_string(entity).c_str());
-		const auto topen = Nova::gui::TreeNodeExV(std::to_string(entity).c_str(), flags, name.c_str(), "");
-		if (Nova::gui::BeginDragDropSource()) {
+		Nova::imgui::PushID(std::to_string(entity).c_str());
+		const auto topen = Nova::imgui::TreeNodeExV(std::to_string(entity).c_str(), flags, name.c_str(), "");
+		if (Nova::imgui::BeginDragDropSource()) {
 			auto eid = entity.entity();
-			Nova::gui::SetDragDropPayload(payload_type, static_cast<void*>(&eid), sizeof(decltype(eid)));
-			Nova::gui::Text(name.c_str());
-			Nova::gui::EndDragDropSource();
+			Nova::imgui::SetDragDropPayload(payload_type, static_cast<void*>(&eid), sizeof(decltype(eid)));
+			Nova::imgui::Text(name.c_str());
+			Nova::imgui::EndDragDropSource();
 		}
-		auto payload = Nova::gui::GetDragDropPayload();
+		auto payload = Nova::imgui::GetDragDropPayload();
 		if (payload && payload->IsDataType(payload_type)) {
 			auto& payload_entt = *static_cast<Nova::ecs::Entity::Type*>(payload->Data);
 			auto pentt = entity.try_get<Nova::Component::Parent>();
@@ -121,43 +121,43 @@ namespace Sol::Panel {
 				pentt = Nova::ecs::Entity{ reg, pentt->entity }.try_get<Nova::Component::Parent>();
 			}
 
-			if (flag && Nova::gui::BeginDragDropTarget()) {
-				if (payload = Nova::gui::AcceptDragDropPayload(payload_type)) {
+			if (flag && Nova::imgui::BeginDragDropTarget()) {
+				if (payload = Nova::imgui::AcceptDragDropPayload(payload_type)) {
 					Nova::ecs::Entity nchild{ reg , *static_cast<Nova::ecs::Entity::Type*>(payload->Data) };
 					auto& nparent = nchild.get_or_emplace<Nova::Component::Parent>(entity);
 					nparent.entity = entity;
 				}
-				Nova::gui::EndDragDropTarget();
+				Nova::imgui::EndDragDropTarget();
 			}
 		}
-		if ((Nova::gui::IsMouseClicked(ImGuiMouseButton_Left) || Nova::gui::IsKeyPressed(Nova::gui::GetKeyIndex(ImGuiKey_Enter))) && Nova::gui::IsItemHovered()) {
+		if ((Nova::imgui::IsMouseClicked(ImGuiMouseButton_Left) || Nova::imgui::IsKeyPressed(Nova::imgui::GetKeyIndex(ImGuiKey_Enter))) && Nova::imgui::IsItemHovered()) {
 			m_selected = entity;
 			m_selected_valid = true;
 		}
-		if (Nova::gui::BeginPopupContextItem(context_menu)) {
-			if (Nova::gui::MenuItem("Create Child Entity")) {
+		if (Nova::imgui::BeginPopupContextItem(context_menu)) {
+			if (Nova::imgui::MenuItem("Create Child Entity")) {
 				create_entity(&entity);
 			}
-			if (Nova::gui::MenuItem("Delete Entity")) {
+			if (Nova::imgui::MenuItem("Delete Entity")) {
 				delete_entity_recurse(entity, node);
 			}
-			Nova::gui::EndPopup();
+			Nova::imgui::EndPopup();
 		}
-		if (Nova::gui::IsItemHovered()) {
+		if (Nova::imgui::IsItemHovered()) {
 			constexpr auto button_str = "...";
-			Nova::gui::SameLine(Nova::gui::GetContentRegionMax().x - Nova::gui::CalcTextSize(button_str).x - 2 * Nova::gui::GetStyle().FramePadding.x);
-			if (Nova::gui::SmallButton(button_str) || Nova::gui::IsItemClicked()) {
-				Nova::gui::OpenPopup(context_menu);
+			Nova::imgui::SameLine(Nova::imgui::GetContentRegionMax().x - Nova::imgui::CalcTextSize(button_str).x - 2 * Nova::imgui::GetStyle().FramePadding.x);
+			if (Nova::imgui::SmallButton(button_str) || Nova::imgui::IsItemClicked()) {
+				Nova::imgui::OpenPopup(context_menu);
 			}
 		}
 		if (topen) {
 			if (!node.children.empty() && entity)
 				for (auto& child : node.traverse())
 					traverse(world, reg, *child);
-			Nova::gui::TreePop();
+			Nova::imgui::TreePop();
 		}
 
-		Nova::gui::PopID();
+		Nova::imgui::PopID();
 	}
 
 	void SceneHierarchy::create_entity(const Nova::ecs::Entity* parent) {

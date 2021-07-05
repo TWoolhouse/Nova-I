@@ -3,3 +3,5 @@
 // For more information see https://go.microsoft.com/fwlink/?linkid=865984
 #define NOVA_API __declspec(dllexport)
 #define NOVA_API __declspec(dllimport)
+#define NovaCerealise friend class Nova::cereal::access; template<typename Archive> void CEREAL_SERIALIZE_FUNCTION_NAME(Archive& serialise)
+#define NovaCerealiseExtern(Type, name) template<typename Archive> void CEREAL_SERIALIZE_FUNCTION_NAME(Archive& serialise, Type& name)

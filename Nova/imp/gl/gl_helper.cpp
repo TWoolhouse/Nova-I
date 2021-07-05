@@ -8,13 +8,13 @@
 
 #ifndef NOVA_RELEASE
 
-void _nova_gl_check_bind(unsigned int target, int name) {
+void __n_ova_gl_check_bind(unsigned int target, int name) {
 	int ret;
 	glGetIntegerv(target, &ret);
 	nova_assert(name == ret, "Object not Bound During Bound Operation");
 }
 
-void _nova_gl_error() {
+void __n_ova_gl_error() {
 	GLenum err;
 	while ((err = glGetError()) != GL_NO_ERROR) {
 		std::cerr << "GL Error: " << err << std::endl;

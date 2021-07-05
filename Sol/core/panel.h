@@ -21,9 +21,9 @@ namespace Sol::Panel {
 		bool m_open;
 		void render() {
 			if (m_open) {
-				if (Nova::gui::Begin(m_window_name.c_str(), &m_open, m_window_flags)) {
+				if (Nova::imgui::Begin(m_window_name.c_str(), &m_open, m_window_flags)) {
 					gui();
-				} Nova::gui::End();
+				} Nova::imgui::End();
 			}
 		}
 	};

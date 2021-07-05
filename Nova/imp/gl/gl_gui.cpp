@@ -13,7 +13,7 @@ constexpr auto NOVA_USE_VIEWPORT = true;
 
 namespace Nova {
 
-	Star<gui::App> gui::App::Create() {
+	Star<imgui::App> imgui::App::Create() {
 		return std::make_shared<OpenGL::GuiApp>();
 	}
 

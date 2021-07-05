@@ -1,17 +1,18 @@
 #pragma once
 
+#include <type_traits>
+#include <numeric>
+#include <memory>
+#include <array>
+#include <vector>
 #include <string>
+#include <bitset>
+#include <variant>
+#include <forward_list>
 #include <utility>
 #include <functional>
-#include <vector>
-#include <array>
-#include <memory>
-#include <variant>
-#include <type_traits>
-#include <bitset>
+#include <fstream>
 #include <iostream>
-#include <numeric>
-#include <forward_list>
 
 #ifdef NOVA_EXPORT
 #define NOVA_API __declspec(dllexport)
@@ -27,9 +28,11 @@
 #error Multiple Nova runtime requirements
 #endif
 
+using cstring = const char*;
+
 #ifndef NOVA_RELEASE
-#define nova_assert(flag, msg) _nova_assert(flag, msg, __FILE__, __LINE__)
-void NOVA_API _nova_assert(const bool& flag, const std::string& msg, const char* file, const long line);
+#define nova_assert(flag, msg) __n_ova_assert(flag, msg, __FILE__, __LINE__)
+void NOVA_API __n_ova_assert(const bool& flag, const std::string& msg, cstring file, const long line);
 #else
 #define nova_assert(flag, msg) ((void)0);
 #endif // NOVA_RELEASE

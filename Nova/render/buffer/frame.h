@@ -54,7 +54,7 @@ namespace Nova::Buffer {
 
 		virtual const bool validate() = 0;
 
-		const mlb::vec2 size() const { return ma_colour->size(); }
+		const glm::vec2 size() const { return ma_colour->size(); }
 		void resize(const unsigned int width, const unsigned int height) {
 			ma_colour->bind();
 			ma_colour->resize(width, height);

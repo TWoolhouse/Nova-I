@@ -11,8 +11,8 @@ namespace Sol::Panel {
 	protected:
 		std::string m_state = "Nominal";
 		virtual void gui() override {
-			Nova::gui::Text("CPU Time: %f", Nova::DeltaTime::dt() * 1000.0f);
-			Nova::gui::Text("State: %s", m_state.c_str());
+			Nova::imgui::Text("CPU Time: %f", Nova::DeltaTime::dt() * 1000.0f);
+			Nova::imgui::Text("State: %s", m_state.c_str());
 			m_state = "Nominal";
 		}
 	};

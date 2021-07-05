@@ -9,20 +9,20 @@
 #endif // NOVA_RELEASE
 #define GLM_ENABLE_EXPERIMENTAL
 
-#ifndef NOVA_EXPORT
-#include "dep/glm/include/glm/fwd.hpp"
-#include "dep/glm/include/glm/glm.hpp"
-#include "dep/glm/include/glm/ext.hpp"
-#else
 #include <glm/fwd.hpp>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-#endif // NOVA_EXPORT
 
-namespace Nova::mlb {
-	using namespace glm;
+namespace Nova::glm {
+	using namespace ::glm;
 }
 
-NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec2& vec);
-NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec3& vec);
-NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::mlb::vec4& vec);
+#include "serial/cereal.h"
+
+NovaCerealiseExtern(Nova::glm::vec2, vec) { serialise(vec.x, vec.y); }
+NovaCerealiseExtern(Nova::glm::vec3, vec) { serialise(vec.x, vec.y, vec.z); }
+NovaCerealiseExtern(Nova::glm::vec4, vec) { serialise(vec.x, vec.y, vec.z, vec.w); }
+
+NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::glm::vec2& vec);
+NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::glm::vec3& vec);
+NOVA_API std::ostream& operator<<(std::ostream& out, const Nova::glm::vec4& vec);

@@ -62,7 +62,7 @@ namespace Nova {
 		virtual void bind(unsigned int slot=0) = 0;
 		virtual void unbind(unsigned int slot = 0) = 0;
 
-		inline const mlb::vec2 size() const { return { m_width, m_height }; }
+		inline const glm::vec2 size() const { return { m_width, m_height }; }
 
 		virtual void image(unsigned int slot = 0) = 0;
 
@@ -81,26 +81,26 @@ namespace Nova {
 
 	class NOVA_API Texture2D::Sub {
 	public:
-		Sub(const Star<Texture2D>& texture, const mlb::vec2& min, const mlb::vec2& max);
-		Sub(const Star<Texture2D>& texture, const mlb::vec2& pos, const mlb::vec2& size, const mlb::vec2& grid);
+		Sub(const Star<Texture2D>& texture, const glm::vec2& min, const glm::vec2& max);
+		Sub(const Star<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& grid);
 
 		const Star<Texture2D>& texture() const { return m_texture; }
-		const std::array<mlb::vec2, 4>& positions() const { return m_pos; }
+		const std::array<glm::vec2, 4>& positions() const { return m_pos; }
 
 	protected:
 		const Star<Texture2D> m_texture;
-		std::array<mlb::vec2, 4> m_pos;
+		std::array<glm::vec2, 4> m_pos;
 	};
 
 	namespace Texture {
 		class NOVA_API Atlas {
 		public:
-			Atlas(const Star<Texture2D>& texture, const mlb::vec2& grid) : m_texture(texture), m_grid(grid) {}
-			Texture2D::Sub subtexture(const mlb::vec2& pos, const mlb::vec2& size = { 1.0f, 1.0f }) const;
+			Atlas(const Star<Texture2D>& texture, const glm::vec2& grid) : m_texture(texture), m_grid(grid) {}
+			Texture2D::Sub subtexture(const glm::vec2& pos, const glm::vec2& size = { 1.0f, 1.0f }) const;
 			const Star<Texture2D>& texture() const { return m_texture; }
 		protected:
 			const Star<Texture2D> m_texture;
-			const mlb::vec2 m_grid;
+			const glm::vec2 m_grid;
 		};
 	}
 
