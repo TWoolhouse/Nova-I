@@ -4,9 +4,12 @@ glm/*
 stblib/*
 imgui/*
 entt/*
+cereal/*
 
 !LICENSE.txt
 !LICENSE.md
+!LICENSE
 
 !README.txt
 !README.md
+!README
