@@ -1,0 +1,7 @@
+$(ProjectDir)dep\glew\include\
+$(ProjectDir)dep\glfw\include\
+$(ProjectDir)dep\glm\include\
+$(ProjectDir)dep\stblib\include\
+$(ProjectDir)dep\imgui\
+$(ProjectDir)dep\entt\
+$(ProjectDir)dep\cereal\include\
