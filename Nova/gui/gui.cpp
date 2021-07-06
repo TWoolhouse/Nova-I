@@ -5,8 +5,6 @@
 #include "event/mouse.h"
 #include "event/window.h"
 
-#include <imgui/imgui.h>
-
 namespace Nova::imgui {
 
 	App::App() {

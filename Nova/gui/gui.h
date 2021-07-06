@@ -2,8 +2,8 @@
 #include "npch.h"
 
 //#define IMGUI_API NOVA_API
-#include <imgui/imgui.h>
-#include <imgui/misc/cpp/imgui_stdlib.h>
+#include <imgui.h>
+#include <misc/cpp/imgui_stdlib.h>
 
 #include "event/event.h"
 #include "phys/lib.h"
