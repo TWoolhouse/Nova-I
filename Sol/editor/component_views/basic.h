@@ -17,24 +17,26 @@ namespace Sol::View {
 		constexpr static cstring title = "Transform";
 		static void render(Component& component) {
 			render_single("Position", "##p", component.pos);
-			render_single("Rotation", "##r", component.rot);
+			auto deg_rot = glm::degrees(component.rot);
+			render_single("Rotation", "##r", deg_rot, 0.5);
+			component.rot = glm::radians(deg_rot);
 			render_single("Scale", "##s", component.scl);
 		}
-		static void render_single(cstring name, cstring tag, Nova::glm::vec3& vec) {
+		static void render_single(cstring name, cstring tag, Nova::glm::vec3& vec, float speed = 0.1) {
 			if (Nova::imgui::TreeNode(name)) {
 				Nova::imgui::Text("X");
 				Nova::imgui::SameLine();
-				Nova::imgui::DragFloat("##x", &vec.x, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::DragFloat("##x", &vec.x, speed, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
 				Nova::imgui::Text("Y");
 				Nova::imgui::SameLine();
-				Nova::imgui::DragFloat("##y", &vec.y, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::DragFloat("##y", &vec.y, speed, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
 				Nova::imgui::Text("Z");
 				Nova::imgui::SameLine();
-				Nova::imgui::DragFloat("##z", &vec.z, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::DragFloat("##z", &vec.z, speed, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
 				Nova::imgui::TreePop();
 			} else {
 				Nova::imgui::Indent();
-				Nova::imgui::DragFloat3(tag, (float*)&vec, 0.1, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
+				Nova::imgui::DragFloat3(tag, (float*)&vec, speed, 0, 0, nullptr, ImGuiSliderFlags_NoRoundToFormat);
 				Nova::imgui::Unindent();
 			}
 		}
