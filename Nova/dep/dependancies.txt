@@ -1,6 +1,6 @@
 $(ProjectDir)dep\glew\include\
 $(ProjectDir)dep\glfw\include\
-$(ProjectDir)dep\glm\include\
+$(ProjectDir)dep\glm\
 $(ProjectDir)dep\stblib\include\
 $(ProjectDir)dep\imgui\
 $(ProjectDir)dep\entt\single_include\
