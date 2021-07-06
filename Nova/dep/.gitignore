@@ -1,7 +1,5 @@
 glew/*
 glfw/*
-stblib/*
-cereal/*
 
 !LICENSE.txt
 !LICENSE.md
