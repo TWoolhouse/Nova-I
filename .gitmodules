@@ -2,3 +2,6 @@
 	path = Nova\\dep\\imgui\\imgui
 	url = https://github.com/ocornut/imgui.git
 	branch = docking
+[submodule "Nova\\dep\\entt"]
+	path = Nova\\dep\\entt
+	url = https://github.com/skypjack/entt.git
