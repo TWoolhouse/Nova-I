@@ -1,6 +1,6 @@
 glew/*
 glfw/*
-glm/*
+# glm/*
 stblib/*
 # imgui/*
 # entt/*
