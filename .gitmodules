@@ -8,9 +8,6 @@
 [submodule "Nova\\dep\\glm"]
 	path = Nova\\dep\\glm
 	url = https://github.com/g-truc/glm.git
-[submodule "Nova\\gui\\stb"]
-	path = Nova\\gui\\stb
-	url = https://github.com/nothings/stb.git
-[submodule "Nova\\dep\\stb"]
-	path = Nova\\dep\\stb
+[submodule "Nova\\dep\\stblib"]
+	path = Nova\\dep\\stblib
 	url = https://github.com/nothings/stb.git
