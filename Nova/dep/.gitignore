@@ -2,8 +2,8 @@ glew/*
 glfw/*
 glm/*
 stblib/*
-imgui/*
-entt/*
+# imgui/*
+# entt/*
 cereal/*
 
 !LICENSE.txt
