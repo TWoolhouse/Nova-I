@@ -13,6 +13,7 @@
 #include <functional>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 #ifdef NOVA_EXPORT
 #define NOVA_API __declspec(dllexport)
