@@ -344,31 +344,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dep\.gitignore" />
-    <None Include="Nova\res\shader\vertex.glsl" />
-    <None Include="Nova\res\shader\frag.glsl" />
-    <None Include="fileio\stblib\README.md" />
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
     <None Include="dep\glm\README.md" />
-    <None Include="Nova\shader\draw\frag.glsl" />
     <None Include="Nova\shader\draw\quad.geom.glsl" />
-    <None Include="Nova\shader\draw\vert.glsl" />
     <None Include="Nova\shader\main_render.glsl" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="fileio\stblib\LICENSE.txt" />
-    <Text Include="dep\stblib\LICENSE.txt" />
-    <Text Include="dep\glm\LICENSE.txt" />
     <Text Include="todo.txt" />
     <Text Include="dep\nova.txt" />
     <Text Include="dep\dependancies.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Nova\texture\nova.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Users\Tom\Downloads\nova.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "../component.h"
+#include "serial/cereal.h"
 #include "transform.h"
 
 #include "phys/lib.h"
@@ -17,6 +18,8 @@ namespace Nova::ecs::Components {
 		Sprite(Sprite&&) = default;
 		Sprite& operator=(Sprite&&) = default;
 		Sprite(const glm::vec4& colour) : colour(colour) {}
+
+		NovaCerealise{ serialise(colour); }
 	};
 
 }

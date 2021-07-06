@@ -18,6 +18,8 @@ namespace Nova::ecs::Components {
 
 		operator bool() { return entity != entt::null; }
 		operator const bool() const { return entity != entt::null; }
+
+		NovaCerealise{ serialise(entity); }
 	};
 
 }

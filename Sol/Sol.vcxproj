@@ -89,18 +89,16 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(TargetDir)..\Nova\" "$(TargetDir)" /y /c /s /e /j /d
-xcopy "$(ProjectDir)..\Nova\Nova\" "$(ProjectDir)Nova\" /y /c /s /e /j /d
+xcopy "$(SolutionDir)Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
 xcopy "$(ProjectDir)Sol\" "$(TargetDir)Sol\" /y /c /s /e /j /d
 xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d
-xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>rmdir "$(ProjectDir)Nova\" /s /q
-</Command>
+      <Command>xcopy "$(SolutionDir)Nova\Nova\" "$(ProjectDir)Nova\" /y /c /s /e /j /d</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -125,18 +123,16 @@ xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(TargetDir)..\Nova\" "$(TargetDir)" /y /c /s /e /j /d
-xcopy "$(ProjectDir)..\Nova\Nova\" "$(ProjectDir)Nova\" /y /c /s /e /j /d
+xcopy "$(SolutionDir)Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
 xcopy "$(ProjectDir)Sol\" "$(TargetDir)Sol\" /y /c /s /e /j /d
 xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d
-xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>rmdir "$(ProjectDir)Nova\" /s /q
-</Command>
+      <Command>xcopy "$(SolutionDir)Nova\Nova\" "$(ProjectDir)Nova\" /y /c /s /e /j /d</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Internal|x64'">
@@ -161,18 +157,16 @@ xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(TargetDir)..\Nova\" "$(TargetDir)" /y /c /s /e /j /d
-xcopy "$(ProjectDir)..\Nova\Nova\" "$(ProjectDir)Nova\" /y /c /s /e /j /d
+xcopy "$(SolutionDir)Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
 xcopy "$(ProjectDir)Sol\" "$(TargetDir)Sol\" /y /c /s /e /j /d
 xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d
-xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy Resources &amp; DLL</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>rmdir "$(ProjectDir)Nova\" /s /q
-</Command>
+      <Command>xcopy "$(SolutionDir)Nova\Nova\" "$(ProjectDir)Nova\" /y /c /s /e /j /d</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -262,24 +262,15 @@
     <None Include="dep\glm\README.md" />
     <None Include="dep\README.md" />
     <None Include="dep\stblib\README.md" />
-    <None Include="fileio\stblib\README.md" />
-    <None Include="Nova\shader\draw\frag.glsl" />
     <None Include="Nova\shader\draw\quad.geom.glsl" />
-    <None Include="Nova\shader\draw\vert.glsl" />
-    <None Include="Nova\res\shader\frag.glsl" />
     <None Include="Nova\shader\main_render.glsl" />
-    <None Include="Nova\res\shader\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="dep\dependancies.txt" />
-    <Text Include="dep\glm\LICENSE.txt" />
     <Text Include="dep\nova.txt" />
-    <Text Include="dep\stblib\LICENSE.txt" />
-    <Text Include="fileio\stblib\LICENSE.txt" />
     <Text Include="todo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Users\Tom\Downloads\nova.png" />
     <Image Include="Nova\texture\nova.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
