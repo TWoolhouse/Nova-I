@@ -275,9 +275,6 @@
     <ClCompile Include="imp\imgui\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imp\imgui\imgui_plat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ecs\ecs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -336,6 +333,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imp\stb_image\stblib_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\imgui\gl\imgui_gl_opengl3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imp\imgui\gl\imgui_gl_glfw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

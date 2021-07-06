@@ -1,4 +1,4 @@
 $(SolutionDir)Nova\dep\glm\include\
 $(SolutionDir)Nova\dep\imgui\
-$(SolutionDir)Nova\dep\entt\
+$(SolutionDir)Nova\dep\entt\single_include\
 $(SolutionDir)Nova\dep\cereal\include\

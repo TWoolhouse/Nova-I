@@ -1,7 +1,7 @@
 #pragma once
 #include "npch.h"
 
-//#define IMGUI_API NOVA_API
+#define IMGUI_API NOVA_API
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
@@ -17,7 +17,6 @@ namespace Nova::imgui {
 	inline ImVec4 vec(const glm::vec4& v) {
 		return { v.x, v.y, v.z, v.w };
 	}
-
 
 	class NOVA_API App {
 	public:

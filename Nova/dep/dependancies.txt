@@ -3,5 +3,5 @@ $(ProjectDir)dep\glfw\include\
 $(ProjectDir)dep\glm\include\
 $(ProjectDir)dep\stblib\include\
 $(ProjectDir)dep\imgui\
-$(ProjectDir)dep\entt\
+$(ProjectDir)dep\entt\single_include\
 $(ProjectDir)dep\cereal\include\

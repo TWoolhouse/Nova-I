@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;_DEBUG;_CONSOLE;NOVA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\;$(ProjectDir)dep\entt\;$(ProjectDir)dep\cereal\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\;$(ProjectDir)dep\entt\single_include\;$(ProjectDir)dep\cereal\include\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -95,7 +95,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;NDEBUG;_CONSOLE;NOVA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\;$(ProjectDir)dep\entt\;$(ProjectDir)dep\cereal\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\;$(ProjectDir)dep\entt\single_include\;$(ProjectDir)dep\cereal\include\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -121,7 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOVA_OPENGL;NOVA_EXPORT;GLEW_STATIC;NDEBUG;_CONSOLE;NOVA_INTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\;$(ProjectDir)dep\entt\;$(ProjectDir)dep\cereal\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dep\glew\include\;$(ProjectDir)dep\glfw\include\;$(ProjectDir)dep\glm\include\;$(ProjectDir)dep\stblib\include\;$(ProjectDir)dep\imgui\;$(ProjectDir)dep\entt\single_include\;$(ProjectDir)dep\cereal\include\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -233,9 +233,10 @@
     <ClCompile Include="imp\gl\render\buffer\gl_buffer_uniform.cpp" />
     <ClCompile Include="imp\gl\gl_init.cpp" />
     <ClCompile Include="imp\gl\gl_gui.cpp" />
+    <ClCompile Include="imp\imgui\gl\imgui_gl_glfw.cpp" />
+    <ClCompile Include="imp\imgui\gl\imgui_gl_opengl3.cpp" />
     <ClCompile Include="imp\imgui\imgui_draw.cpp" />
     <ClCompile Include="imp\imgui\imgui_main.cpp" />
-    <ClCompile Include="imp\imgui\imgui_plat.cpp" />
     <ClCompile Include="imp\gl\input\gl_codes.cpp" />
     <ClCompile Include="imp\gl\input\gl_poll.cpp" />
     <ClCompile Include="imp\stb_image\stblib_image.cpp" />

@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;NOVA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Nova\;$(ProjectDir);$(SolutionDir)Nova\dep\glm\include\;$(SolutionDir)Nova\dep\imgui\;$(SolutionDir)Nova\dep\entt\;$(SolutionDir)Nova\dep\cereal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Nova\;$(ProjectDir);$(SolutionDir)Nova\dep\glm\include\;$(SolutionDir)Nova\dep\imgui\;$(SolutionDir)Nova\dep\entt\single_include\;$(SolutionDir)Nova\dep\cereal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
@@ -110,7 +110,7 @@ xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;NOVA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Nova\;$(ProjectDir);$(SolutionDir)Nova\dep\glm\include\;$(SolutionDir)Nova\dep\imgui\;$(SolutionDir)Nova\dep\entt\;$(SolutionDir)Nova\dep\cereal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Nova\;$(ProjectDir);$(SolutionDir)Nova\dep\glm\include\;$(SolutionDir)Nova\dep\imgui\;$(SolutionDir)Nova\dep\entt\single_include\;$(SolutionDir)Nova\dep\cereal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
@@ -146,7 +146,7 @@ xcopy "$(ProjectDir)..\Nova\Nova\" "$(TargetDir)Nova\" /y /c /s /e /j /d
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;NOVA_INTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Nova\;$(ProjectDir);$(SolutionDir)Nova\dep\glm\include\;$(SolutionDir)Nova\dep\imgui\;$(SolutionDir)Nova\dep\entt\;$(SolutionDir)Nova\dep\cereal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Nova\;$(ProjectDir);$(SolutionDir)Nova\dep\glm\include\;$(SolutionDir)Nova\dep\imgui\;$(SolutionDir)Nova\dep\entt\single_include\;$(SolutionDir)Nova\dep\cereal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
