@@ -11,3 +11,6 @@
 [submodule "Nova\\dep\\stblib"]
 	path = Nova\\dep\\stblib
 	url = https://github.com/nothings/stb.git
+[submodule "Nova\\dep\\cereal"]
+	path = Nova\\dep\\cereal
+	url = https://github.com/USCiLab/cereal.git
