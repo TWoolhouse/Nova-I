@@ -29,7 +29,7 @@ namespace Nova::ecs {
 		template<typename S>
 		S& system(bool enable) {
 			static_assert(std::is_base_of_v<System, S>, "Typename S is not subclass of System");
-			nova_assert(false, "TODO")
+			nova_assert(false, "TODO");
 		}
 
 		Entity instantiate();

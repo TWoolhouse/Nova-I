@@ -25,6 +25,9 @@
 // #define NOVA_INTERNAL
 // #define NOVA_RELEASE
 
+#if (!(defined(NOVA_DEBUG) || defined(NOVA_INTERNAL) || defined(NOVA_RELEASE)))
+#error No Nova runtime configuration
+#endif
 #if (defined(NOVA_DEBUG) && (defined(NOVA_INTERNAL) || defined(NOVA_RELEASE))) || (defined(NOVA_INTERNAL) && (defined(NOVA_DEBUG) || defined(NOVA_RELEASE))) || (defined(NOVA_RELEASE) && (defined(NOVA_DEBUG) || defined(NOVA_INTERNAL)))
 #error Multiple Nova runtime requirements
 #endif
