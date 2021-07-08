@@ -4,6 +4,11 @@
 
 #include "phys/lib.h"
 
+// Compile Time Utility
+#include "util/variadics.h"
+#include "util/macro.h"
+#include "util/hashing.h"
+
 // Core
 #include "core/application.h"
 #include "core/deltatime.h"

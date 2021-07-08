@@ -6,7 +6,7 @@
 
 namespace Sol::Panel {
 
-	constexpr View::Views PACK{};
+	constexpr View::Pack PACK{};
 
 	template<typename V>
 	void context_menu(Nova::ecs::Entity& entity) {

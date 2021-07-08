@@ -2,7 +2,10 @@
 #include "spch.h"
 #include <nova.h>
 
+#define SolView(view) namespace Sol::View { NovaVarTypeList(Pack, view) }
+
 namespace Sol::View {
+	NovaVarTypeListNew(Pack, 256)
 
 	template<typename C>
 	class View {

@@ -72,9 +72,7 @@
     <PostBuildEvent />
     <PostBuildEvent />
     <PreBuildEvent />
-    <PreBuildEvent>
-      <Command />
-    </PreBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

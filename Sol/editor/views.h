@@ -7,10 +7,6 @@
 
 namespace Sol::View {
 
-	using Views = Nova::var::pack<
-		Name,
-		Transform,
-		Sprite
-	>;
+	NovaVarTypeListFin(Pack);
 
 }

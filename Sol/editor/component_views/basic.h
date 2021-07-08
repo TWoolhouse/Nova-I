@@ -93,3 +93,7 @@ namespace Sol::View {
 	};
 
 }
+
+SolView(Sol::View::Name)
+SolView(Sol::View::Transform)
+SolView(Sol::View::Sprite)

@@ -20,10 +20,15 @@ namespace Nova::var {
 		return false;
 	}
 
+	struct none {};
+
 	template<typename ...Ts>
 	struct pack {
 		using tuple = std::tuple<Ts...>;
 	};
+
+	template<typename T, typename ...Ts>
+	pack<Ts..., T> packer(pack<Ts...>);
 
 	template<typename ...Ts>
 	struct decay : public pack<std::decay_t<Ts> ...> {};
@@ -31,6 +36,7 @@ namespace Nova::var {
 	template<typename Sig> struct signature;
 	template<typename R, typename ...Args> struct signature<R(Args...)> : public pack<Args...> {
 		using decay = var::decay<Args...>;
+		using ret = R;
 	};
 
 	//template<typename ...T>
