@@ -57,11 +57,10 @@ namespace Sol::Panel {
 		if (Nova::imgui::BeginDragDropTarget()) {
 			if (auto payload = Nova::imgui::AcceptDragDropPayload(payload_type)) {
 				Nova::ecs::Entity nchild{ reg , *static_cast<Nova::ecs::Entity::Type*>(payload->Data) };
-				nchild.remove_if_exists<Nova::Component::Parent>();
+				nchild.remove<Nova::Component::Parent>();
 			}
 			Nova::imgui::EndDragDropTarget();
 		}
-		//static constexpr auto context_menu = ;
 		if (Nova::imgui::BeginPopupContextWindow(context_menu, ImGuiPopupFlags_NoOpenOverItems | ImGuiPopupFlags_MouseButtonRight)) {
 			if (Nova::imgui::MenuItem("Create New Entity")) {
 				create_entity();
@@ -82,7 +81,6 @@ namespace Sol::Panel {
 			delete_entity_recurse(Nova::ecs::Entity{ entity.registry(), std::get<0>(child->data) }, *child);
 		}
 
-		entity.remove_all();
 		entity.destroy();
 	}
 
