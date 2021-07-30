@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="sol_base.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile />
+    <Link />
+    <PreBuildEvent />
+    <Link>
+      <AdditionalDependencies>Sol.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <PreprocessorDefinitions>SOL_EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PreLinkEvent>
+      <Command>xcopy "$(EditorDLL)" "$(TargetDir)" /y /c /s /e /j /d
+xcopy "$(SolutionDir)$(EditorName)\$(EditorName)\" "$(ProjectDir)$(EditorName)\" /y /c /s /e /j /d
+%(Command)</Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>$(EditorName) DLL</Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

@@ -4,20 +4,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
   <ItemDefinitionGroup>
-    <PreBuildEvent>
-      <Command>xcopy "$(TargetDir)..\$(SolutionName)\" "$(TargetDir)" /y /c /s /e /j /d
-xcopy "$(SolutionDir)$(SolutionName)\$(SolutionName)\" "$(ProjectDir)$(SolutionName)\" /y /c /s /e /j /d</Command>
-      <Message>Nova DLL</Message>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)$(ProjectName)\" "$(TargetDir)$(ProjectName)\" /y /c /s /e /j /d
-xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d</Command>
+      <Command>xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d</Command>
       <Message>$(ProjectName) Assets</Message>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>$(SolutionName).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
     </Link>
+    <PreLinkEvent>
+      <Command>xcopy "$(EngineDLL)" "$(TargetDir)" /y /c /s /e /j /d
+xcopy "$(SolutionDir)$(EngineName)\$(EngineName)\" "$(ProjectDir)$(EngineName)\" /y /c /s /e /j /d</Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>$(EngineName) DLL</Message>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>
