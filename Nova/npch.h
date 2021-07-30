@@ -15,11 +15,16 @@
 #include <iostream>
 #include <algorithm>
 
+#ifdef NOVA_STATIC
+#define NOVA_API
+#error Nova does not support static library compilation yet
+#else
 #ifdef NOVA_EXPORT
 #define NOVA_API __declspec(dllexport)
 #else
 #define NOVA_API __declspec(dllimport)
 #endif // NOVA_EXPORT
+#endif // NOVA_STATIC
 
 // #define NOVA_DEBUG
 // #define NOVA_INTERNAL

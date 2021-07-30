@@ -2,6 +2,9 @@
 
 #include "npch.h"
 
+// Main Entry Point
+#include "core/entry_point.h"
+
 #include "phys/lib.h"
 
 // Compile Time Utility
@@ -73,6 +76,3 @@
 
 // Maths Lib
 #include "phys/random.h"
-
-// Main Entry Point
-#include "core/entry_point.h"
