@@ -10,6 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sol", "Sol\Sol.vcxproj", "{
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E} = {324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SolarFlare", "SolarFlare\SolarFlare.vcxproj", "{73FB8E0E-9ABF-460D-8697-C966603D80E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A8112982-A29B-4197-A82F-6321C4C2352A} = {A8112982-A29B-4197-A82F-6321C4C2352A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -19,16 +24,22 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Debug|x64.ActiveCfg = Debug|x64
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Debug|x64.Build.0 = Debug|x64
-		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Editor|x64.ActiveCfg = Internal|x64
-		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Editor|x64.Build.0 = Internal|x64
+		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Editor|x64.ActiveCfg = Release|x64
+		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Editor|x64.Build.0 = Release|x64
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Release|x64.ActiveCfg = Release|x64
 		{324D7A7B-08D9-4C69-AD50-2D13C44EDC5E}.Release|x64.Build.0 = Release|x64
 		{A8112982-A29B-4197-A82F-6321C4C2352A}.Debug|x64.ActiveCfg = Debug|x64
 		{A8112982-A29B-4197-A82F-6321C4C2352A}.Debug|x64.Build.0 = Debug|x64
-		{A8112982-A29B-4197-A82F-6321C4C2352A}.Editor|x64.ActiveCfg = Internal|x64
-		{A8112982-A29B-4197-A82F-6321C4C2352A}.Editor|x64.Build.0 = Internal|x64
+		{A8112982-A29B-4197-A82F-6321C4C2352A}.Editor|x64.ActiveCfg = Release|x64
+		{A8112982-A29B-4197-A82F-6321C4C2352A}.Editor|x64.Build.0 = Release|x64
 		{A8112982-A29B-4197-A82F-6321C4C2352A}.Release|x64.ActiveCfg = Release|x64
 		{A8112982-A29B-4197-A82F-6321C4C2352A}.Release|x64.Build.0 = Release|x64
+		{73FB8E0E-9ABF-460D-8697-C966603D80E3}.Debug|x64.ActiveCfg = Debug|x64
+		{73FB8E0E-9ABF-460D-8697-C966603D80E3}.Debug|x64.Build.0 = Debug|x64
+		{73FB8E0E-9ABF-460D-8697-C966603D80E3}.Editor|x64.ActiveCfg = Editor|x64
+		{73FB8E0E-9ABF-460D-8697-C966603D80E3}.Editor|x64.Build.0 = Editor|x64
+		{73FB8E0E-9ABF-460D-8697-C966603D80E3}.Release|x64.ActiveCfg = Release|x64
+		{73FB8E0E-9ABF-460D-8697-C966603D80E3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
