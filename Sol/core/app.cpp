@@ -3,6 +3,8 @@
 
 #include "editor/panels.h"
 
+#include "solutionator/ion.h"
+
 #include "example/ants.h"
 
 static Ants* ants;
@@ -67,6 +69,10 @@ namespace Sol {
 		// Main Menu Bar at top of Main Window
 		if (Nova::imgui::BeginMainMenuBar()) {
 			if (Nova::imgui::BeginMenu("File")) {
+				if (Nova::imgui::MenuItem("New Project")) {
+					Sol::Ion::gui_open();
+				}
+				Nova::imgui::Separator();
 				if (Nova::imgui::MenuItem("Quit", "Alt+F4")) {
 					Nova::Event::WindowClose close;
 					event_callback(close);
@@ -76,7 +82,7 @@ namespace Sol {
 
 			// Open and Close Windows
 			if (Nova::imgui::BeginMenu("View")) {
-				static std::string view_menu_items[] = {
+				static constexpr std::string_view view_menu_items[] = {
 					// "" is a Seperator
 					"", "Settings", "Stats",
 					"", "Scene Hierarchy", "Entity",
@@ -87,11 +93,11 @@ namespace Sol {
 				}
 				for (auto& name : view_menu_items) {
 					if (name.empty()) {
-						ImGui::Separator();
+						Nova::imgui::Separator();
 						continue;
 					}
 					auto& panel = m_panels[name];
-					if (Nova::imgui::MenuItem(name.c_str(), 0, panel->open())) {
+					if (Nova::imgui::MenuItem(name.data(), 0, panel->open())) {
 						panel->open_toggle();
 					}
 				}
@@ -129,6 +135,9 @@ namespace Sol {
 			panel->render();
 		}
 
+		// Render Popups
+		Sol::Ion::gui();
+
 		gui->end();
 	}
 
@@ -142,11 +151,7 @@ namespace Sol {
 		}
 		gui->event(event);
 		if (event.done) return;
-
-		if (auto e = event.cast<Nova::Event::MouseScroll>()) {
-			const auto& off = e.offset().second;
-			camera->zoom(off * Nova::DeltaTime::dt());
-		}
+		camera_controller.event(event);
 
 		world->event(event);
 

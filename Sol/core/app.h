@@ -1,10 +1,11 @@
+#pragma once
 #include "spch.h"
 #include <nova.h>
 #include "panel.h"
 #include "editor/camera.h"
 
 namespace Sol {
-	class App : public Nova::Application {
+	class SOL_API App : public Nova::Application {
 	public:
 		App();
 		~App() {}
@@ -18,6 +19,6 @@ namespace Sol {
 	private:
 		Sol::Editor::Camera camera_controller;
 		// gui
-		std::unordered_map<std::string, Panel::Panel*> m_panels;
+		std::unordered_map<std::string_view, Panel::Panel*> m_panels;
 	};
 }
