@@ -10,7 +10,7 @@
     <Link />
     <PreBuildEvent />
     <Link>
-      <AdditionalDependencies>Sol.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(EditorName).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ClCompile>
       <PreprocessorDefinitions>SOL_EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>

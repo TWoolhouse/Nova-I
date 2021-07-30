@@ -10,7 +10,7 @@
       <Message>$(ProjectName) Assets</Message>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>$(SolutionName).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(EngineName).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
