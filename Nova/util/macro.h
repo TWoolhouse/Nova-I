@@ -4,6 +4,9 @@
 #define __COMBINE(x,y) x ## y
 #define COMBINE(x,y) __COMBINE(x,y)
 
+#define __STR(x) #x
+#define STR(x) __STR(x)
+
 namespace Nova::var::__v_list {
 	template <template<size_t> class Elm, size_t I>
 	struct Generator {
