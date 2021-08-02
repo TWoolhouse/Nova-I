@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="core\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,6 +37,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="editor\drag_drop_target.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solutionator\ion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solutionator\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,11 +95,30 @@
     <ClInclude Include="editor\drop_targets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\entry_point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solutionator\ion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sol\vsfile\project\resource\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sol\vsfile\project\fpch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Sol\shader\simple.glsl" />
     <None Include="asset\shader\trail.agent.glsl" />
     <None Include="asset\shader\trail.fade.glsl" />
+    <None Include="Sol\vsfile\sln.template" />
+    <None Include="Sol\vsfile\project\resource\rc.template" />
+    <None Include="Sol\vsfile\project\vcxproj.template" />
+    <None Include="Sol\vsfile\project\vcxproj.user.template" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc">
@@ -104,7 +126,16 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Sol\texture\nova.ico">
+    <Image Include="Sol\texture\sol.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sol\texture\icon\file.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sol\texture\icon\folder.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sol\texture\icon\image.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

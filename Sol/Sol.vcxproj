@@ -5,10 +5,6 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Internal|x64">
-      <Configuration>Internal</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
@@ -22,19 +18,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseDebugLibraries>true</UseDebugLibraries>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Internal|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -46,53 +36,35 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\Nova\properties\nova.props" />
     <Import Project="..\Nova\properties\nova_debug.props" />
+    <Import Project="..\Nova\properties\nova.props" />
+    <Import Project="properties\sol_req.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\Nova\properties\nova.props" />
     <Import Project="..\Nova\properties\nova_release.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Internal|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Nova\properties\nova.props" />
-    <Import Project="..\Nova\properties\nova_internal.props" />
+    <Import Project="properties\sol_req.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Internal|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile />
     <Link />
     <PostBuildEvent />
     <PostBuildEvent />
     <PreBuildEvent />
     <PreBuildEvent />
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile />
     <Link />
     <PostBuildEvent />
     <PostBuildEvent />
     <PreBuildEvent />
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Internal|x64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link />
     <PostBuildEvent />
-    <PostBuildEvent />
-    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="core\app.cpp" />
@@ -102,15 +74,16 @@
     <ClCompile Include="editor\panel\panel_entity_components.cpp" />
     <ClCompile Include="editor\panel\panel_scene_hierarchy.cpp" />
     <ClCompile Include="example\ants.cpp" />
-    <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Internal|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="solutionator\ion.cpp" />
+    <ClCompile Include="solutionator\menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\app.h" />
+    <ClInclude Include="core\entry_point.h" />
     <ClInclude Include="core\panel.h" />
     <ClInclude Include="editor\camera.h" />
     <ClInclude Include="editor\component_views\basic.h" />
@@ -125,18 +98,29 @@
     <ClInclude Include="editor\panel\stats.h" />
     <ClInclude Include="example\ants.h" />
     <ClInclude Include="resource\resource.h" />
+    <ClInclude Include="sol.h" />
+    <ClInclude Include="solutionator\ion.h" />
+    <ClInclude Include="Sol\vsfile\project\fpch.h" />
+    <ClInclude Include="Sol\vsfile\project\resource\resource.h" />
     <ClInclude Include="spch.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sol\shader\simple.glsl" />
     <None Include="asset\shader\trail.agent.glsl" />
     <None Include="asset\shader\trail.fade.glsl" />
+    <None Include="Sol\vsfile\project\resource\rc.template" />
+    <None Include="Sol\vsfile\project\vcxproj.template" />
+    <None Include="Sol\vsfile\project\vcxproj.user.template" />
+    <None Include="Sol\vsfile\sln.template" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Sol\texture\nova.ico" />
+    <Image Include="Sol\texture\icon\file.png" />
+    <Image Include="Sol\texture\icon\folder.png" />
+    <Image Include="Sol\texture\icon\image.png" />
+    <Image Include="Sol\texture\sol.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
