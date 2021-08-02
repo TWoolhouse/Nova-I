@@ -1,3 +1,13 @@
+## Flares
+Flares/*/Nova
+Flares/*/Sol
+Flares/*/SolarFlare
+
+# Copied Nova Files for projects
+Flares/*/*/Nova/
+# Copied Sol Files for projects
+Flares/*/*/Sol/
+
 ### Nova
 
 # Copied Nova Files for projects
