@@ -3,13 +3,13 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EngineName>Nova</EngineName>
-    <EngineBinDirRoot>$(SolutionDir)bin\</EngineBinDirRoot>
+    <EngineBinDirRoot>$(ProjectDir)..\bin\</EngineBinDirRoot>
     <EngineBinDir>$(EngineBinDirRoot)$(EngineConfig)\</EngineBinDir>
     <EngineDLL>$(EngineBinDir)$(EngineName)\</EngineDLL>
   </PropertyGroup>
   <PropertyGroup>
-    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)build\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)..\bin\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)..\build\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

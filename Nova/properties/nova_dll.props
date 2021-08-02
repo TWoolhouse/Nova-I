@@ -6,7 +6,8 @@
   <ItemDefinitionGroup>
     <PreBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d</Command>
+      <Command>xcopy "$(ProjectDir)asset\" "$(TargetDir)asset\" /y /c /s /e /j /d
+%(Command)</Command>
       <Message>$(ProjectName) Assets</Message>
     </PostBuildEvent>
     <Link>
@@ -15,11 +16,18 @@
     </Link>
     <PreLinkEvent>
       <Command>xcopy "$(EngineDLL)" "$(TargetDir)" /y /c /s /e /j /d
-xcopy "$(SolutionDir)$(EngineName)\$(EngineName)\" "$(ProjectDir)$(EngineName)\" /y /c /s /e /j /d</Command>
+%(Command)</Command>
     </PreLinkEvent>
     <PreLinkEvent>
       <Message>$(EngineName) DLL</Message>
     </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)$(EngineName)\$(EngineName)\" "$(ProjectDir)$(EngineName)\" /y /c /s /e /j /d
+%(Command)</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Nova Resources</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

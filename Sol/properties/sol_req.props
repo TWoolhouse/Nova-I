@@ -9,7 +9,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>spch.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>SOL_EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SOL_EDITOR;BASE_DIR=R"($(ProjectDir)..\)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)$(ProjectName)\" "$(TargetDir)$(ProjectName)\" /y /c /s /e /j /d </Command>

@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
     <Import Project="sol_base.props" />
+    <Import Project="flare_base.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -14,15 +15,20 @@
     </Link>
     <ClCompile>
       <PreprocessorDefinitions>SOL_EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(EditorName);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PreLinkEvent>
       <Command>xcopy "$(EditorDLL)" "$(TargetDir)" /y /c /s /e /j /d
-xcopy "$(SolutionDir)$(EditorName)\$(EditorName)\" "$(ProjectDir)$(EditorName)\" /y /c /s /e /j /d
 %(Command)</Command>
     </PreLinkEvent>
     <PreLinkEvent>
       <Message>$(EditorName) DLL</Message>
     </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)$(EditorName)\$(EditorName)\" "$(ProjectDir)$(EditorName)\" /y /c /s /e /j /d
+%(Command)</Command>
+      <Message>Sol Resources</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>
