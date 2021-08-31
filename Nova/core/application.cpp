@@ -3,12 +3,13 @@
 #include "deltatime.h"
 #include "event/window.h"
 #include "render/command.h"
+#include "ecs/world.h"
 
 namespace Nova {
 
 	Application* Application::s_instance = nullptr;
 
-	Application::Application() {
+	Application::Application() : world(ecs::World::Create()) {
 		s_instance = this;
 		DeltaTime::update();
 		m_window = Window::Create(

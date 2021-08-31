@@ -2,6 +2,7 @@
 #include "npch.h"
 #include "window.h"
 #include "event/event.h"
+#include "ecs/world.h"
 
 int main(int argc, char const* argv[]);
 int WinMain(int argc, char const* argv[]);
@@ -22,6 +23,7 @@ namespace Nova {
 
 		void event_callback(Event::Event& event);
 
+		Nova::Star<Nova::ecs::World> world;
 	private:
 		friend int ::WinMain(int argc, char const* argv[]);
 		friend int ::main(int argc, char const* argv[]);

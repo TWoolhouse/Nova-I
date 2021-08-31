@@ -7,7 +7,7 @@
 #ifdef NOVA_DEBUG
 	int main(int argc, char const* argv[])
 #else
-#ifdef _WIN64
+#ifdef OS_WIN
 	int WinMain(int argc, char const* argv[])
 #else
 	int main(int argc, char const* argv[])
