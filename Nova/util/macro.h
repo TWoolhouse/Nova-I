@@ -7,7 +7,13 @@
 #define __STR(x) #x
 #define STR(x) __STR(x)
 
-namespace Nova::var::__v_list {
+namespace Nova::var {
+	template <size_t C>
+	struct Counter : public Counter<(C - 1)> { static constexpr size_t N = C; };
+	template <> struct Counter<0> { static constexpr size_t N = 0; };
+}
+
+namespace Nova::var::__v_tlist {
 	template <template<size_t> class Elm, size_t I>
 	struct Generator {
 		using pack = typename decltype(packer<typename Elm<I - 1>::Type>(typename Generator<Elm, I - 1>::pack{}));
@@ -17,26 +23,24 @@ namespace Nova::var::__v_list {
 		using pack = pack<>;
 	};
 
-	template <size_t C>
-	struct Counter : public Counter<(C - 1)> { static constexpr size_t N = C; };
-	template <> struct Counter<0> { static constexpr size_t N = 0; };
-
 }
-
+// Create Pack Type List with maximum size
 #define NovaVarTypeListNew(name, size) \
-namespace __vc_list_##name { \
+namespace __vc_list_::_##name { \
 	constexpr size_t S = size; \
-	::Nova::var::__v_list::Counter<0> Creator(::Nova::var::__v_list::Counter<0>); \
+	::Nova::var::Counter<0> Creator(::Nova::var::Counter<0>); \
 	template <size_t I> struct E; \
 }
 
+// Append Type to Pack List
 #define NovaVarTypeList(name, type) \
-namespace __vc_list_##name { \
-	template <> struct E<decltype(Creator(::Nova::var::__v_list::Counter<S>{}))::N > { \
+namespace __vc_list_::_##name { \
+	template <> struct E<decltype(Creator(::Nova::var::Counter<S>{}))::N > { \
 		using Type = type; \
 	}; \
-	::Nova::var::__v_list::Counter<decltype(Creator(::Nova::var::__v_list::Counter<S>{}))::N + 1 > Creator(::Nova::var::__v_list::Counter<decltype(Creator(::Nova::var::__v_list::Counter<S>{}))::N + 1 > ); \
+	::Nova::var::Counter<decltype(Creator(::Nova::var::Counter<S>{}))::N + 1 > Creator(::Nova::var::Counter<decltype(Creator(::Nova::var::Counter<S>{}))::N + 1 > ); \
 }
 
+// Close Pack Type List
 #define NovaVarTypeListFin(name) \
-using name = typename ::Nova::var::__v_list::Generator<__vc_list_##name##::E, decltype(__vc_list_##name##::Creator(::Nova::var::__v_list::Counter<__vc_list_##name##::S>{}))::N>::pack;
+using name = typename ::Nova::var::__v_tlist::Generator<__vc_list_::_##name##::E, decltype(__vc_list_::_##name##::Creator(::Nova::var::Counter<__vc_list_::_##name##::S>{}))::N>::pack;
