@@ -1,16 +1,16 @@
-[submodule "Nova\\dep\\entt"]
-	path = Nova\\dep\\entt
-	url = https://github.com/skypjack/entt
-[submodule "Nova\\dep\\imgui"]
-	path = Nova\\dep\\imgui
-	url = https://github.com/ocornut/imgui
+[submodule "Nova/dep/entt"]
+	path = Nova/dep/entt
+	url = git://github.com/skypjack/entt.git
+[submodule "Nova/dep/imgui"]
+	path = Nova/dep/imgui
+	url = git://github.com/ocornut/imgui.git
 	branch = docking
-[submodule "Nova\\dep\\glm"]
-	path = Nova\\dep\\glm
-	url = https://github.com/g-truc/glm
-[submodule "Nova\\dep\\stblib"]
-	path = Nova\\dep\\stblib
-	url = https://github.com/nothings/stb
-[submodule "Nova\\dep\\cereal"]
-	path = Nova\\dep\\cereal
-	url = https://github.com/USCiLab/cereal
+[submodule "Nova/dep/glm"]
+	path = Nova/dep/glm
+	url = git://github.com/g-truc/glm.git
+[submodule "Nova/dep/stblib"]
+	path = Nova/dep/stblib
+	url = git://github.com/nothings/stb.git
+[submodule "Nova/dep/cereal"]
+	path = Nova/dep/cereal
+	url = git://github.com/USCiLab/cereal.git
