@@ -73,7 +73,6 @@
     <ClCompile Include="editor\panel\panel_asset_explorer.cpp" />
     <ClCompile Include="editor\panel\panel_entity_components.cpp" />
     <ClCompile Include="editor\panel\panel_scene_hierarchy.cpp" />
-    <ClCompile Include="example\ants.cpp" />
     <ClCompile Include="core\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -89,6 +88,7 @@
     <ClInclude Include="editor\component_views\basic.h" />
     <ClInclude Include="editor\component_views\view.h" />
     <ClInclude Include="editor\drop_targets.h" />
+    <ClInclude Include="editor\editor.h" />
     <ClInclude Include="editor\panel\asset_explorer.h" />
     <ClInclude Include="editor\views.h" />
     <ClInclude Include="editor\panels.h" />
@@ -96,22 +96,15 @@
     <ClInclude Include="editor\panel\scene_hierarchy.h" />
     <ClInclude Include="editor\panel\settings.h" />
     <ClInclude Include="editor\panel\stats.h" />
-    <ClInclude Include="example\ants.h" />
     <ClInclude Include="resource\resource.h" />
     <ClInclude Include="sol.h" />
     <ClInclude Include="solutionator\ion.h" />
-    <ClInclude Include="Sol\vsfile\project\fpch.h" />
-    <ClInclude Include="Sol\vsfile\project\resource\resource.h" />
     <ClInclude Include="spch.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sol\shader\simple.glsl" />
     <None Include="asset\shader\trail.agent.glsl" />
     <None Include="asset\shader\trail.fade.glsl" />
-    <None Include="Sol\vsfile\project\resource\rc.template" />
-    <None Include="Sol\vsfile\project\vcxproj.template" />
-    <None Include="Sol\vsfile\project\vcxproj.user.template" />
-    <None Include="Sol\vsfile\sln.template" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc" />

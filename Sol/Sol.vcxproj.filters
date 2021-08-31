@@ -18,9 +18,6 @@
     <ClCompile Include="core\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="example\ants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="spch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="example\ants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource\resource.h">
@@ -104,10 +98,7 @@
     <ClInclude Include="solutionator\ion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sol\vsfile\project\resource\resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sol\vsfile\project\fpch.h">
+    <ClInclude Include="editor\editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -115,10 +106,6 @@
     <None Include="Sol\shader\simple.glsl" />
     <None Include="asset\shader\trail.agent.glsl" />
     <None Include="asset\shader\trail.fade.glsl" />
-    <None Include="Sol\vsfile\sln.template" />
-    <None Include="Sol\vsfile\project\resource\rc.template" />
-    <None Include="Sol\vsfile\project\vcxproj.template" />
-    <None Include="Sol\vsfile\project\vcxproj.user.template" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc">
