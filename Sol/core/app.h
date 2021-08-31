@@ -15,7 +15,6 @@ namespace Sol {
 	public:
 		Nova::Render::Camera* camera;
 		Nova::Star<Nova::imgui::App> gui;
-		Nova::Star<Nova::ecs::World> world;
 	private:
 		Sol::Editor::Camera camera_controller;
 		// gui

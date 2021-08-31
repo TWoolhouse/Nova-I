@@ -5,29 +5,23 @@
 
 #include "solutionator/ion.h"
 
-#include "example/ants.h"
-
-static Ants* ants;
-
 namespace Sol {
 
 	App::App() :
 		camera(new Nova::Camera::Ortho(1280, 720)),
 		gui(Nova::imgui::App::Create()),
-		world(Nova::ecs::World::Create()),
 		camera_controller(camera),
 		m_panels(Panel::generate()) {
-
 		Nova::Render::Command::VSync(true);
 
 		// Insert Editor World Systems
-		world->system<Nova::ecs::sys::Render>();
+		world->system<Nova::ecs::sys::Render>(camera);
 
 		// Temporary ECS Test
 		auto e = world->instantiate();
 		e.emplace<Nova::Component::Name>("My Entity");
 		e.emplace<Nova::Component::Transform>(Nova::glm::vec3{ -1.0, -1.0, 0.0 });
-		auto& sprite1 = e.emplace<Nova::Component::Sprite>(Nova::glm::vec4{0.5, 0.5, 1.0, 1.0});
+		auto& sprite1 = e.emplace<Nova::Component::Sprite>(Nova::glm::vec4{ 0.5, 0.5, 1.0, 1.0 });
 		sprite1.texture = Nova::Resource::Stock::Texture::invalid;
 
 		auto g = world->instantiate();
@@ -37,30 +31,19 @@ namespace Sol {
 		auto f = world->instantiate();
 		f.emplace<Nova::Component::Name>("Child");
 		f.emplace<Nova::Component::Parent>(e);
-		f.emplace<Nova::Component::Transform>(Nova::glm::vec3{0.5, 0.5, 0.1});
+		f.emplace<Nova::Component::Transform>(Nova::glm::vec3{ 0.5, 0.5, 0.1 });
 		auto& sprite2 = f.emplace<Nova::Component::Sprite>(Nova::glm::vec4{ 0.0, 0.687, 0.41, 1.0 });
-		sprite2.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
+		//sprite2.texture = Nova::Texture2D::Create("Sol/texture/test.jpg", {});
 
-		ants = new Ants(16, 1280, 720);
-		auto ant = world->instantiate();
-		ant.emplace<Nova::Component::Name>("Ants");
-		ant.emplace<Nova::Component::Transform>(Nova::glm::vec3{ 1.0, 1.0, 0.0 });
-		auto& sprite3 = ant.emplace<Nova::Component::Sprite>();
-		sprite3.texture = ants->get_texture();
 	}
 
 	void App::update() {
 
 		// ### Render ###
-		Nova::Render::Draw(camera);
-
-		ants->update();
 
 		if (!gui->blocking())
 			camera_controller.update();
 		world->update();
-
-		Nova::Render::Draw();
 
 		// ### GUI ###
 		gui->begin();
@@ -142,7 +125,6 @@ namespace Sol {
 	}
 
 	void App::event(Nova::Event::Event& event) {
-		ants->event(event);
 		if (auto e = event.cast<Nova::Event::KeyPress>()) {
 			if (e.match(Nova::Input::Key::ESCAPE)) {
 				Nova::Event::WindowClose close;
