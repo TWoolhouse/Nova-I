@@ -3,11 +3,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <FlareName>SolarFlare</FlareName>
+    <FlareDirs>Nova,Sol,bin,build</FlareDirs>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>
     <PreBuildEvent>
-      <Command>FOR %%I IN (Nova,Sol,SolarFlare,bin,build) DO (IF NOT EXIST "$(SolutionDir)%%I" (mklink /J "$(SolutionDir)%%I" "$(SolutionDir)..\..\%%I"))
+      <Command>FOR %%I IN ($(FlareDirs)) DO (IF NOT EXIST "$(SolutionDir)%%I" (mklink /J "$(SolutionDir)%%I" "$(SolutionDir)..\..\%%I"))
 %(Command)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -28,6 +29,9 @@
   <ItemGroup>
     <BuildMacro Include="FlareName">
       <Value>$(FlareName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FlareDirs">
+      <Value>$(FlareDirs)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
