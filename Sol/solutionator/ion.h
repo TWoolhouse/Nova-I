@@ -19,12 +19,15 @@ namespace Sol {
 
 		void from_template(std::ofstream& out, std::ifstream f_in);
 
-		const std::string& sr_sln_name() const { return name; }
-
 		typedef const std::string& (Ion::*SR)() const;
-		static constexpr std::array<std::pair<cstring, SR>, 1> sr_table = {
+		const std::string& sr_sln_name() const { return name; }
+		const std::string& sr_file_compile() const;
+		const std::string& sr_file_include() const;
+
+		static constexpr std::array<std::pair<cstring, SR>, 3> sr_table = {
 			std::make_pair("__SLN_NAME__", &sr_sln_name),
-			//std::make_pair<>
+			std::make_pair("__FILE_COMPILE__", &sr_file_compile),
+			std::make_pair("__FILE_INCLUDE__", &sr_file_include),
 		};
 	};
 
