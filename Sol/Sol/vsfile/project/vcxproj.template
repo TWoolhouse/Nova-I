@@ -82,17 +82,16 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\SolarFlare\flare\flare_pch.cpp">
+    <ClCompile Include="flare\pch.cpp.pch">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\SolarFlare\flare\flare_main.cpp" />
+    __FILE_COMPILE__
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SolarFlare\flare\flare_pch.h" />
-    <ClInclude Include="fpch.h" />
-    <ClInclude Include="resource/resource.h" />
+    __FILE_INCLUDE__
+    <!--__COMPONENTS__-->
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource/__SLN_NAME__.rc" />

@@ -1,2 +1,2 @@
 #pragma once
-#include <flare/flare_pch.h>
+#include <flare/pch.h>
