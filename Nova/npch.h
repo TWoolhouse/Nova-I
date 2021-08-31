@@ -39,6 +39,10 @@
 
 using cstring = const char*;
 
+#ifdef _WIN64
+#define OS_WIN
+#endif
+
 #ifndef NOVA_RELEASE
 #define nova_assert(flag, msg) __n_ova_assert(flag, msg, __FILE__, __LINE__)
 void NOVA_API __n_ova_assert(const bool& flag, const std::string& msg, cstring file, const long line);
