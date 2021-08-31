@@ -5,6 +5,6 @@
 #define NOVA_API __declspec(dllimport)
 #define NovaCerealise friend class Nova::cereal::access; template<typename Archive> void CEREAL_SERIALIZE_FUNCTION_NAME(Archive& serialise)
 #define NovaCerealiseExtern(Type, name) template<typename Archive> void CEREAL_SERIALIZE_FUNCTION_NAME(Archive& serialise, Type& name)
-#define NovaVarTypeListNew(name, size) namespace __vc_list_##name { constexpr size_t S = size; ::Nova::var::__v_list::Counter<0> Creator(::Nova::var::__v_list::Counter<0>); template <size_t I> struct E; }
-#define NovaVarTypeList(name, type) namespace __vc_list_##name { template <> struct E<decltype(Creator(::Nova::var::__v_list::Counter<S>{}))::N > { using Type = type; }; ::Nova::var::__v_list::Counter<decltype(Creator(::Nova::var::__v_list::Counter<S>{}))::N + 1 > Creator(::Nova::var::__v_list::Counter<decltype(Creator(::Nova::var::__v_list::Counter<S>{}))::N + 1 > ); }
-#define NovaVarTypeListFin(name) using name = typename ::Nova::var::__v_list::Generator<__vc_list_##name##::E, decltype(__vc_list_##name##::Creator(::Nova::var::__v_list::Counter<__vc_list_##name##::S>{}))::N>::pack;
+#define NovaVarTypeListNew(name, size) namespace __vc_list_::_##name { constexpr size_t S = size; ::Nova::var::Counter<0> Creator(::Nova::var::Counter<0>); template <size_t I> struct E; }
+#define NovaVarTypeList(name, type) namespace __vc_list_::_##name { template <> struct E<decltype(Creator(::Nova::var::Counter<S>{}))::N > { using Type = type; }; ::Nova::var::Counter<decltype(Creator(::Nova::var::Counter<S>{}))::N + 1 > Creator(::Nova::var::Counter<decltype(Creator(::Nova::var::Counter<S>{}))::N + 1 > ); }
+#define NovaVarTypeListFin(name) using name = typename ::Nova::var::__v_tlist::Generator<__vc_list_::_##name##::E, decltype(__vc_list_::_##name##::Creator(::Nova::var::Counter<__vc_list_::_##name##::S>{}))::N>::pack;
