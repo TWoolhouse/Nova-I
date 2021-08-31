@@ -1,9 +1,7 @@
 #pragma once
 #include "spch.h"
 
-#ifdef SOL
-
-#define NOVA
+#ifdef NOVA
 #include <nova.h>
 #include "core/app.h"
 
@@ -13,11 +11,10 @@ Nova::Application* Nova::Application::Create() {
 	return new Sol::App();
 }
 
-#else
-
-class Flare : public Nova::Application {
-	
-};
+#else // SOL_RUNTIME
+class Flare;
+// Inside the Flare
+#include "core/flare.h"
 
 Nova::Application* Nova::Application::Create() {
 	return new Flare;
@@ -25,4 +22,4 @@ Nova::Application* Nova::Application::Create() {
 
 #endif // SOL_EDITOR
 
-#endif // SOL
+#endif // NOVA
