@@ -55,7 +55,13 @@ namespace Nova {
 
 		Shader::Shader(const std::string& filename) : Nova::ShaderSource(), m_id(GL_NONE) {
 			auto [st, src] = FileIO::ShaderSource(filename);
-			create_shader(st, src);
+			const bool flag = create_shader(st, src);
+			#ifndef NOVA_RELEASE
+			if (!flag) {
+				std::cerr << "SHADER FILE: " << filename << std::endl;
+			}
+
+			#endif // !NOVA_RELEASE
 		}
 
 		Shader::Shader(const Nova::ShaderSource::Type& type, const std::string& source) : Nova::ShaderSource(type), m_id(GL_NONE) {
@@ -79,7 +85,8 @@ namespace Nova {
 			if (!success) {
 				char info[512];
 				glGetShaderInfoLog(m_id, 512, NULL, info);
-				std::cerr << "ERROR: Shader Compliation:\n" << info << std::endl;
+				std::cerr << "SHADER[" << m_id << "] COMPILATION:\n" << info <<
+					"SHADER CODE:\n" << source << "//SHADER CODE" << std::endl;
 				glDeleteShader(m_id);
 				m_id = GL_NONE;
 				return false;
@@ -121,6 +128,9 @@ namespace Nova {
 		}
 
 		bool ShaderProgram::create_shader_program(const std::vector<Nova::ShaderSource*>& shaders) {
+			// Work around dynamic casting inside contructor
+			m_uniform_upload = Uniform::Create(static_cast<Nova::Shader*>(this));
+
 			m_id = glCreateProgram();
 			for (auto& shader : shaders) {
 				glAttachShader(m_id, static_cast<OpenGL::Shader*>(shader)->m_id);
@@ -133,12 +143,13 @@ namespace Nova {
 			if (!success) {
 				char info[512];
 				glGetProgramInfoLog(m_id, 512, NULL, info);
-				std::cerr << "ERROR: Shader Linking:\n" << info << std::endl;
+				std::cerr << "SHADER[" << m_id << "] LINKING: ";
+				for (const auto& ss : shaders)
+					std::cerr << static_cast<OpenGL::Shader*>(ss)->m_id << " ";
+				std::cerr << "\n" << info << std::endl;
+				return false;
 			}
 			#endif // !NOVA_RELEASE
-
-			// Work around dynamic casting inside contructor
-			m_uniform_upload = Uniform::Create(static_cast<Nova::Shader*>(this));
 
 			return true;
 		}
