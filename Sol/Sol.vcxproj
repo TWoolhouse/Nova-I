@@ -77,12 +77,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="solutionator\ion.cpp" />
-    <ClCompile Include="solutionator\menu.cpp" />
+    <ClCompile Include="ion\ion.cpp" />
+    <ClCompile Include="ion\menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\app.h" />
-    <ClInclude Include="core\entry_point.h" />
     <ClInclude Include="core\panel.h" />
     <ClInclude Include="editor\camera.h" />
     <ClInclude Include="editor\component_views\basic.h" />
@@ -96,12 +95,15 @@
     <ClInclude Include="editor\panel\scene_hierarchy.h" />
     <ClInclude Include="editor\panel\settings.h" />
     <ClInclude Include="editor\panel\stats.h" />
+    <ClInclude Include="ion\compile.h" />
+    <ClInclude Include="ion\delay.h" />
     <ClInclude Include="resource\resource.h" />
     <ClInclude Include="sol.h" />
-    <ClInclude Include="solutionator\ion.h" />
+    <ClInclude Include="ion\ion.h" />
     <ClInclude Include="spch.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ion\sync.bat" />
     <None Include="Sol\shader\simple.glsl" />
     <None Include="asset\shader\trail.agent.glsl" />
     <None Include="asset\shader\trail.fade.glsl" />

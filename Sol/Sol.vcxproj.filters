@@ -18,16 +18,7 @@
     <ClCompile Include="core\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="editor\panel\panels_init.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="editor\panel\panel_scene_hierarchy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="editor\panel\panel_entity_components.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="editor\panel\panel_asset_explorer.cpp">
@@ -36,10 +27,19 @@
     <ClCompile Include="editor\drag_drop_target.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="solutionator\ion.cpp">
+    <ClCompile Include="ion\ion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="solutionator\menu.cpp">
+    <ClCompile Include="ion\menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editor\panel\panel_entity_components.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editor\panel\panels_init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,13 +92,16 @@
     <ClInclude Include="sol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\entry_point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="solutionator\ion.h">
+    <ClInclude Include="ion\ion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="editor\editor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ion\compile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ion\delay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -106,6 +109,9 @@
     <None Include="Sol\shader\simple.glsl" />
     <None Include="asset\shader\trail.agent.glsl" />
     <None Include="asset\shader\trail.fade.glsl" />
+    <None Include="ion\sync.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\Sol.rc">

@@ -7,5 +7,6 @@
 #include "panel/asset_explorer.h"
 
 namespace Sol::Panel {
-	std::unordered_map<std::string_view, Panel*> generate();
+	std::unordered_map<std::string_view, Panel*>& map();
+	void map_add(Panel* panel);
 }

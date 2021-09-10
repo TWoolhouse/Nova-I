@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ants.h" />
+    <ClInclude Include="compile\components.h" />
     <ClInclude Include="fpch.h" />
     <ClInclude Include="resource/resource.h" />
   </ItemGroup>

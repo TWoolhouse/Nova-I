@@ -1,8 +1,10 @@
 #include "spch.h"
 #include <nova.h>
 #include "entity_components.h"
-
 #include "editor/views.h"
+#include "editor/panels.h"
+
+#include "ion/delay.h"
 
 namespace Sol::Panel {
 
@@ -77,8 +79,6 @@ namespace Sol::Panel {
 		}
 	}
 
-
-
 	void EntityComponents::gui() {
 		auto& entity = hierarchy.entity();
 		if (entity) {
@@ -87,5 +87,7 @@ namespace Sol::Panel {
 			Nova::imgui::Text("No Entity Selected");
 		}
 	}
+
+	map_add(new EntityComponents(*static_cast<SceneHierarchy*>(map()["Scene Hierarchy"])));
 
 }

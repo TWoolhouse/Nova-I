@@ -82,20 +82,22 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="flare\pch.cpp.pch">
+    <ClCompile Include="flare\core\pch.cpp.pch">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    __FILE_COMPILE__
+    <!--ION-C-->
+    <!--ION-->
   </ItemGroup>
   <ItemGroup>
-    __FILE_INCLUDE__
-    <!--__ION__-->
-    <!--_/ION\_-->
+    <!--ION-H-->
+    <!--ION-->
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource/__SLN_NAME__.rc" />
+    <!--ION-R-->
+    <!--ION-->
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

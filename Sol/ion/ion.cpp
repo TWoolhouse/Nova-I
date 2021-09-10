@@ -114,9 +114,9 @@ namespace Sol {
 			return cache;
 
 		std::stringstream ss;
-		append_file_list<2>(flare_dir, sol_dir, "Include"sv, { ".h", ".hpp" }, ss);
+		append_file_list<1>(flare_dir, sol_dir, "Include"sv, { ".h" }, ss);
 		const auto ppath = sol_dir / "Sol/vsfile/project";
-		append_file_list<2>(ppath, ppath, "Include"sv, { ".h", ".hpp" }, ss);
+		append_file_list<1>(ppath, ppath, "Include"sv, { ".h" }, ss);
 
 		cache = ss.str();
 		cache_time = std::chrono::steady_clock::now();

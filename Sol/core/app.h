@@ -18,6 +18,6 @@ namespace Sol {
 	private:
 		Sol::Editor::Camera camera_controller;
 		// gui
-		std::unordered_map<std::string_view, Panel::Panel*> m_panels;
+		std::unordered_map<std::string_view, Panel::Panel*>& m_panels;
 	};
 }

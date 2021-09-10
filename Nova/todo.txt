@@ -47,3 +47,28 @@ Collision
 		Coefficient
 		Incidence = Reflection
 		Strong Force
+
+/Flares
+	/NAME
+		.sln
+		/bin ->
+			...
+		/build ->
+			...
+		/NAME
+			.prjvcx
+			fpch.h
+			/core
+				main.cpp
+				pch.h
+			/resource
+			/flare ->
+				sln.template
+				/core
+				/ion
+				/project
+					...
+		/Nova ->
+			...
+		/Sol ->
+			...

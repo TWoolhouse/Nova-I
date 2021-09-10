@@ -1,9 +1,7 @@
-#pragma once
-#include "spch.h"
-
-#ifdef NOVA
+#include "fpch.h"
+#define NOVA
 #include <nova.h>
-#include "core/app.h"
+#include <sol.h>
 
 #ifdef SOL_EDITOR
 
@@ -21,5 +19,3 @@ Nova::Application* Nova::Application::Create() {
 }
 
 #endif // SOL_EDITOR
-
-#endif // NOVA

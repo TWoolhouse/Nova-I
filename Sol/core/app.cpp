@@ -3,7 +3,7 @@
 
 #include "editor/panels.h"
 
-#include "solutionator/ion.h"
+#include "ion/ion.h"
 
 namespace Sol {
 
@@ -11,7 +11,7 @@ namespace Sol {
 		camera(new Nova::Camera::Ortho(1280, 720)),
 		gui(Nova::imgui::App::Create()),
 		camera_controller(camera),
-		m_panels(Panel::generate()) {
+		m_panels(Panel::map()) {
 		Nova::Render::Command::VSync(true);
 
 		// Insert Editor World Systems

@@ -15,33 +15,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ants.cpp">
+    <ClCompile Include="core\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="project\core\flare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="core\pch.cpp.pch">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource/resource.h">
+    <ClInclude Include="project\core\flare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ants.h">
+    <ClInclude Include="project\fpch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fpch.h">
+    <ClInclude Include="core\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="compile\components.h">
+    <ClInclude Include="project\resource\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ion\template\components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource/Solar.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <None Include="project\resource\rc.template" />
   </ItemGroup>
 </Project>

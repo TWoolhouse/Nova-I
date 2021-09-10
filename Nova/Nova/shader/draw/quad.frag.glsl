@@ -7,7 +7,7 @@ in GF {
 	vec2 tex_pos;
 } geo;
 
-uniform sampler2D textures[64];
+uniform sampler2D textures[32];
 
 out vec4 FragColor;
 
