@@ -16,6 +16,7 @@ Flares/*/*/Sol/
 # Copied Sol Files for projects
 */Sol/
 !Sol/Sol/
+!Nova/Sol/
 
 ## Dependencies
 !README.md

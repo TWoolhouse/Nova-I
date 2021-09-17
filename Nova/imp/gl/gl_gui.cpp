@@ -9,7 +9,7 @@
 #include <backends/imgui_impl_opengl3.h>
 #include "core/application.h"
 
-constexpr auto NOVA_USE_VIEWPORT = true;
+constexpr bool NOVA_USE_VIEWPORT = true;
 
 namespace Nova {
 

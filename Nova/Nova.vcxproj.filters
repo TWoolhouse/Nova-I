@@ -123,7 +123,7 @@
     <ClInclude Include="phys\lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\gui.h">
+    <ClInclude Include="gui\gui_def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imp\imgui\imgui_export.h">
@@ -237,6 +237,33 @@
     <ClInclude Include="ecs\serialise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sol\sol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\view\base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\view\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\view\views.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\view\name.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\view\sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\drop_targets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">
@@ -339,6 +366,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imp\imgui\gl\imgui_gl_glfw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sol\drag_drop_target.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

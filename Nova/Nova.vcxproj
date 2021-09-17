@@ -95,6 +95,7 @@
     <ClInclude Include="fileio\texture.h" />
     <ClInclude Include="gui\ext.h" />
     <ClInclude Include="gui\gui.h" />
+    <ClInclude Include="gui\gui_def.h" />
     <ClInclude Include="imp\gl\render\buffer\gl_buffer_interface.h" />
     <ClInclude Include="imp\gl\render\buffer\gl_buffer_uniform.h" />
     <ClInclude Include="imp\gl\gl_init.h" />
@@ -135,6 +136,14 @@
     <ClInclude Include="render\texture.h" />
     <ClInclude Include="serial\cereal.h" />
     <ClInclude Include="serial\serialise.h" />
+    <ClInclude Include="sol\camera.h" />
+    <ClInclude Include="sol\drop_targets.h" />
+    <ClInclude Include="sol\sol.h" />
+    <ClInclude Include="sol\view\base.h" />
+    <ClInclude Include="sol\view\name.h" />
+    <ClInclude Include="sol\view\sprite.h" />
+    <ClInclude Include="sol\view\transform.h" />
+    <ClInclude Include="sol\view\views.h" />
     <ClInclude Include="util\hashing.h" />
     <ClInclude Include="util\macro.h" />
     <ClInclude Include="util\variadics.h" />
@@ -177,6 +186,7 @@
     <ClCompile Include="render\draw\draw_quad.cpp" />
     <ClCompile Include="render\render.cpp" />
     <ClCompile Include="render\texture.cpp" />
+    <ClCompile Include="sol\drag_drop_target.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

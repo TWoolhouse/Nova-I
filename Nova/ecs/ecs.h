@@ -6,8 +6,12 @@
 namespace Nova {
 	namespace ecs {
 		using Registry = entt::registry;
+		namespace Components{ }
 	}
 	namespace entt {
 		using namespace ::entt;
+	}
+	namespace Component {
+		using namespace ecs::Components;
 	}
 }
