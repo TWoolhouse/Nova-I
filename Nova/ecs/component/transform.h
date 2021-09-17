@@ -25,20 +25,20 @@ namespace Nova::ecs::Components {
 				* glm::scale(scl);
 		}
 
-		operator glm::mat4& () { return transform(); }
+		operator glm::mat4 () { return transform(); }
 		void combine(const Transform& other) {
 			pos += other.pos;
 			rot += other.rot;
 			scl *= other.scl;
 		}
 
-		Transform global(Entity& entity) {
+		Transform global(const Entity& entity) {
 			Transform comp{ *this };
 			global(entity, comp);
 			return comp;
 		}
 	protected:
-		void global(Entity& entity, Transform& transform) {
+		void global(const Entity& entity, Transform& transform) {
 			auto pcomp = entity.try_get<Parent>();
 			if (pcomp) {
 				Entity parent{ entity.registry(), pcomp->entity };

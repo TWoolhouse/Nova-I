@@ -198,7 +198,7 @@
     <ClInclude Include="imp\gl\gl_helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imp\gl\gl_gui.h">
+    <ClInclude Include="imp\imgui\gl\gl_gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ecs\component\parent.h">
@@ -344,7 +344,7 @@
     <ClCompile Include="imp\gl\gl_helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imp\gl\gl_gui.cpp">
+    <ClCompile Include="imp\imgui\gl\gl_gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imp\gl\input\gl_codes.cpp">

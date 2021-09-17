@@ -15,8 +15,8 @@ namespace Nova::ecs::Components {
 		Asset<Texture2D> texture = Resource::Stock::Texture::blank;
 
 		Sprite() = default;
-		Sprite(Sprite&&) = default;
-		Sprite& operator=(Sprite&&) = default;
+		Sprite(Sprite&&) noexcept = default;
+		Sprite& operator=(Sprite&&) noexcept = default;
 		Sprite(const glm::vec4& colour) : colour(colour) {}
 
 		NovaCerealise{ serialise(colour); }

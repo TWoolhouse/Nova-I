@@ -1,6 +1,7 @@
 #pragma once
 #include "npch.h"
 #include "type.h"
+#include "util/variadics.h"
 
 namespace Nova::Event {
 
@@ -33,6 +34,12 @@ namespace Nova::Event {
 			return T(false);
 		}
 
+		//template<typename T>
+		//const bool dispatch(const bool (&func)(const T&)) {
+		//	if (type() == T::ET)
+		//		done = func(*static_cast<T*>(this));
+		//	return done;
+		//}
 		template<typename T, typename F>
 		const bool dispatch(const F& func) {
 			if (type() == T::ET)
@@ -40,7 +47,7 @@ namespace Nova::Event {
 			return done;
 		}
 
-		inline explicit operator bool() {
+		inline explicit operator bool() const {
 			return m_cast;
 		}
 

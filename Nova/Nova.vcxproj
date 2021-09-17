@@ -99,7 +99,7 @@
     <ClInclude Include="imp\gl\render\buffer\gl_buffer_interface.h" />
     <ClInclude Include="imp\gl\render\buffer\gl_buffer_uniform.h" />
     <ClInclude Include="imp\gl\gl_init.h" />
-    <ClInclude Include="imp\gl\gl_gui.h" />
+    <ClInclude Include="imp\imgui\gl\gl_gui.h" />
     <ClInclude Include="imp\imgui\imgui_export.h" />
     <ClInclude Include="input\key.h" />
     <ClInclude Include="input\mouse.h" />
@@ -163,7 +163,7 @@
     <ClCompile Include="imp\gl\render\buffer\gl_buffer_interface.cpp" />
     <ClCompile Include="imp\gl\render\buffer\gl_buffer_uniform.cpp" />
     <ClCompile Include="imp\gl\gl_init.cpp" />
-    <ClCompile Include="imp\gl\gl_gui.cpp" />
+    <ClCompile Include="imp\imgui\gl\gl_gui.cpp" />
     <ClCompile Include="imp\imgui\gl\imgui_gl_glfw.cpp" />
     <ClCompile Include="imp\imgui\gl\imgui_gl_opengl3.cpp" />
     <ClCompile Include="imp\imgui\imgui_draw.cpp" />

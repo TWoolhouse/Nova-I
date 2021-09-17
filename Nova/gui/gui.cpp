@@ -10,7 +10,7 @@ namespace Nova::imgui {
 	App::App() {
 		#ifndef NOVA_RELEASE
 		IMGUI_CHECKVERSION();
-		#endif !NOVA_RELEASE
+		#endif // !NOVA_RELEASE
 	}
 
 	void App::event(Nova::Event::Event& event) {

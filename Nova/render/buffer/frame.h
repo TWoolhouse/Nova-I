@@ -24,8 +24,8 @@ namespace Nova::Buffer {
 
 			operator bool() const {
 				return !buffer.valueless_by_exception() && (
-					(std::get_if<0>(&buffer) ? std::get<0>(buffer) : false) ||
-					(std::get_if<1>(&buffer) ? std::get<1>(buffer) : false));
+					(std::get_if<0>(&buffer) ? static_cast<bool>(std::get<0>(buffer)) : false) ||
+					(std::get_if<1>(&buffer) ? static_cast<bool>(std::get<1>(buffer)) : false));
 			}
 
 			template<typename T> const Star<T>& get() const = delete;
