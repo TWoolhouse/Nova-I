@@ -29,6 +29,7 @@ namespace Nova::Buffer {
 			}
 
 			inline std::unordered_map<std::string, Element>& elements() { return m_elements; }
+			inline const std::unordered_map<std::string, Element>& elements() const { return m_elements; }
 
 		protected:
 			std::unordered_map<std::string, Element> m_elements;
@@ -40,8 +41,8 @@ namespace Nova::Buffer {
 		virtual void bind(unsigned int slot=0) = 0;
 		virtual void unbind() = 0;
 
-		virtual void get(const std::string& name, void* const data) = 0;
-		virtual void get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset = 0) = 0;
+		virtual void get(const std::string& name, void* const data) const = 0;
+		virtual void get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset = 0) const = 0;
 
 		virtual void set(const std::string& name, const void* data) = 0;
 		virtual void set(const std::string& name, const void* data, const unsigned int size, const unsigned int offset = 0) = 0;

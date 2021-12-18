@@ -23,6 +23,9 @@ namespace Nova {
 		time_now = glfwGetTime();
 		time_dt = time_now - time_prev;
 	}
+	const double DeltaTime::time() {
+		return time_now;
+	}
 }
 
 #else
@@ -39,6 +42,9 @@ namespace Nova {
 		time_prev = time_now;
 		time_now = Clock::now();
 		time_dt = fsec(time_now - time_prev).count();
+	}
+	const double DeltaTime::time() {
+		return fsec(time_now).count();
 	}
 }
 #endif // Clock Implementation

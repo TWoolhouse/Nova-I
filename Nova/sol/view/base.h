@@ -9,12 +9,16 @@ namespace Nova::sol::View {
 	NovaVarTypeListNew(Pack, 256)
 
 	template<typename C>
+		requires std::is_base_of_v<Nova::ecs::Component, C>
 	class Base {
-		static_assert(std::is_base_of<ecs::Component, C>::value, "C must be subclass of Component");
 	public:
 		using Component = C;
 		constexpr static cstring title = "Null";
 		static void render(Component&) { nova_assert(false, "Empty View being used"); }
 	};
+
+	template<typename V> concept Viewable = (requires (V v) {
+		V::Component;
+	}) && std::is_base_of_v<Base<typename V::Component>, V>;
 
 }

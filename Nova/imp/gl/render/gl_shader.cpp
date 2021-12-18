@@ -192,7 +192,10 @@ namespace Nova {
 			nova_gl_bind(GL_CURRENT_PROGRAM, m_id);
 			auto [x, y, z] = m_work_group;
 			glDispatchCompute(x, y, z);
-			glMemoryBarrierByRegion(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT || GL_SHADER_STORAGE_BARRIER_BIT);
+		}
+		void ShaderProgramCompute::dispatch(const unsigned int x, const unsigned int y, const unsigned int z) {
+			nova_gl_bind(GL_CURRENT_PROGRAM, m_id);
+			glDispatchCompute(x, y, z);
 		}
 
 		void ShaderProgramCompute::sync() {

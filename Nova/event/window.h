@@ -95,4 +95,30 @@ namespace Nova::Event {
 		const std::pair<unsigned int, unsigned int> m_dim;
 	};
 
+	class WindowFrameResize : public Window {
+	public:
+		friend Event;
+		WindowFrameResize(const unsigned int x, const unsigned int y) : Window(), m_dim({ x, y }) {}
+		const std::pair<unsigned int, unsigned int>& size() const {
+			return m_dim;
+		}
+		const unsigned int& x() const {
+			return m_dim.first;
+		}
+		const unsigned int& y() const {
+			return m_dim.second;
+		}
+	protected:
+		WindowFrameResize(const bool cast) : Window(cast) {}
+		constexpr static Nova::Event::Type ET = Nova::Event::Type::WindowFrameResize;
+		constexpr static Nova::Event::Type ETC = Nova::Event::Type::Window;
+		virtual const Nova::Event::Type& type() {
+			return ET;
+		}
+		virtual const Nova::Event::Type& tcat() {
+			return ETC;
+		}
+		const std::pair<unsigned int, unsigned int> m_dim;
+	};
+
 }

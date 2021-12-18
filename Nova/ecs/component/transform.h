@@ -47,7 +47,7 @@ namespace Nova::ecs::Components {
 				transform.combine(pt);
 			}
 		}
-
+	protected:
 		NovaCerealise { serialise(pos, rot, scl); }
 	};
 

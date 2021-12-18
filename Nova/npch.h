@@ -45,7 +45,7 @@ using cstring = const char*;
 
 #ifndef NOVA_RELEASE
 #define nova_assert(flag, msg) __n_ova_assert(flag, msg, __FILE__, __LINE__)
-void NOVA_API __n_ova_assert(const bool& flag, const std::string& msg, cstring file, const long line);
+void NOVA_API __n_ova_assert(const bool flag, const std::string& msg, cstring file, const long line);
 #else
 #define nova_assert(flag, msg) ((void)0);
 #endif // NOVA_RELEASE

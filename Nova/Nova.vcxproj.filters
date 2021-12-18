@@ -264,6 +264,21 @@
     <ClInclude Include="sol\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sol\core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\panel\base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\panel\entity_components.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\panel\panels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sol\panel\entity_hierarchy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\application.cpp">

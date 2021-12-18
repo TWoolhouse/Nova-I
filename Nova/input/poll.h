@@ -20,8 +20,8 @@ namespace Nova::Input {
 	inline const bool Poll(const Key& key) { return State::get(key); }
 	inline const bool Poll(const Key& key, const Key& modifier, const bool& is) { return Poll(key) && (is ? Poll(modifier) : !Poll(modifier)); }
 	template<typename ...K>
+		requires (var::template all_same<Key, K...>() && var::template count<2, K...>())
 	inline const bool Poll(const K& ...keys) {
-		static_assert(var::all_same<Key, K...>() && var::count<2, K...>(), "Arguments must be Key type");
 		return (Poll(keys) && ...);
 	}
 

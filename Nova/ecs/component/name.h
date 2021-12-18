@@ -14,7 +14,7 @@ namespace Nova::ecs::Components {
 
 		operator std::string& () { return name; }
 		operator const std::string& () const { return name; }
-
+	protected:
 		NovaCerealise { serialise(name); }
 	};
 

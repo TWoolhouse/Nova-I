@@ -59,6 +59,7 @@ namespace Nova::OpenGL {
 		ShaderProgramCompute(ShaderSource* source, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
 		ShaderProgramCompute(ShaderSource* source, bool save, const std::tuple<unsigned int, unsigned int, unsigned int>& work_group = { 1, 1, 1 });
 		virtual void dispatch() override;
+		virtual void dispatch(const unsigned int x, const unsigned int y, const unsigned int z) override;
 		virtual void sync() override;
 	};
 

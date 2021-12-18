@@ -12,8 +12,8 @@ namespace Nova::OpenGL {
 		virtual void bind(unsigned int slot=0) override;
 		virtual void unbind() override;
 
-		virtual void get(const std::string& name, void* const data) override;
-		virtual void get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset = 0) override;
+		virtual void get(const std::string& name, void* const data) const override;
+		virtual void get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset = 0) const override;
 
 		virtual void set(const std::string& name, const void* data) override;
 		virtual void set(const std::string& name, const void* data, const unsigned int size, const unsigned int offset = 0) override;

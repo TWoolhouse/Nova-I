@@ -74,7 +74,10 @@ namespace Nova {
 			});
 
 			glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
+				Window& win = *static_cast<Window*>(glfwGetWindowUserPointer(window));
 				Render::FrameSize(width, height);
+				Event::WindowFrameResize event(width, height);
+				win.properties().event_callback(event);
 			});
 
 			glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {

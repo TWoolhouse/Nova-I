@@ -53,6 +53,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
@@ -60,6 +61,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>npch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
@@ -137,7 +139,12 @@
     <ClInclude Include="serial\cereal.h" />
     <ClInclude Include="serial\serialise.h" />
     <ClInclude Include="sol\camera.h" />
+    <ClInclude Include="sol\core.h" />
     <ClInclude Include="sol\drop_targets.h" />
+    <ClInclude Include="sol\panel\entity_components.h" />
+    <ClInclude Include="sol\panel\base.h" />
+    <ClInclude Include="sol\panel\entity_hierarchy.h" />
+    <ClInclude Include="sol\panel\panels.h" />
     <ClInclude Include="sol\sol.h" />
     <ClInclude Include="sol\view\base.h" />
     <ClInclude Include="sol\view\name.h" />

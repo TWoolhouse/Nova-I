@@ -2,14 +2,17 @@
 #include "npch.h"
 #include "util/variadics.h"
 #include "util/hashing.h"
+#include <concepts>
 
 namespace Nova {
 
 	namespace Resource {
-		template<typename T> class Library;
+		template<typename T> concept Assetable = (requires (T a) {T::LibCreate;})
+			&& std::is_same_v<typename var::signature<decltype(T::LibCreate)>::ret, Star<T>>;
+		template<Assetable T> class Library;
 	}
 
-	template<typename T>
+	template<Resource::Assetable T>
 	class Asset {
 		friend class Resource::Library<T>;
 		using Key = var::HashString::Hash;

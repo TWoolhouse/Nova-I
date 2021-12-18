@@ -32,14 +32,14 @@ namespace Nova {
 			glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 		}
 
-		void BufferShader::get(const std::string& name, void* const data) {
-			const auto& elm = m_layout.elements()[name];
+		void BufferShader::get(const std::string& name, void* const data) const {
+			const auto& elm = m_layout.elements().at(name);
 			nova_assert(elm.name == name, "Element Name is not valid");
 			glGetNamedBufferSubData(m_id, elm.offset, elm.size, data);
 		}
 
-		void BufferShader::get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset) {
-			const auto& elm = m_layout.elements()[name];
+		void BufferShader::get(const std::string& name, void* const data, const unsigned int size, const unsigned int offset) const {
+			const auto& elm = m_layout.elements().at(name);
 			nova_assert(elm.name == name, "Element Name is not valid");
 			nova_assert(offset < elm.size, "Offset out of range");
 			nova_assert((offset + size) <= elm.size, "Offset and Size out of Range");

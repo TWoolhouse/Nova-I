@@ -30,7 +30,7 @@ namespace Nova {
 		{ // Set texture array indices;
 			std::array<int, MAX_TEXTURES> bindings;
 			std::iota(bindings.begin(), bindings.end(), 0);
-			shader->Upload()->Int("textures", 64, bindings.data());
+			shader->upload()->Int("textures", 64, bindings.data());
 		}
 	}
 	void RenderDraw::Quad::Terminate() {

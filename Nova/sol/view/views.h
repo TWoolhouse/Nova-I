@@ -1,9 +1,10 @@
 #pragma once
 #include "base.h"
+#include "name.h"
 #include "transform.h"
+#include "sprite.h"
 
-namespace Nova::sol::View {
-
-	NovaVarTypeListFin(Pack);
-
+#define SolViewFin() \
+namespace Nova::sol::View { \
+	NovaVarTypeListFin(Pack) \
 }

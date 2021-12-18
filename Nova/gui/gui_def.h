@@ -11,13 +11,6 @@
 namespace Nova::imgui {
 	using namespace ::ImGui;
 
-	inline ImVec2 vec(const glm::vec2& v) {
-		return { v.x, v.y };
-	}
-	inline ImVec4 vec(const glm::vec4& v) {
-		return { v.x, v.y, v.z, v.w };
-	}
-
 	class NOVA_API App {
 	public:
 		static Star<App> Create();
@@ -29,6 +22,8 @@ namespace Nova::imgui {
 		void event(Nova::Event::Event& event);
 		void block_events(bool block) { m_block = block; }
 		const bool blocking() const { return m_block; }
+
+		bool& render_viewport(bool& open);
 	protected:
 		bool m_block = false;
 		void setup();

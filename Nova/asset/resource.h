@@ -16,7 +16,7 @@ namespace Nova::Resource {
 	//	static Star<T> LibCreate() = delete;
 	//};
 
-	template<typename T>
+	template<Assetable T>
 	class Library {
 		using Key = var::HashString::Hash;
 	public:
@@ -24,7 +24,7 @@ namespace Nova::Resource {
 		//Asset<T>& create(const Key& key, Args... args) {
 		//	return m_assets.emplace(key, Asset<T>(key, Asset<T>::Creator(args...)));
 		//}
-		template<typename ...Args>
+		template<typename ...Args> requires requires (Args... args) {Asset<T>::Creator(args...);}
 		Asset<T>& create(const Key& key, Args... args) {
 			return m_assets.emplace(key, Asset<T>(key, Asset<T>::Creator(args...)));
 		}

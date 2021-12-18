@@ -4,6 +4,8 @@
 #include "event/key.h"
 #include "event/mouse.h"
 #include "event/window.h"
+#include "render/render.h"
+#include "render/render_state.h"
 
 namespace Nova::imgui {
 
@@ -19,6 +21,28 @@ namespace Nova::imgui {
 			event.done |= event.cat<Nova::Event::Key>() & io.WantCaptureKeyboard;
 			event.done |= event.cat<Nova::Event::Mouse>() & io.WantCaptureMouse;
 		}
+	}
+
+	bool& App::render_viewport(bool& open) {
+		if (open) {
+			Nova::imgui::PushStyleVar(ImGuiStyleVar_WindowMinSize, { 100, 100 });
+			if (Nova::imgui::Begin("Viewport", &open)) {
+				const auto& focus_window = Nova::imgui::IsWindowFocused();
+				const auto& focus_hover = Nova::imgui::IsWindowHovered();
+				block_events(!focus_window || !focus_hover);
+
+				auto size = Nova::imgui::GetContentRegionAvail();
+				auto& fb = Nova::Render::State().framebuffer;
+				auto& fbsize = fb->size();
+				auto& tex = fb->get_colour();
+				Nova::imgui::Image(tex, size);
+				if (size.x != fbsize.x || size.y != fbsize.y) {
+					fb->resize(size.x, size.y);
+				}
+			} Nova::imgui::End();
+			Nova::imgui::PopStyleVar();
+		} // Viewport
+		return open;
 	}
 
 	void App::setup() {

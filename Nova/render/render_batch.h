@@ -11,12 +11,12 @@ namespace Nova::RenderBatch {
 	};
 
 	template<typename T, unsigned int S>
+		requires std::is_base_of_v<Block, T> && (S > 0)
 	class NOVA_API Buffer {
 	public:
 		Buffer() : m_buffer(new T[S]), m_ptr(m_buffer),
 			m_context(Nova::Buffer::Context::Create()),
 			m_vertex(Nova::Buffer::Vertex::Create(S * sizeof(T))), m_index(nullptr) {
-			static_assert(std::is_base_of_v<Block, T> && "Buffer Type must derive from Block");
 			m_context->buffer(m_vertex, T::Layout);
 			unsigned int* ibuffer = new unsigned int[S];
 			for (unsigned int i = 0; i < S; i++) { ibuffer[i] = i; }

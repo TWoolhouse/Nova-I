@@ -2,14 +2,19 @@
 #include "npch.h"
 #include "type.h"
 #include "util/variadics.h"
+#include <concepts>
 
 namespace Nova::Event {
+
+	class Event;
+
+	template<typename E> concept Eventable = std::is_base_of<Event, E>::value;
 
 	class NOVA_API Event {
 	public:
 		bool done = false;
 
-		template<typename T>
+		template<Eventable T>
 		const bool is(const bool handle = true) {
 			if (type() == T::ET) {
 				done = handle;
@@ -17,7 +22,7 @@ namespace Nova::Event {
 			} return false;
 		}
 
-		template<typename T>
+		template<Eventable T>
 		const bool cat(const bool handle = true) {
 			if (tcat() == T::ETC) {
 				done = handle;
@@ -25,7 +30,7 @@ namespace Nova::Event {
 			} return false;
 		}
 
-		template<typename T>
+		template<Eventable T>
 		T cast(bool handle = true) {
 			if (type() == T::ET) {
 				done = handle;
@@ -34,13 +39,17 @@ namespace Nova::Event {
 			return T(false);
 		}
 
-		//template<typename T>
+		//template<Eventable T>
 		//const bool dispatch(const bool (&func)(const T&)) {
 		//	if (type() == T::ET)
 		//		done = func(*static_cast<T*>(this));
 		//	return done;
 		//}
-		template<typename T, typename F>
+
+		template<Eventable T, typename F> requires
+			requires (F f) {
+				{f(T())} -> std::convertible_to<bool>;
+			}
 		const bool dispatch(const F& func) {
 			if (type() == T::ET)
 				done = func(*static_cast<T*>(this));

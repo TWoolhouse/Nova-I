@@ -12,7 +12,7 @@ namespace Nova::RenderDraw {
 		static void Flush() { nova_assert(false, "Abstract Class"); }
 	};
 
-	template<typename Drawer>
+	template<typename Drawer> requires requires (Drawer d) {Drawer::Flush();}
 	class TextureMap {
 	public:
 		TextureMap(const unsigned int size) : m_size(size), m_bindings(size) {}
@@ -51,3 +51,4 @@ namespace Nova::RenderDraw {
 	};
 
 }
+

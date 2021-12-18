@@ -62,7 +62,7 @@ namespace Nova {
 		auto output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {
 			{ Nova::Texture::Colour::Type::RGB }
 			});
-		shader->Upload()->Int("u_tex", 0);
+		shader->upload()->Int("u_tex", 0);
 		framebuffer->attach_colour(output);
 
 		output = Nova::Texture2D::Create(FrameOutput::width, FrameOutput::height, {

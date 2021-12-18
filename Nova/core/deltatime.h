@@ -10,6 +10,8 @@ namespace Nova {
 		constexpr static const double phys();
 
 		static void update();
+
+		static const double time();
 	};
 
 }

@@ -22,13 +22,13 @@ namespace Nova::ecs {
 		void event(Event::Event& event);
 
 		template<typename S, typename ...Args>
+			requires std::is_base_of_v<System, S>
 		S& system(Args... args) {
-			static_assert(std::is_base_of_v<System, S>, "Typename S is not subclass of System");
 			return *static_cast<S*>(m_systems.emplace_back(new S(*this, args...)));
 		}
 		template<typename S>
+			requires std::is_base_of_v<System, S>
 		S& system_state(bool enable) {
-			static_assert(std::is_base_of_v<System, S>, "Typename S is not subclass of System");
 			nova_assert(false, "TODO");
 		}
 

@@ -18,7 +18,11 @@ namespace Nova::ecs::Components {
 		Sprite(Sprite&&) noexcept = default;
 		Sprite& operator=(Sprite&&) noexcept = default;
 		Sprite(const glm::vec4& colour) : colour(colour) {}
-
+		Sprite(const Asset<Texture2D>& texture) : texture(texture) {}
+		Sprite(const glm::vec4& colour, const Asset<Texture2D>& texture) : colour(colour), texture(texture) {}
+		Sprite(const Nova::Star<Texture2D>& texture) : texture(texture) {}
+		Sprite(const glm::vec4& colour, const Nova::Star<Texture2D>& texture) : colour(colour), texture(texture) {}
+	protected:
 		NovaCerealise{ serialise(colour); }
 	};
 
